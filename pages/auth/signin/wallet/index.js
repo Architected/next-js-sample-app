@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Store } from '../../../../state/storeProvider';
 import { PAGE_MARKETPLACE } from '../../../../helper/routeHelper';
 import * as authActionType from '../../../../state/constants/auth';
-import MetaMaskSignIn from '../../../../components/auth/signin/metamaskSignIn';
+import MetaMaskSignIn from '../../../../components/auth/signin/metaMaskSignIn';
 import { nextStep } from '../../../../helper/scopeHelper';
 import { walletSignInAction } from '../../../../state/actions/auth/signInWallet';
 import { getClientDetails } from '../../../../helper/clientHelper';
