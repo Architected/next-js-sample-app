@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import Image from 'next/image';
-import SpinnerCode from '../shared/SpinnerComponent';
+import SpinnerCode from '../shared/spinnerComponent';
 import { getDisplayName, getIcon } from '../../helper/fileHelper';
 
 function FileViewDetail(props) {

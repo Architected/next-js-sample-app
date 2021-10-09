@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import SpinnerCode from '../shared/SpinnerComponent';
+import SpinnerCode from '../shared/spinnerComponent';
 
 function UserDetailView({
   submitHandler,
