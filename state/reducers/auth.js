@@ -188,7 +188,6 @@ export const authReducer = (state, action) => {
       return {
         ...state,
         callInProgress: true,
-        additionalData: null,
         warningMessage: null,
         errorMessage: null,
       };

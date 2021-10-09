@@ -5,6 +5,7 @@ import PasswordResetStart from '../../../components/auth/passwordReset/passwordR
 import { startAction } from '../../../state/actions/auth/passwordReset';
 import * as authActionType from '../../../state/constants/global';
 import { PAGE_FILE_LIST } from '../../../helper/routeHelper';
+import { getClientDetails } from '../../../helper/clientHelper';
 
 function StartPasswordReset() {
   const router = useRouter();
@@ -23,12 +24,10 @@ function StartPasswordReset() {
   }, []);
 
   const submitHandler = async ({ email }) => {
-    const inputData = {
-      email,
-    };
-    const responseData = await startAction(inputData, dispatch);
+    const clientDetails = await getClientDetails();
+    const responseData = await startAction(email, clientDetails, dispatch);
 
-    if (!responseData.inError) {
+    if (responseData && !responseData.inError && responseData.tokenWrapper) {
       router.push('/auth/password-reset/validate');
     }
   };

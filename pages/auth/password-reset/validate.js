@@ -27,16 +27,16 @@ function ValidatePasswordReset() {
     if (!bearerToken || !bearerToken.tokenValue) {
       router.push('/');
     }
-    return () => {
-      console.log('cleanup');
-    };
   }, []);
 
   const submitHandler = async ({ code }) => {
-    const inputData = { code, tokenValue: bearerToken.tokenValue };
-    const responseData = await validateAction(inputData, dispatch);
+    const responseData = await validateAction(
+      code,
+      dispatch,
+      bearerToken.tokenValue
+    );
 
-    if (!responseData.inError) {
+    if (responseData && !responseData.inError) {
       router.push('/auth/password-reset/perform');
     }
   };

@@ -2,6 +2,7 @@ import frontChannelService from '../../../service/frontChannelService';
 import { getError } from '../../../helper/getError';
 import * as authActionType from '../../constants/auth';
 import CryptoHelper from '../../../service/cryptoHelper';
+import startAuthorize from '../../../helper/authorizeHelper';
 
 export const startAction = async (email, clientDetails, dispatch) => {
   try {
@@ -34,11 +35,19 @@ export const startAction = async (email, clientDetails, dispatch) => {
         payload: getError(data),
       });
     } else {
-      console.log('password reset success');
-      dispatch({
-        type: authActionType.PASSWORD_RESET_SUCCESS,
-        payload: data.tokenWrapper,
-      });
+      if (!data.tokenWrapper) {
+        dispatch({
+          type: authActionType.PASSWORD_RESET_FAIL,
+          payload: 'This email does not exist as a user in the system',
+        });
+      } else {
+        console.log('PASSWORD_RESET_SUCCESS');
+        dispatch({
+          type: authActionType.PASSWORD_RESET_SUCCESS,
+          payload: data.tokenWrapper,
+        });
+      }
+
       return data;
     }
   } catch (err) {
@@ -106,7 +115,7 @@ export const performAction = async (
         payload: getError(data),
       });
     } else {
-      console.log('password reset success');
+      console.log('PASSWORD_RESET_PERFORM_SUCCESS');
       dispatch({
         type: authActionType.PASSWORD_RESET_PERFORM_SUCCESS,
         payload: null,

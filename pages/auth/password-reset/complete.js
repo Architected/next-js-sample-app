@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../../state/storeProvider';
-import PasswordResetComplete from '../../../components/auth/passwordreset/passwordResetComplete';
+import PasswordResetComplete from '../../../components/auth/passwordReset/passwordResetComplete';
 import * as authActionType from '../../../state/constants/auth';
 import { PAGE_FILE_LIST } from '../../../helper/routeHelper';
 

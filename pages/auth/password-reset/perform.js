@@ -38,9 +38,15 @@ function PerformPasswordReset() {
       additionalData,
       tokenValue: bearerToken.tokenValue,
     };
-    const responseData = await performAction(inputData, dispatch);
+    const responseData = await performAction(
+      newPassword,
+      confirmPassword,
+      dispatch,
+      additionalData,
+      bearerToken.tokenValue
+    );
 
-    if (!responseData.inError) {
+    if (responseData && !responseData.inError) {
       router.push('/auth/password-reset/complete');
     }
   };
