@@ -7,8 +7,7 @@ import { Store } from '../../state/storeProvider';
 
 function Layout(props) {
   const { state } = useContext(Store);
-  const { authState } = state['auth'];
-  const { marketPlace } = state['global'];
+  const { marketPlace, authState } = state['auth'];
 
   return (
     <>

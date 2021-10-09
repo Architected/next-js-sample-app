@@ -3,7 +3,7 @@ import { Image } from 'next/image';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { Store } from '../../state/storeProvider';
-import ModalTemplate from '../../components/shared/ModalTemplate';
+import ModalTemplate from '../../components/shared/modalTemplate';
 import FileGrid from '../../components/file/fileGrid';
 import SubmitButton from '../../components/shared/submitButton';
 import * as fileActionType from '../../state/constants/file';

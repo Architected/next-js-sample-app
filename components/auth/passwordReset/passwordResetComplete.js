@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import HomePageImage from '../../public/home.png';
+import HomePageImage from '../../../public/home.png';
 import Link from 'next/link';
 
 function PasswordResetComplete() {

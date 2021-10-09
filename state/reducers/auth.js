@@ -11,7 +11,6 @@ export const initialAuthState = {
   nextScreen: null,
   marketPlace: false,
   loggedIn: false,
-  marketPlace: false,
 };
 
 export const authReducer = (state, action) => {
@@ -259,6 +258,80 @@ export const authReducer = (state, action) => {
       return {
         ...state,
         callInProgress: false,
+        errorMessage: action.payload,
+      };
+    case authActionType.METAMASK_SET_CHAIN:
+      return {
+        ...state,
+        chainId: action.payload,
+      };
+    case authActionType.METAMASK_SET_ACCOUNT:
+      return {
+        ...state,
+        accountAddress: action.payload,
+      };
+    case authActionType.METAMASK_CLEAR_ACCOUNT:
+      return {
+        ...state,
+        accountAddress: '',
+      };
+    case authActionType.METAMASK_ERROR_ACCOUNT:
+      return {
+        ...state,
+        accountAddress: '',
+        errorMessage: action.payload,
+      };
+    case authActionType.USER_WALLET_CONNECT_START:
+      return {
+        ...state,
+        isLoading: true,
+        warningMessage: null,
+        errorMessage: null,
+        verifierGlobalId: '',
+      };
+    case authActionType.USER_WALLET_CONNECT_SUCCESS:
+      return {
+        ...state,
+        verificationGlobalId: action.payload,
+        isLoading: false,
+      };
+    case authActionType.USER_WALLET_CONNECT_WARNING:
+      return {
+        ...state,
+        isLoading: false,
+        warningMessage: action.payload,
+      };
+    case authActionType.USER_WALLET_CONNECT_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        errorMessage: action.payload,
+      };
+    case authActionType.USER_WALLET_VALIDATE_START:
+      return {
+        ...state,
+        isLoading: true,
+        warningMessage: null,
+        errorMessage: null,
+        marketPlace: false,
+      };
+    case authActionType.USER_WALLET_VALIDATE_SUCCESS:
+      return {
+        ...state,
+        authState: action.payload.authState,
+        bearerToken: action.payload.bearerToken,
+        isLoading: false,
+      };
+    case authActionType.USER_WALLET_VALIDATE_WARNING:
+      return {
+        ...state,
+        isLoading: false,
+        warningMessage: action.payload,
+      };
+    case authActionType.USER_WALLET_VALIDATE_FAIL:
+      return {
+        ...state,
+        isLoading: false,
         errorMessage: action.payload,
       };
     default:

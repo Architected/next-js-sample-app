@@ -120,43 +120,43 @@ export const performAction = async (
       payload: 'Unable to perform password reset',
     });
   }
+};
 
-  export const changeAction = async (
-    newPassword,
-    confirmPassword,
-    dispatch,
-    tokenValue
-  ) => {
-    try {
-      dispatch({ type: authActionType.PASSWORD_RESET_CHANGE_START });
+export const changeAction = async (
+  newPassword,
+  confirmPassword,
+  dispatch,
+  tokenValue
+) => {
+  try {
+    dispatch({ type: authActionType.PASSWORD_RESET_CHANGE_START });
 
-      // call login
-      console.log('calling password change start');
+    // call login
+    console.log('calling password change start');
 
-      var frontChannel = frontChannelService();
-      const { data } = await frontChannel
-        .passwordReset()
-        .change(newPassword, confirmPassword, tokenValue);
+    var frontChannel = frontChannelService();
+    const { data } = await frontChannel
+      .passwordReset()
+      .change(newPassword, confirmPassword, tokenValue);
 
-      if (data.inError) {
-        dispatch({
-          type: authActionType.PASSWORD_RESET_CHANGE_FAIL,
-          payload: getError(data),
-        });
-      } else {
-        console.log('password change success');
-        dispatch({
-          type: authActionType.PASSWORD_RESET_CHANGE_SUCCESS,
-          payload: null,
-        });
-      }
-      return data;
-    } catch (err) {
-      console.log(err.toString());
+    if (data.inError) {
       dispatch({
         type: authActionType.PASSWORD_RESET_CHANGE_FAIL,
-        payload: 'Unable to perform password change',
+        payload: getError(data),
+      });
+    } else {
+      console.log('password change success');
+      dispatch({
+        type: authActionType.PASSWORD_RESET_CHANGE_SUCCESS,
+        payload: null,
       });
     }
-  };
+    return data;
+  } catch (err) {
+    console.log(err.toString());
+    dispatch({
+      type: authActionType.PASSWORD_RESET_CHANGE_FAIL,
+      payload: 'Unable to perform password change',
+    });
+  }
 };

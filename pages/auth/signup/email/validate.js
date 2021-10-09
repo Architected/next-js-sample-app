@@ -1,16 +1,21 @@
 import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Store } from '../../../state/storeProvider';
+import { Store } from '../../../../state/storeProvider';
 import EmailValidate from '../../../../components/auth/signup/emailValidate';
-import { validateEmail } from '../../../state/actions/signUp';
 import * as authActionType from '../../../../state/constants/auth';
 import { PAGE_FILE_LIST } from '../../../../helper/routeHelper';
+import { validateEmailAction } from '../../../../state/actions/auth/signUpEmail';
 
 function SignUpEmailValidate() {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
-  const { authState, isLoading, errorMessage, warningMessage, bearerToken } =
-    state['auth'];
+  const {
+    authState,
+    callInProgress,
+    errorMessage,
+    warningMessage,
+    bearerToken,
+  } = state['auth'];
 
   useEffect(() => {
     dispatch({ type: authActionType.INIT_DEFAULT_LAYOUT });
@@ -23,14 +28,13 @@ function SignUpEmailValidate() {
   }, []);
 
   const submitHandler = async ({ code }) => {
-    const requestData = {
-      code: code,
-      tokenValue: bearerToken.tokenValue,
-    };
+    const responseData = await validateEmailAction(
+      code,
+      bearerToken.tokenValue,
+      dispatch
+    );
 
-    const responseData = await validateEmail(requestData, dispatch);
-
-    if (!responseData.inError) {
+    if (responseData && !responseData.inError) {
       router.push(PAGE_FILE_LIST);
     }
   };
@@ -47,7 +51,7 @@ function SignUpEmailValidate() {
     <>
       <EmailValidate
         submitHandler={submitHandler}
-        isLoading={isLoading}
+        isLoading={callInProgress}
         errorMessage={errorMessage}
         warningMessage={warningMessage}
       />

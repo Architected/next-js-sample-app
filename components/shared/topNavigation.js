@@ -48,10 +48,6 @@ function TopNavigation() {
                 <hr />
                 {architectedConfig.siteMode == 'app' && (
                   <>
-                    {/* <Link href="/connectwallet" passHref>
-                      <a className="dropdown-item">Connected Wallets</a>
-                    </Link>
-                    <hr /> */}
                     <Link href="/changepassword" passHref>
                       <a className="dropdown-item">Change Password</a>
                     </Link>

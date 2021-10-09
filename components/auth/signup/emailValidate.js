@@ -1,7 +1,7 @@
 import React from 'react';
 import SubmitButton from '../../../components/shared/submitButton';
 import Image from 'next/image';
-import HomePageImage from '../../public/home.png';
+import HomePageImage from '../../../public/home.png';
 import { useForm } from 'react-hook-form';
 
 function EmailValidate({

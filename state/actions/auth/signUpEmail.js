@@ -2,6 +2,7 @@ import frontChannelService from '../../../service/frontChannelService';
 import { getError } from '../../../helper/getError';
 import * as authActionType from '../../constants/auth';
 import CryptoHelper from '../../../service/cryptoHelper';
+import startAuthorize from '../../../helper/authorizeHelper';
 
 export const signUpAction = async (
   email,
@@ -12,13 +13,9 @@ export const signUpAction = async (
   try {
     dispatch({ type: authActionType.USER_SIGNUP_START });
 
-    const { ipAddress, userAgent } = clientDetails;
-
-    console.log('const codeVerifier = await connect.generateCodeVerifier();');
-
     const cryptoHelper = new CryptoHelper();
     const codeVerifier = await cryptoHelper.generateCodeVerifier();
-    console.log('signInAction:codeVerifier: ' + codeVerifier);
+    console.log('signUpAction:codeVerifier: ' + codeVerifier);
 
     const authorizeResponse = await startAuthorize(codeVerifier, clientDetails);
 
@@ -30,8 +27,7 @@ export const signUpAction = async (
       return authorizeResponse.data;
     }
 
-    var frontChannel = frontChannelService();
-    const { data } = await frontChannel
+    const { data } = await frontChannelService()
       .signUp()
       .createAccountWithEmailAndPassword(
         email,

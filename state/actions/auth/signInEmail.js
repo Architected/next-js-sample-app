@@ -16,8 +16,6 @@ export const signInAction = async (
 
     const cryptoHelper = new CryptoHelper();
     const codeVerifier = await cryptoHelper.generateCodeVerifier();
-    console.log('signInAction:codeVerifier: ' + codeVerifier);
-
     const authorizeResponse = await startAuthorize(codeVerifier, clientDetails);
 
     if (!authorizeResponse || authorizeResponse.data.inError) {

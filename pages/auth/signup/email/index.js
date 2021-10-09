@@ -30,7 +30,7 @@ function SignUpEmail() {
       dispatch
     );
 
-    if (!responseData.inError) {
+    if (responseData && !responseData.inError) {
       if (responseData.tokenWrapper.authState.signupScope === 'FULL') {
         router.push(PAGE_FILE_LIST);
       }
