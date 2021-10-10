@@ -112,12 +112,12 @@ async function mapToken(tokenContract, token) {
   let price = convertFromEther(token.price);
   let imageUrl = validURL(meta.data.image) ? meta.data.image : null;
   let assetUrl = validURL(meta.data.asset) ? meta.data.image : null;
-  console.log();
-  console.log('image url:' + imageUrl);
-  console.log('image seller:' + token.seller);
-  console.log('image owner:' + token.owner);
-  console.log('itemId:' + token.itemId);
-  console.log('tokenId:' + token.tokenId);
+  // console.log();
+  // console.log('image url:' + imageUrl);
+  // console.log('image seller:' + token.seller);
+  // console.log('image owner:' + token.owner);
+  // console.log('itemId:' + token.itemId);
+  //console.log('tokenId:' + token.tokenId);
   let item = {
     price,
     itemId: token.itemId.toNumber(),

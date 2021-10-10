@@ -7,8 +7,6 @@ export default function ModalTemplate({
   handleClose,
   children,
 }) {
-  // const { state } = useContext(Store);
-  // const { displayModal, modelTitle } = state;
   return (
     <Modal
       show={displayModal}

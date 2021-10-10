@@ -27,7 +27,7 @@ function SignInWallet() {
     const clientDetails = await getClientDetails();
     var responseData = await walletSignInAction(clientDetails, dispatch);
 
-    console.log('SignInWallet:responseData:' + JSON.stringify(responseData));
+    //console.log('SignInWallet:responseData:' + JSON.stringify(responseData));
 
     if (responseData && !responseData.inError) {
       var nextUrl = await nextStep(responseData.tokenWrapper);

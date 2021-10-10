@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { PAGE_FILE_LIST } from '../../helper/routeHelper';
 import FileViewDetail from './fileViewDetail';
 import FileViewAttribute from './fileViewAttribute';
+import FileViewIPFS from './fileViewIPFS';
+import FileViewToken from './fileViewToken';
 
 export default function FileView(props) {
   const {
@@ -11,11 +13,14 @@ export default function FileView(props) {
     loadingError,
     updateFile,
     file,
-    isUpdatingItem,
+    isUpdatingFile,
     updatingError,
     deleteFile,
     isDeletingFile,
     deletingError,
+    uploadToIPFS,
+    previewTokenHandler,
+    mintTokenHandler,
   } = props;
   return (
     <>
@@ -50,12 +55,12 @@ export default function FileView(props) {
                     <a className="" data-toggle="tab" href="#tab2" role="tab">
                       Attributes
                     </a>
-                    {/* {siteMode == 'dapp' && (
+                    {siteMode == 'dapp' && (
                       <>
                         <a
                           className=""
                           data-toggle="tab"
-                          href="#tab2"
+                          href="#tab3"
                           role="tab"
                         >
                           IPFS
@@ -63,13 +68,13 @@ export default function FileView(props) {
                         <a
                           className=""
                           data-toggle="tab"
-                          href="#tab3"
+                          href="#tab4"
                           role="tab"
                         >
                           NFT
                         </a>
                       </>
-                    )} */}
+                    )}
                   </div>
                 </nav>
                 <div className="tab-content">
@@ -88,7 +93,7 @@ export default function FileView(props) {
                         loadingError={loadingError}
                         updateFile={updateFile}
                         file={file}
-                        isUpdatingItem={isUpdatingItem}
+                        isUpdatingFile={isUpdatingFile}
                         updatingError={updatingError}
                         deleteFile={deleteFile}
                         isDeletingFile={isDeletingFile}
@@ -105,9 +110,9 @@ export default function FileView(props) {
                       <FileViewAttribute file={file} />
                     )}
                   </div>
-                  {/* {siteMode == 'dapp' && (
+                  {siteMode == 'dapp' && (
                     <>
-                      <div className="tab-pane fade" id="tab2" role="tabpanel">
+                      <div className="tab-pane fade" id="tab3" role="tabpanel">
                         {isLoadingItem ? (
                           <div>Loading...</div>
                         ) : loadingError ? (
@@ -115,23 +120,23 @@ export default function FileView(props) {
                         ) : (
                           <FileViewIPFS
                             file={file}
-                            isUpdatingItem={isUpdatingFile}
+                            isUpdatingFile={isUpdatingFile}
                             updatingError={updatingError}
                             uploadToIPFS={uploadToIPFS}
                           />
                         )}
                       </div>
-                      <div className="tab-pane fade" id="tab3" role="tabpanel">
+                      <div className="tab-pane fade" id="tab4" role="tabpanel">
                         <FileViewToken
                           file={file}
-                          isUpdatingItem={isUpdatingFile}
+                          isUpdatingFile={isUpdatingFile}
                           updatingError={updatingError}
                           previewToken={previewTokenHandler}
                           mintToken={mintTokenHandler}
                         />
                       </div>
                     </>
-                  )} */}
+                  )}
                 </div>
               </div>
             </div>

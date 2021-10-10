@@ -14,12 +14,12 @@ const getWallet = async (wallet, authorizationCode, codeVerifier) => {
     codeVerifier: codeVerifier,
   };
 
-  console.log('getWallet:request:' + JSON.stringify(walletRequest));
+  //console.log('getWallet:request:' + JSON.stringify(walletRequest));
   const response = await axios.post('/api/wallet/get', walletRequest, {
     timeout: architectedConfig.timeout,
   });
 
-  console.log('getWallet:response:' + JSON.stringify(response));
+  //console.log('getWallet:response:' + JSON.stringify(response));
 
   return response;
 };
@@ -60,7 +60,7 @@ const authenticateWallet = async (wallet, authorizationCode, codeVerifier) => {
     timeout: architectedConfig.timeout,
   });
 
-  console.log('authenticateWallet:authenticate:' + JSON.stringify(response));
+  //console.log('authenticateWallet:authenticate:' + JSON.stringify(response));
 
   return response;
 };

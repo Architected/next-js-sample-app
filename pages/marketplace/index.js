@@ -13,14 +13,15 @@ import {
 } from '../../helper/contractHelper';
 
 function MarketPlace() {
+  const router = useRouter();
   const { state, dispatch } = useContext(Store);
+  const { authState, bearerToken } = state['auth'];
   const { isLoadingList, loadingError } = state['file'];
   const [nfts, setNfts] = useState([]);
 
-  async function loadNFTs() {
+  async function getMarketPlaceItems() {
     try {
       dispatch({ type: fileActionType.FILELIST_FETCH_REQUEST });
-
       const signer = await getSigner();
       const provider = await getProvider();
 
@@ -30,13 +31,12 @@ function MarketPlace() {
 
       const items = await Promise.all(
         data.map(async (i) => {
-          console.log('token: ' + JSON.stringify(i));
           return mapToken(tokenContract, i);
         })
       );
 
-      setNfts(items);
       dispatch({ type: fileActionType.FILELIST_FETCH_SUCCESS, payload: [] });
+      return items;
     } catch (err) {
       console.log(err);
       dispatch({
@@ -47,15 +47,30 @@ function MarketPlace() {
   }
 
   useEffect(() => {
-    dispatch({ type: authActionType.INIT_MARKETPLACE_LAYOUT });
-    loadNFTs();
+    let isMounted = true;
+    console.log('isMounted' + true);
+
+    if (authState == null || bearerToken == null) {
+      router.push('/');
+    } else {
+      dispatch({ type: authActionType.INIT_MARKETPLACE_LAYOUT });
+
+      getMarketPlaceItems().then((items) => {
+        if (isMounted) setNfts(items);
+      });
+    }
+
+    return () => {
+      isMounted = false;
+      console.log('isMounted' + false);
+    };
   }, []);
 
   async function buyNFT(nft) {
     try {
       const signer = await getSigner();
       await purchaseToken(signer, nft);
-      //router.push('/my-purchases');
+      router.push('/my-purchases');
     } catch (err) {
       console.log(err);
       console.log('A problem has occured with purchase');

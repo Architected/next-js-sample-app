@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { architectedConfig } from '../../architectedConfig';
 
 function HomeScreen() {
-  console.log('architectedConfig' + JSON.stringify(architectedConfig));
   return (
     <>
       <div className="auth">

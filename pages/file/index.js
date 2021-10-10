@@ -71,16 +71,35 @@ function File() {
   };
 
   useEffect(() => {
-    console.log('isLoadingList' + isLoadingList);
+    let isMounted = true;
+    console.log('isMounted' + true);
+
     if (authState == null || bearerToken == null) {
       router.push('/');
     } else {
       if (!displayModal) {
-        reloadHandler();
-        reset();
+        reloadHandler().then(() => {
+          if (isMounted) reset();
+        });
       }
     }
+
+    return () => {
+      isMounted = false;
+      console.log('isMounted' + false);
+    };
   }, [displayModal]);
+
+  // useEffect(() => {
+  //   if (authState == null || bearerToken == null) {
+  //     router.push('/');
+  //   } else {
+  //     if (!displayModal) {
+  //       reloadHandler();
+  //       reset();
+  //     }
+  //   }
+  // }, [displayModal]);
 
   return (
     <>

@@ -16,7 +16,7 @@ const startAuthorize = async (codeVerifier, clientDetails) => {
     timeout: 30000,
   });
 
-  console.log('signUpAction:authorizeResponse:' + JSON.stringify(response));
+  //console.log('startAuthorize:response:' + JSON.stringify(response));
 
   return response;
   // if (response && response.status >= 200 && response.status <= 299) {

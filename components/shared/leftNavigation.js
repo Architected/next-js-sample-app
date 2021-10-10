@@ -87,16 +87,6 @@ function LeftNavigation() {
                   </li>
                 </>
               )}
-              {/* <li>
-                <Link href="/tags">
-                  <a>
-                    <div className="icon">
-                      <i className="fas fa-tags"></i>
-                    </div>
-                    <span>My Tags</span>
-                  </a>
-                </Link>
-              </li> */}
             </ul>
           </div>
         </div>

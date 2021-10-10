@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import { Store } from '../../state/storeProvider';
 import TokenGrid from '../../components/file/tokenGrid';
 import { getSigner, getProvider } from '../../helper/walletHelper';
@@ -11,14 +12,15 @@ import {
 } from '../../helper/contractHelper';
 
 function MySales() {
+  const router = useRouter();
   const { state, dispatch } = useContext(Store);
+  const { authState, bearerToken } = state['auth'];
   const { isLoadingList, loadingError } = state['file'];
   const [nfts, setNfts] = useState([]);
 
-  async function loadNFTs() {
+  async function getSoldItems() {
     try {
       dispatch({ type: fileActionType.FILELIST_FETCH_REQUEST });
-
       const signer = await getSigner();
       const provider = await getProvider();
 
@@ -28,13 +30,12 @@ function MySales() {
       const soldItems = data.filter((i) => i.sold);
       const items = await Promise.all(
         soldItems.map(async (i) => {
-          console.log('token: ' + JSON.stringify(i));
           return mapToken(tokenContract, i);
         })
       );
 
-      setNfts(items);
       dispatch({ type: fileActionType.FILELIST_FETCH_SUCCESS, payload: [] });
+      return items;
     } catch (err) {
       console.log(err);
       dispatch({
@@ -45,8 +46,18 @@ function MySales() {
   }
 
   useEffect(() => {
-    dispatch({ type: authActionType.INIT_MARKETPLACE_LAYOUT });
-    loadNFTs();
+    let isMounted = true;
+    console.log('isMounted' + true);
+
+    if (authState == null || bearerToken == null) {
+      router.push('/');
+    } else {
+      dispatch({ type: authActionType.INIT_MARKETPLACE_LAYOUT });
+
+      getSoldItems().then((items) => {
+        if (isMounted) setNfts(items);
+      });
+    }
   }, []);
 
   return (

@@ -70,10 +70,10 @@ const getNextUrlForSignUp = async (authState) => {
 const nextStep = async (tokenWrapper) => {
   const { authState, bearerToken } = tokenWrapper;
   let nextUrl = '';
-  console.log('authState' + JSON.stringify(authState));
+  //console.log('authState:' + JSON.stringify(authState));
   console.log('authState.signinScope' + authState.signinScope);
 
-  //Add additional logic from signinbase later
+  //TODO: Add additional logic from signinbase later
   if (authState.signinScope === 'COMPLETE') {
     nextUrl = PAGE_FILE_LIST;
   } else if (authState.signinScope == 'SIGNUPINCOMPLETE') {

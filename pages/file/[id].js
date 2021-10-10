@@ -7,15 +7,11 @@ import {
   updateFileAction,
 } from '../../state/actions/file';
 
-// import FileViewMain from '../../components/files/FileViewMain';
-// import FileViewIPFS from '../../components/files/FileViewIPFS';
-// import FileViewToken from '../../components/files/FileViewToken';
-
-// import {
-//   uploadFileToIPFS,
-//   updateNFT,
-//   mintToken,
-// } from '../../state/actions/file-nft';
+import {
+  uploadFileToIPFS,
+  updateNFT,
+  mintToken,
+} from '../../state/actions/file/nft';
 import { architectedConfig } from '../../architectedConfig';
 import FileView from '../../components/file/fileView';
 import { PAGE_FILE_LIST } from '../../helper/routeHelper';
@@ -64,31 +60,31 @@ function FileDetail({ params }) {
       name: data.name,
       description: data.description,
     };
-    console.log('fileUpdateRequest', JSON.stringify(fileUpdateRequest));
+
     await updateFileAction(fileUpdateRequest, dispatch, bearerToken.tokenValue);
 
     router.push(PAGE_FILE_LIST);
   };
 
-  // const uploadToIPFS = async () => {
-  //   await uploadFileToIPFS(fileId, dispatch, bearerToken.tokenValue);
-  //   await retrieveData();
-  // };
+  const uploadToIPFS = async () => {
+    await uploadFileToIPFS(fileId, dispatch, bearerToken.tokenValue);
+    await retrieveData();
+  };
 
-  // const previewTokenHandler = async (price) => {
-  //   var fileUpdateRequest = {
-  //     globalId: fileId,
-  //     tokenPrice: price,
-  //   };
+  const previewTokenHandler = async (price) => {
+    var fileUpdateRequest = {
+      globalId: file.globalId,
+      tokenPrice: price,
+    };
 
-  //   await updateNFT(fileUpdateRequest, dispatch, bearerToken.tokenValue);
-  //   await retrieveData();
-  // };
+    await updateNFT(fileUpdateRequest, dispatch, bearerToken.tokenValue);
+    await retrieveData();
+  };
 
-  // async function mintTokenHandler() {
-  //   await mintToken(file);
-  //   return router.push('/my-creations');
-  // }
+  async function mintTokenHandler() {
+    await mintToken(file);
+    return router.push('/my-creations');
+  }
 
   return (
     <FileView
@@ -97,11 +93,14 @@ function FileDetail({ params }) {
       loadingError={loadingError}
       updateFile={updateFileHandler}
       file={file}
-      isUpdatingItem={isUpdatingFile}
+      isUpdatingFile={isUpdatingFile}
       updatingError={updatingError}
       deleteFile={deleteFileHandler}
       isDeletingFile={isDeletingFile}
       deletingError={deletingError}
+      uploadToIPFS={uploadToIPFS}
+      previewTokenHandler={previewTokenHandler}
+      mintTokenHandler={mintTokenHandler}
     />
   );
 }

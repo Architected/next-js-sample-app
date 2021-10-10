@@ -44,7 +44,7 @@ export default function TokenGrid({
           nfts.map((nft) => (
             <div
               key={nft.tokenId}
-              className="col-xl-2 col-lg-4 col-md-4 col-sm-4 col-6 d-flex"
+              className="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12 d-flex"
             >
               <div className="box flex-fill">
                 <div className="box-caption">
