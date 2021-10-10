@@ -1,6 +1,7 @@
 import { getError } from '../../../helper/getError.js';
 import frontChannelService from '../../../service/frontChannelService';
 import * as globalActionType from '../../constants/global';
+import * as authActionType from '../../constants/auth';
 
 export const getProfileAction = async (dispatch, tokenValue) => {
   try {
@@ -64,7 +65,7 @@ export const changePasswordAction = async (
   tokenValue
 ) => {
   try {
-    dispatch({ type: globalActionType.PASSWORD_CHANGE_START });
+    dispatch({ type: authActionType.PASSWORD_CHANGE_START });
     var validateRequest = {
       password: newPassword,
       confirmpassword: confirmPassword,
@@ -79,13 +80,13 @@ export const changePasswordAction = async (
 
     if (data.inError) {
       dispatch({
-        type: globalActionType.PASSWORD_CHANGE_FAIL,
+        type: authActionType.PASSWORD_CHANGE_FAIL,
         payload: getError(data),
       });
     } else {
       console.log('password reset success');
       dispatch({
-        type: globalActionType.PASSWORD_CHANGE_SUCCESS,
+        type: authActionType.PASSWORD_CHANGE_SUCCESS,
         payload: null,
       });
 
@@ -94,7 +95,7 @@ export const changePasswordAction = async (
   } catch (err) {
     console.log(err.toString());
     dispatch({
-      type: globalActionType.PASSWORD_CHANGE_FAIL,
+      type: authActionType.PASSWORD_CHANGE_FAIL,
       payload: 'Unable to perform password reset',
     });
   }

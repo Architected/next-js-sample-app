@@ -333,6 +333,31 @@ export const authReducer = (state, action) => {
         isLoading: false,
         errorMessage: action.payload,
       };
+    case authActionType.PASSWORD_CHANGE_START:
+      return {
+        ...state,
+        callInProgress: true,
+        warningMessage: null,
+        errorMessage: null,
+      };
+    case authActionType.PASSWORD_CHANGE_SUCCESS:
+      return {
+        ...state,
+        callInProgress: false,
+      };
+    case authActionType.PASSWORD_CHANGE_WARNING:
+      return {
+        ...state,
+        callInProgress: false,
+        warningMessage: action.payload,
+      };
+    case authActionType.PASSWORD_CHANGE_FAIL:
+      return {
+        ...state,
+        callInProgress: false,
+        errorMessage: action.payload,
+      };
+
     default:
       return state;
   }

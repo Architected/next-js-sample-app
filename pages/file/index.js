@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Image } from 'next/image';
+import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { Store } from '../../state/storeProvider';

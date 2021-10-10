@@ -2,8 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../state/storeProvider';
 import TokenGrid from '../../components/file/tokenGrid';
-import { getSigner } from '../../helper/walletHelper';
-import { ethers } from 'ethers';
+import { getSigner, getProvider } from '../../helper/walletHelper';
 import * as fileActionType from '../../state/constants/file';
 import * as authActionType from '../../state/constants/auth';
 import {
@@ -12,7 +11,6 @@ import {
   mapToken,
   purchaseToken,
 } from '../../helper/contractHelper';
-import Web3Modal from 'web3modal';
 
 function MarketPlace() {
   const { state, dispatch } = useContext(Store);
@@ -23,10 +21,8 @@ function MarketPlace() {
     try {
       dispatch({ type: fileActionType.FILELIST_FETCH_REQUEST });
 
-      const web3Modal = new Web3Modal();
-      const connection = await web3Modal.connect();
-      const provider = new ethers.providers.Web3Provider(connection);
-      const signer = provider.getSigner();
+      const signer = await getSigner();
+      const provider = await getProvider();
 
       const marketContract = getMarketContract(signer);
       const tokenContract = getTokenContract(provider);
