@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import { Store } from '../../state/storeProvider';
 import TokenGrid from '../../components/file/tokenGrid';
-import { getSigner } from '../../helper/walletHelper';
 import { ethers } from 'ethers';
 import * as fileActionType from '../../state/constants/file';
 import * as authActionType from '../../state/constants/auth';
@@ -10,11 +8,10 @@ import {
   getTokenContract,
   getMarketContract,
   mapToken,
-  purchaseToken,
 } from '../../helper/contractHelper';
 import Web3Modal from 'web3modal';
 
-function MarketPlace() {
+function MyPurchases() {
   const { state, dispatch } = useContext(Store);
   const { isLoadingList, loadingError } = state['file'];
   const [nfts, setNfts] = useState([]);
@@ -30,7 +27,7 @@ function MarketPlace() {
 
       const marketContract = getMarketContract(signer);
       const tokenContract = getTokenContract(provider);
-      const data = await marketContract.fetchMarketItems();
+      const data = await marketContract.fetchMyNFTs();
 
       const items = await Promise.all(
         data.map(async (i) => {
@@ -55,29 +52,16 @@ function MarketPlace() {
     loadNFTs();
   }, []);
 
-  async function buyNFT(nft) {
-    try {
-      const signer = await getSigner();
-      await purchaseToken(signer, nft);
-      //router.push('/my-purchases');
-    } catch (err) {
-      console.log(err);
-      console.log('A problem has occured with purchase');
-    }
-  }
-
   return (
     <>
       <div className="dashboard-content">
         <div className="container-fluid">
           <TokenGrid
-            title="NFT Marketplace"
+            title="My Purchases"
             action="purchased"
             isLoadingList={isLoadingList}
             loadingError={loadingError}
             nfts={nfts}
-            isMarketPlace={true}
-            buyNft={buyNFT}
           />
         </div>
       </div>
@@ -85,4 +69,4 @@ function MarketPlace() {
   );
 }
 
-export default MarketPlace;
+export default MyPurchases;
