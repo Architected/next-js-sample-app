@@ -7,19 +7,22 @@ import { Store } from '../state/storeProvider';
 import { architectedConfig } from '../architectedConfig';
 import * as authActionType from '../state/constants/auth';
 import { PAGE_FILE_LIST } from '../helper/routeHelper';
+import { hasValidToken } from '../helper/storageHelper';
 
 export default function Home() {
   const router = useRouter();
 
   const { state, dispatch } = useContext(Store);
-  const { authState } = state['auth'];
+  const { authState, bearerToken } = state['auth'];
 
   useEffect(() => {
-    dispatch({ type: authActionType.INIT_DEFAULT_LAYOUT });
-    if (authState && authState.signinScope === 'COMPLETE') {
+    const validToken = hasValidToken(authState, bearerToken, dispatch);
+    if (validToken) {
       router.push(PAGE_FILE_LIST);
     }
-  }, [authState]);
+
+    dispatch({ type: authActionType.INIT_DEFAULT_LAYOUT });
+  }, []);
 
   const title = `Welcome to ${architectedConfig.siteName}`;
 

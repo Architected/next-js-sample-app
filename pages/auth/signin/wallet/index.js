@@ -7,6 +7,7 @@ import MetaMaskSignIn from '../../../../components/auth/signin/metaMaskSignIn';
 import { nextStep } from '../../../../helper/scopeHelper';
 import { walletSignInAction } from '../../../../state/actions/auth/signInWallet';
 import { getClientDetails } from '../../../../helper/clientHelper';
+import { saveToStore } from '../../../../helper/storageHelper';
 
 function SignInWallet() {
   const router = useRouter();
@@ -27,9 +28,8 @@ function SignInWallet() {
     const clientDetails = await getClientDetails();
     var responseData = await walletSignInAction(clientDetails, dispatch);
 
-    //console.log('SignInWallet:responseData:' + JSON.stringify(responseData));
-
     if (responseData && !responseData.inError) {
+      saveToStore('_tokenWrapper', responseData.tokenWrapper);
       var nextUrl = await nextStep(responseData.tokenWrapper);
       router.push(nextUrl);
     }

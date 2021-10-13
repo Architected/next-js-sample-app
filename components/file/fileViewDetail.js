@@ -10,7 +10,7 @@ function FileViewDetail(props) {
     loadingError,
     updateFile,
     file,
-    isUpdatingItem,
+    isUpdatingFile,
     updatingError,
     deleteFile,
     isDeletingFile,
@@ -127,7 +127,7 @@ function FileViewDetail(props) {
         <div className="form-group row mb-5">
           <div className="col-sm-12">
             <button className="button button-brand float-left" type="submit">
-              {isUpdatingItem ? <SpinnerCode /> : 'Update File'}
+              {isUpdatingFile ? <SpinnerCode /> : 'Update File'}
             </button>
             <button
               type="button"

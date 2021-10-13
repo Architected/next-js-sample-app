@@ -70,8 +70,8 @@ export default function TokenGrid({
                                 <Image
                                   src={nft.image}
                                   alt={nft.Name}
-                                  width="230"
-                                  height="230"
+                                  width="300"
+                                  height="300"
                                 />
                               ) : (
                                 <b>Unable to load image</b>

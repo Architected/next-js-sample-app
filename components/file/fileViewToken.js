@@ -153,7 +153,7 @@ function FileViewToken(props) {
                     type="button"
                     onClick={() => mintToken()}
                   >
-                    {isUpdatingItem ? <SpinnerCode /> : 'Mint Token'}
+                    {isUpdatingFile ? <SpinnerCode /> : 'Mint Token'}
                   </button>
                 </div>
               </div>

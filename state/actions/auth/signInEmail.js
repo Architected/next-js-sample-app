@@ -1,6 +1,6 @@
 import { getError } from '../../../helper/getError';
 import * as authActionType from '../../constants/auth';
-import { deleteFromStore } from '../../../helper/storeHelper';
+import { deleteFromStore } from '../../../helper/storageHelper';
 import frontChannelService from '../../../service/frontChannelService';
 import CryptoHelper from '../../../service/cryptoHelper';
 import startAuthorize from '../../../helper/authorizeHelper';
@@ -59,6 +59,6 @@ export const signInAction = async (
 };
 
 export const signOutAction = async (dispatch) => {
-  await deleteFromStore('__tokenWrapper');
+  await deleteFromStore('_tokenWrapper');
   dispatch({ type: authActionType.USER_SIGNIN_CLEAR });
 };

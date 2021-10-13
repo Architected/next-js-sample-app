@@ -12,6 +12,7 @@ import {
   uploadFileAction,
   getAllFilesAction,
 } from '../../state/actions/file';
+import { hasValidToken } from '../../helper/storageHelper';
 
 function File() {
   const {
@@ -72,12 +73,12 @@ function File() {
 
   useEffect(() => {
     let isMounted = true;
-    console.log('isMounted' + true);
 
-    if (authState == null || bearerToken == null) {
+    const validToken = hasValidToken(authState, bearerToken, dispatch);
+    if (!validToken) {
       router.push('/');
     } else {
-      if (!displayModal) {
+      if (!displayModal && bearerToken) {
         reloadHandler().then(() => {
           if (isMounted) reset();
         });
@@ -86,7 +87,6 @@ function File() {
 
     return () => {
       isMounted = false;
-      console.log('isMounted' + false);
     };
   }, [displayModal]);
 
