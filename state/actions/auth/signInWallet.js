@@ -46,20 +46,19 @@ const createWalletAction = async (wallet, clientDetails) => {
   return createWalletResponse;
 };
 
-const getAccountAndChain = async (dispatch) => {
-  var wallet = { success: false, type: '', reason: '' };
-  let retrievedAccountAddress = '';
+export const initWalletChain = async (dispatch) => {
+  var chain = { success: false, type: '', reason: '' };
   let retrievedChainId = '';
 
   try {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
-      await window.ethereum.enable();
+      //await window.ethereum.enable();
     } else {
-      wallet.type = authActionType.METAMASK_ERROR_ACCOUNT;
-      wallet.reason =
+      chain.type = authActionType.METAMASK_ERROR_ACCOUNT;
+      chain.reason =
         'Please use an ethereum enabled browser with metamask installed.';
-      return wallet;
+      return chain;
     }
 
     retrievedChainId = await window.ethereum.request({
@@ -68,25 +67,59 @@ const getAccountAndChain = async (dispatch) => {
 
     console.log('retrievedChainId:' + retrievedChainId);
 
+    if (!retrievedChainId) {
+      chain.type = authActionType.METAMASK_ERROR_ACCOUNT;
+      chain.reason = 'Invalid chain please connect to meta mask ';
+      return chain;
+    }
+
     if (retrievedChainId != architectedConfig.chainId) {
-      wallet.type = authActionType.METAMASK_ERROR_ACCOUNT;
-      wallet.reason =
+      chain.type = authActionType.METAMASK_ERROR_ACCOUNT;
+      chain.reason =
         'Invalid chain please select ' +
         architectedConfig.chainName +
         ' from Metamask';
-      return wallet;
-    }
-
-    if (!retrievedChainId) {
-      wallet.type = authActionType.METAMASK_ERROR_ACCOUNT;
-      wallet.reason = 'Invalid chain please connect to meta mask ';
-      return wallet;
+      return chain;
     }
 
     dispatch({
       type: authActionType.METAMASK_SET_CHAIN,
       payload: retrievedChainId,
     });
+  } catch (err) {
+    console.log(err);
+    if (err.code === 32002) {
+      chain.type = authActionType.METAMASK_ERROR_ACCOUNT;
+      chain.reason =
+        'Please ensure your Metamask account is unlocked and refresh the page.';
+    } else {
+      chain.type = authActionType.METAMASK_ERROR_ACCOUNT;
+      chain.reason = 'Unexpected error connecting to MetaMask.';
+    }
+    return chain;
+  }
+
+  return {
+    ...chain,
+    chainId: retrievedChainId,
+    success: true,
+  };
+};
+
+export const initWalletAccount = async (dispatch) => {
+  var walletAccount = { success: false, type: '', reason: '' };
+  let retrievedAccountAddress = '';
+
+  try {
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum);
+      //await window.ethereum.enable();
+    } else {
+      walletAccount.type = authActionType.METAMASK_ERROR_ACCOUNT;
+      walletAccount.reason =
+        'Please use an ethereum enabled browser with metamask installed.';
+      return walletAccount;
+    }
 
     const newAccounts = await window.ethereum.request({
       method: 'eth_requestAccounts',
@@ -99,27 +132,26 @@ const getAccountAndChain = async (dispatch) => {
       type: authActionType.METAMASK_SET_ACCOUNT,
       payload: retrievedAccountAddress,
     });
+
+    return {
+      ...walletAccount,
+      accountAddress: retrievedAccountAddress,
+      success: true,
+    };
   } catch (err) {
-    console.error(err);
+    console.log(err);
 
     if (err.code === 4001) {
       // EIP-1193 userRejectedRequest error
       // If this happens, the user rejected the connection request.
-      wallet.type = authActionType.METAMASK_ERROR_ACCOUNT;
-      wallet.reason = 'Please connect to MetaMask to continue.';
+      walletAccount.type = authActionType.METAMASK_ERROR_ACCOUNT;
+      walletAccount.reason = 'Please connect to MetaMask to continue.';
     } else {
-      wallet.type = authActionType.METAMASK_ERROR_ACCOUNT;
-      wallet.reason = 'Unexpected error connecting to MetaMask.';
+      walletAccount.type = authActionType.METAMASK_ERROR_ACCOUNT;
+      walletAccount.reason = 'Unexpected error connecting to MetaMask.';
     }
-    return wallet;
+    return walletAccount;
   }
-
-  return {
-    ...wallet,
-    accountAddress: retrievedAccountAddress,
-    chainId: retrievedChainId,
-    success: true,
-  };
 };
 
 const authenticateSignature = async (wallet, clientDetails) => {
@@ -145,16 +177,32 @@ export const walletSignInAction = async (clientDetails, dispatch) => {
   try {
     dispatch({ type: authActionType.USER_SIGNIN_START });
 
-    var wallet = await getAccountAndChain(dispatch);
+    const walletChain = await initWalletChain(dispatch);
 
-    if (!wallet.success) {
-      console.log('failed to getAccountAndChain');
+    if (!walletChain.success) {
+      console.log('failed to initWalletChain');
       dispatch({
         type: authActionType.USER_SIGNIN_FAIL,
-        payload: wallet.reason,
+        payload: walletChain.reason,
       });
       return;
     }
+
+    var walletAccount = await initWalletAccount(dispatch);
+
+    if (!walletAccount.success) {
+      console.log('failed to initWalletAccount');
+      dispatch({
+        type: authActionType.USER_SIGNIN_FAIL,
+        payload: walletAccount.reason,
+      });
+      return;
+    }
+
+    const wallet = {
+      chainId: walletChain.chainId,
+      accountAddress: walletAccount.accountAddress,
+    };
 
     const getWalletResponse = await getWalletAction(wallet, clientDetails);
 

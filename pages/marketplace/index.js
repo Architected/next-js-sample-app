@@ -2,15 +2,15 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../state/storeProvider';
 import TokenGrid from '../../components/file/tokenGrid';
-import { getSigner, getProvider } from '../../helper/walletHelper';
 import * as fileActionType from '../../state/constants/file';
 import * as authActionType from '../../state/constants/auth';
+import { initWalletChain } from '../../state/actions/auth/signInWallet';
+
 import {
-  getTokenContract,
-  getMarketContract,
-  mapToken,
+  getMarketplaceItems,
   purchaseToken,
 } from '../../helper/contractHelper';
+import { hasValidToken } from '../../helper/storageHelper';
 
 function MarketPlace() {
   const router = useRouter();
@@ -18,24 +18,39 @@ function MarketPlace() {
   const { authState, bearerToken } = state['auth'];
   const { isLoadingList, loadingError } = state['file'];
   const [nfts, setNfts] = useState([]);
+  const [accountChangedHandler, setAccountChangedHandler] = useState(false);
+  const [chainChangedHandler, setChainChangedHandler] = useState(false);
 
-  async function getMarketPlaceItems() {
+  const getTokens = async () => {
     try {
       dispatch({ type: fileActionType.FILELIST_FETCH_REQUEST });
-      const signer = await getSigner();
-      const provider = await getProvider();
 
-      const marketContract = getMarketContract(signer);
-      const tokenContract = getTokenContract(provider);
-      const data = await marketContract.fetchMarketItems();
+      if (window.ethereum) {
+        if (!chainChangedHandler) {
+          window.ethereum.on('chainChanged', handleChainChanged);
+          setChainChangedHandler(true);
+        }
 
-      const items = await Promise.all(
-        data.map(async (i) => {
-          return mapToken(tokenContract, i);
-        })
-      );
+        if (!accountChangedHandler) {
+          window.ethereum.on('accountsChanged', handleAccountChanged);
+          setAccountChangedHandler(true);
+        }
+      }
+
+      const currentChain = await initWalletChain(dispatch);
+
+      if (!currentChain.success) {
+        dispatch({
+          type: fileActionType.FILELIST_FETCH_FAIL,
+          payload: currentChain.reason,
+        });
+        return;
+      }
+
+      const items = await getMarketplaceItems();
 
       dispatch({ type: fileActionType.FILELIST_FETCH_SUCCESS, payload: [] });
+
       return items;
     } catch (err) {
       console.log(err);
@@ -44,33 +59,38 @@ function MarketPlace() {
         payload: 'An error has occured',
       });
     }
-  }
+  };
 
   useEffect(() => {
     let isMounted = true;
-    console.log('isMounted' + true);
+    dispatch({ type: authActionType.INIT_MARKETPLACE_LAYOUT });
 
-    if (authState == null || bearerToken == null) {
-      router.push('/');
-    } else {
-      dispatch({ type: authActionType.INIT_MARKETPLACE_LAYOUT });
-
-      getMarketPlaceItems().then((items) => {
-        if (isMounted) setNfts(items);
-      });
-    }
+    getTokens().then((items) => {
+      if (isMounted) setNfts(items);
+    });
 
     return () => {
       isMounted = false;
-      console.log('isMounted' + false);
     };
   }, []);
 
+  function handleChainChanged() {
+    window.location.reload();
+  }
+
+  function handleAccountChanged() {
+    router.push('/logout');
+  }
+
   async function buyNFT(nft) {
     try {
-      const signer = await getSigner();
-      await purchaseToken(signer, nft);
-      router.push('/my-purchases');
+      const validToken = hasValidToken(authState, bearerToken, dispatch);
+      if (validToken) {
+        await purchaseToken(nft);
+        router.push('/my-purchases');
+      } else {
+        router.push('/auth/signin/wallet');
+      }
     } catch (err) {
       console.log(err);
       console.log('A problem has occured with purchase');
@@ -88,7 +108,7 @@ function MarketPlace() {
             loadingError={loadingError}
             nfts={nfts}
             isMarketPlace={true}
-            buyNft={buyNFT}
+            buyNFT={buyNFT}
           />
         </div>
       </div>

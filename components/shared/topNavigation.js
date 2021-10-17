@@ -9,8 +9,8 @@ function TopNavigation() {
   const { state } = useContext(Store);
   const { authState } = state['auth'];
   const { marketPlace } = state['global'];
-  const containerclassName =
-    authState || marketPlace ? 'dashboard-header' : 'header';
+  const containerclassName = 'dashboard-header';
+  //authState || marketPlace ? 'dashboard-header' : 'header';
 
   const signInUrl =
     architectedConfig.siteMode == 'dapp'
@@ -68,7 +68,9 @@ function TopNavigation() {
           </div>
         ) : (
           <div className="float-right">
-            <div className="user-control float-left ml-4">
+            <div className="dropdown float-left"></div>
+            <div className="dropdown float-left ml-4"></div>
+            <div className="dropdown float-left ml-4">
               {architectedConfig.siteMode == 'app' && (
                 <Link href="/auth/signup/email" passHref>
                   <a className="button font-semibold">Sign up</a>
@@ -78,6 +80,8 @@ function TopNavigation() {
                 <a className="button button-brand ml-2">{signInTitle}</a>
               </Link>
             </div>
+            <div className="dropdown float-left ml-3 mt-1"></div>
+            <div className="dashboard-menu-icon float-left ml-4"></div>
           </div>
         )}
       </div>

@@ -11,9 +11,9 @@ function LeftNavigation() {
   const { authState } = state['auth'];
 
   const NavLink = (props) => {
-    console.log('asPath:' + asPath);
-    console.log('props.href:' + props.href);
-    console.log('props.as:' + props.as);
+    //console.log('asPath:' + asPath);
+    //console.log('props.href:' + props.href);
+    //console.log('props.as:' + props.as);
 
     // pages/x.js will be matched via props.href
     // pages/[slug].js will be matched via props.as

@@ -3,6 +3,7 @@ import NFT from '../artifacts/contracts/NFT.sol/NFT.json';
 import Market from '../artifacts/contracts/NFTMarket.sol/NFTMarket.json';
 import axios from 'axios';
 import { architectedConfig } from '../architectedConfig';
+import { getProvider, getSigner } from './walletHelper';
 
 function getTokenContract(signerOrProvider) {
   const tokenContract = new ethers.Contract(
@@ -76,14 +77,15 @@ async function addNFTToMarket(signer, tokenId, etherPrice) {
   console.log('market_contract.wait complete');
 }
 
-async function purchaseToken(provider, nft) {
-  const marketContract = getMarketContract(provider);
-  console.log('nft.price' + nft.price);
+async function purchaseToken(nft) {
+  const signer = await getSigner();
+  const marketContract = getMarketContract(signer);
   const etherPrice = convertToEther(nft.price);
+
   console.log('etherPrice' + etherPrice);
   console.log('nft.itemId', nft.itemId);
   console.log('nft.tokenId', nft.tokenId);
-  console.log('nftaddress', nftaddress);
+  console.log('nftaddress', architectedConfig.nftAddress);
   const transaction = await marketContract.createMarketSale(
     architectedConfig.nftAddress,
     nft.itemId,
@@ -112,12 +114,7 @@ async function mapToken(tokenContract, token) {
   let price = convertFromEther(token.price);
   let imageUrl = validURL(meta.data.image) ? meta.data.image : null;
   let assetUrl = validURL(meta.data.asset) ? meta.data.image : null;
-  // console.log();
-  // console.log('image url:' + imageUrl);
-  // console.log('image seller:' + token.seller);
-  // console.log('image owner:' + token.owner);
-  // console.log('itemId:' + token.itemId);
-  //console.log('tokenId:' + token.tokenId);
+
   let item = {
     price,
     itemId: token.itemId.toNumber(),
@@ -133,6 +130,71 @@ async function mapToken(tokenContract, token) {
   return item;
 }
 
+const getMarketplaceItems = async () => {
+  const signer = await getSigner();
+  const provider = await getProvider();
+  const marketContract = getMarketContract(signer);
+  const tokenContract = getTokenContract(provider);
+  const data = await marketContract.fetchMarketItems();
+
+  const items = await Promise.all(
+    data.map(async (i) => {
+      return mapToken(tokenContract, i);
+    })
+  );
+
+  return items;
+};
+
+const getSoldItems = async () => {
+  const signer = await getSigner();
+  const provider = await getProvider();
+
+  const marketContract = getMarketContract(signer);
+  const tokenContract = getTokenContract(provider);
+  const data = await marketContract.fetchItemsCreated();
+  const soldItems = data.filter((i) => i.sold);
+  const items = await Promise.all(
+    soldItems.map(async (i) => {
+      return mapToken(tokenContract, i);
+    })
+  );
+
+  return items;
+};
+
+const getPurchasedItems = async () => {
+  const signer = await getSigner();
+  const provider = await getProvider();
+  const marketContract = getMarketContract(signer);
+  const tokenContract = getTokenContract(provider);
+  const data = await marketContract.fetchMyNFTs();
+
+  const items = await Promise.all(
+    data.map(async (i) => {
+      return mapToken(tokenContract, i);
+    })
+  );
+
+  return items;
+};
+
+const getCreatedItems = async () => {
+  const signer = await getSigner();
+  const provider = await getProvider();
+  const marketContract = getMarketContract(signer);
+  const tokenContract = getTokenContract(provider);
+  const data = await marketContract.fetchItemsCreated();
+
+  const items = await Promise.all(
+    data.map(async (i) => {
+      return mapToken(tokenContract, i);
+    })
+  );
+
+  return items;
+};
+
 module.exports = {
   createNFT,
   convertToEther,
@@ -143,4 +205,8 @@ module.exports = {
   purchaseToken,
   getTokenMetaData,
   mapToken,
+  getMarketplaceItems,
+  getSoldItems,
+  getPurchasedItems,
+  getCreatedItems,
 };

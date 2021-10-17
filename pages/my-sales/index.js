@@ -2,14 +2,11 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../state/storeProvider';
 import TokenGrid from '../../components/file/tokenGrid';
-import { getSigner, getProvider } from '../../helper/walletHelper';
 import * as fileActionType from '../../state/constants/file';
 import * as authActionType from '../../state/constants/auth';
-import {
-  getTokenContract,
-  getMarketContract,
-  mapToken,
-} from '../../helper/contractHelper';
+import { getSoldItems } from '../../helper/contractHelper';
+import { hasValidToken } from '../../helper/storageHelper';
+import { initWalletChain } from '../../state/actions/auth/signInWallet';
 
 function MySales() {
   const router = useRouter();
@@ -17,24 +14,39 @@ function MySales() {
   const { authState, bearerToken } = state['auth'];
   const { isLoadingList, loadingError } = state['file'];
   const [nfts, setNfts] = useState([]);
+  const [accountChangedHandler, setAccountChangedHandler] = useState(false);
+  const [chainChangedHandler, setChainChangedHandler] = useState(false);
 
-  async function getSoldItems() {
+  async function getTokens() {
     try {
       dispatch({ type: fileActionType.FILELIST_FETCH_REQUEST });
-      const signer = await getSigner();
-      const provider = await getProvider();
 
-      const marketContract = getMarketContract(signer);
-      const tokenContract = getTokenContract(provider);
-      const data = await marketContract.fetchItemsCreated();
-      const soldItems = data.filter((i) => i.sold);
-      const items = await Promise.all(
-        soldItems.map(async (i) => {
-          return mapToken(tokenContract, i);
-        })
-      );
+      if (window.ethereum) {
+        if (!chainChangedHandler) {
+          window.ethereum.on('chainChanged', handleChainChanged);
+          setChainChangedHandler(true);
+        }
+
+        if (!accountChangedHandler) {
+          window.ethereum.on('accountsChanged', handleAccountChanged);
+          setAccountChangedHandler(true);
+        }
+      }
+
+      const currentChain = await initWalletChain(dispatch);
+
+      if (!currentChain.success) {
+        dispatch({
+          type: fileActionType.FILELIST_FETCH_FAIL,
+          payload: currentChain.reason,
+        });
+        return;
+      }
+
+      const items = await getSoldItems();
 
       dispatch({ type: fileActionType.FILELIST_FETCH_SUCCESS, payload: [] });
+
       return items;
     } catch (err) {
       console.log(err);
@@ -47,18 +59,29 @@ function MySales() {
 
   useEffect(() => {
     let isMounted = true;
-    console.log('isMounted' + true);
+    dispatch({ type: authActionType.INIT_MARKETPLACE_LAYOUT });
 
-    if (authState == null || bearerToken == null) {
+    const validToken = hasValidToken(authState, bearerToken, dispatch);
+    if (!validToken) {
       router.push('/');
     } else {
-      dispatch({ type: authActionType.INIT_MARKETPLACE_LAYOUT });
-
-      getSoldItems().then((items) => {
+      getTokens().then((items) => {
         if (isMounted) setNfts(items);
       });
     }
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
+
+  function handleChainChanged() {
+    window.location.reload();
+  }
+
+  function handleAccountChanged() {
+    router.push('/logout');
+  }
 
   return (
     <>
