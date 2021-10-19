@@ -27,7 +27,6 @@ function SignInWallet() {
   const walletSubmitHandler = async () => {
     const clientDetails = await getClientDetails();
     var responseData = await walletSignInAction(clientDetails, dispatch);
-
     if (responseData && !responseData.inError) {
       saveToStore('_tokenWrapper', responseData.tokenWrapper);
       var nextUrl = await nextStep(responseData.tokenWrapper);

@@ -61,6 +61,7 @@ function EmailSignUp({
                     placeholder=""
                     className="form-control"
                     type="password"
+                    autoComplete="off"
                     {...register('password', {
                       required: 'Please enter your new password',
                       minLength: {

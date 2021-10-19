@@ -28,58 +28,39 @@ const deleteFromStore = (key) => {
 
 const hasValidToken = (authState, bearerToken, dispatch) => {
   try {
+    let tokenFromStore;
     if (!authState) {
-      const tokenFromStore = getFromStore('_tokenWrapper');
-      console.log('tokenFromStore:' + JSON.stringify(tokenFromStore));
+      tokenFromStore = getFromStore('_tokenWrapper');
 
       if (!tokenFromStore) return false;
 
-      const tokenExpiry = Date.parse(tokenFromStore.bearerToken.tokenExpiryUTC);
-      const currentDate = Date.now();
-
-      console.log('tokenFromStore:tokenExpiry:' + tokenExpiry);
-      console.log('tokenFromStore:currentDate:' + currentDate);
-
-      if (tokenExpiry > currentDate) {
-        console.log('tokenFromStore:has valid token');
-        dispatch({
-          type: authActionType.USER_SIGNIN_RESTORE,
-          payload: tokenFromStore,
-        });
-        return true;
-      } else {
-        console.log('tokenFromStore:token expired');
-        deleteFromStore('_tokenWrapper');
-        dispatch({
-          type: authActionType.USER_SIGNIN_RESTORE,
-          payload: null,
-        });
-        return false;
-      }
-    } else {
-      if (authState.signinScope !== 'COMPLETE') return false;
-
-      if (authState.signinScope === 'COMPLETE') {
-        const tokenExpiry = Date.parse(bearerToken.tokenExpiryUTC);
-        const currentDate = Date.now();
-
-        console.log('authstate:tokenExpiry:' + tokenExpiry);
-        console.log('authstate:currentDate:' + currentDate);
-
-        if (tokenExpiry <= currentDate) {
-          console.log('authstate:token expired');
-          deleteFromStore('__tokenWrapper');
-          dispatch({
-            type: authActionType.USER_SIGNIN_RESTORE,
-            payload: null,
-          });
-
-          return false;
-        }
-
-        return true;
-      }
+      authState = tokenFromStore.authState;
+      bearerToken = tokenFromStore.bearerToken;
     }
+
+    const tokenExpiry = Date.parse(bearerToken.tokenExpiryUTC);
+    const currentDate = Date.now();
+
+    console.log('authstate:tokenExpiry:' + tokenExpiry);
+    console.log('authstate:currentDate:' + currentDate);
+
+    if (tokenExpiry < currentDate || authState.signinScope !== 'COMPLETE') {
+      deleteFromStore('_tokenWrapper');
+      dispatch({
+        type: authActionType.USER_SIGNIN_RESTORE,
+        payload: null,
+      });
+      return false;
+    }
+
+    if (tokenFromStore) {
+      dispatch({
+        type: authActionType.USER_SIGNIN_RESTORE,
+        payload: tokenFromStore,
+      });
+    }
+
+    return true;
   } catch (e) {
     console.log(e);
   }

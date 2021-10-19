@@ -75,6 +75,7 @@ function File() {
     let isMounted = true;
 
     const validToken = hasValidToken(authState, bearerToken, dispatch);
+
     if (!validToken) {
       router.push('/');
     } else {

@@ -9,7 +9,8 @@ function EmailValidate({
   isLoading,
   errorMessage,
   warningMessage,
-  resendCode,
+  successMessage,
+  resendHandler,
 }) {
   const {
     register,
@@ -56,11 +57,12 @@ function EmailValidate({
                   isLoading={isLoading}
                   warningMessage={warningMessage}
                   errorMessage={errorMessage}
+                  successMessage={successMessage}
                 />
               </form>
               <div className="text-center">
                 <p className="size12 text-second">
-                  <a className="text-brand" onClick={resendCode}>
+                  <a className="text-brand" onClick={resendHandler}>
                     Resend Verification Code
                   </a>
                 </p>

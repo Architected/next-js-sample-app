@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.3.2",
-    "architected-client": "^1.0.1-beta.2",
+    "architected-client": "^1.0.1-beta.3",
     "axios": "^0.22.0",
     "crypto-js": "^4.1.1",
     "crypto-random-string": "^3.3.1",

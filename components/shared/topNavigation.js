@@ -24,7 +24,13 @@ function TopNavigation() {
       <div className="container-fluid">
         <div className="float-left">
           <Link href={authState ? PAGE_FILE_LIST : '/'}>
-            <a className="logo">{architectedConfig.siteName}</a>
+            {architectedConfig.siteName != '' ? (
+              <a className="logo">{architectedConfig.siteName}</a>
+            ) : (
+              <>
+                <a className="logo">NEXT_PUBLIC_SITE_NAME</a> from env.local
+              </>
+            )}
           </Link>
         </div>
         {authState ? (

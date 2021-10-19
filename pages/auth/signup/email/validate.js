@@ -1,23 +1,29 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../../../state/storeProvider';
 import EmailValidate from '../../../../components/auth/signup/emailValidate';
 import * as authActionType from '../../../../state/constants/auth';
 import { PAGE_FILE_LIST } from '../../../../helper/routeHelper';
-import { validateEmailAction } from '../../../../state/actions/auth/signUpEmail';
+import {
+  verifyEmailAction,
+  validateEmailAction,
+} from '../../../../state/actions/auth/signUpEmail';
 
-function SignUpEmailValidate() {
+function SignUpEmailValidate(context) {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
+  const [resendInProgress, setResendInProgress] = useState(false);
   const {
     authState,
     callInProgress,
     errorMessage,
     warningMessage,
+    successMessage,
     bearerToken,
   } = state['auth'];
 
   useEffect(() => {
+    let isMounted = true;
     dispatch({ type: authActionType.INIT_DEFAULT_LAYOUT });
 
     if (authState == null || bearerToken == null) {
@@ -25,26 +31,33 @@ function SignUpEmailValidate() {
     } else if (authState && authState.signupScope === 'FULL') {
       router.push(PAGE_FILE_LIST);
     }
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const submitHandler = async ({ code }) => {
-    const responseData = await validateEmailAction(
-      code,
-      bearerToken.tokenValue,
-      dispatch
-    );
+    if (!resendInProgress) {
+      const responseData = await validateEmailAction(
+        code,
+        bearerToken.tokenValue,
+        dispatch
+      );
 
-    if (responseData && !responseData.inError) {
-      router.push(PAGE_FILE_LIST);
+      if (responseData && !responseData.inError) {
+        router.push(PAGE_FILE_LIST);
+      }
     }
   };
 
   const resendHandler = async () => {
-    const requestData = {
-      tokenValue: bearerToken.tokenValue,
-    };
-
-    await verifyEmailAction(requestData, dispatch);
+    setResendInProgress(true);
+    const responseData = await verifyEmailAction(
+      bearerToken.tokenValue,
+      dispatch
+    );
+    setResendInProgress(false);
   };
 
   return (
@@ -54,6 +67,8 @@ function SignUpEmailValidate() {
         isLoading={callInProgress}
         errorMessage={errorMessage}
         warningMessage={warningMessage}
+        successMessage={successMessage}
+        resendHandler={resendHandler}
       />
     </>
   );

@@ -1,0 +1,7 @@
+NEXT_PUBLIC_APP_KEY="your-app-key"
+NEXT_PUBLIC_API_URL="https://your-api-url/api/v1.0/"
+API_KEY="your-api-key"
+API_SECRET="your-api-secret"
+NEXT_PUBLIC_APP_ENV="your-app-env"
+NEXT_PUBLIC_SITE_MODE="app"
+NEXT_PUBLIC_SITE_NAME="<Site Name>"

@@ -18,7 +18,6 @@ function UserDetailView({
   } = useForm();
 
   if (profile) {
-    console.log('profile' + JSON.stringify(profile));
     setValue('firstName', profile.firstName);
     setValue('middleName', profile.middleName);
     setValue('lastName', profile.lastName);

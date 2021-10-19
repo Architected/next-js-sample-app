@@ -1,17 +1,27 @@
 import React from 'react';
 import backChannelService from '../../service/backChannelService';
 
-function Terms(props) {
+const pageKey = 'PRIVACY';
+
+function Privacy(props) {
   const { pageData } = props;
-  const { page } = pageData;
-  const { content, pageTitle } = page;
+  let pageTitle = '';
+  let content = '';
+
+  if (pageData.inError) {
+    pageTitle = pageKey;
+    content = 'Error loading page content please check your site configuration';
+  } else {
+    pageTitle = pageData.page.pageTitle;
+    content = pageData.page.content;
+  }
 
   return (
     <>
       <div className="auth">
         <div className="container">
-          {page == null ? (
-            <div>loading</div>
+          {pageData == null ? (
+            <div>loading content...</div>
           ) : (
             <>
               <div>
@@ -26,12 +36,12 @@ function Terms(props) {
   );
 }
 
-export default Terms;
+export default Privacy;
 
 export async function getServerSideProps() {
   const responseData = await backChannelService()
     .content()
-    .getPageByKey('PRIVACY');
+    .getPageByKey(pageKey);
   const { data } = responseData;
   return {
     props: {

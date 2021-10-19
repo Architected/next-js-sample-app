@@ -103,6 +103,7 @@ export const verifyEmailAction = async (tokenValue, dispatch) => {
     } else {
       dispatch({
         type: authActionType.USER_SIGNUP_VERIFY_SUCCESS,
+        payload: 'Code resent please check your inbox',
       });
     }
 

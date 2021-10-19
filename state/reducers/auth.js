@@ -130,18 +130,13 @@ export const authReducer = (state, action) => {
     case authActionType.USER_SIGNUP_VALIDATE_START:
       return {
         ...state,
-        authState: null,
-        bearerToken: null,
         callInProgress: true,
         warningMessage: null,
         errorMessage: null,
-        marketPlace: false,
       };
     case authActionType.USER_SIGNUP_VALIDATE_SUCCESS:
       return {
         ...state,
-        authState: null,
-        bearerToken: null,
         callInProgress: false,
       };
     case authActionType.USER_SIGNUP_VALIDATE_WARNING:
@@ -154,6 +149,38 @@ export const authReducer = (state, action) => {
       return {
         ...state,
         callInProgress: false,
+        errorMessage: action.payload,
+      };
+    case authActionType.USER_SIGNUP_VERIFY_START:
+      return {
+        ...state,
+        callInProgress: true,
+        successMessage: null,
+        warningMessage: null,
+        errorMessage: null,
+      };
+    case authActionType.USER_SIGNUP_VERIFY_SUCCESS:
+      return {
+        ...state,
+        callInProgress: false,
+        successMessage: action.payload,
+        warningMessage: null,
+        errorMessage: null,
+      };
+    case authActionType.USER_SIGNUP_VERIFY_WARNING:
+      return {
+        ...state,
+        callInProgress: false,
+        successMessage: null,
+        warningMessage: action.payload,
+        errorMessage: null,
+      };
+    case authActionType.USER_SIGNUP_VERIFY_FAIL:
+      return {
+        ...state,
+        callInProgress: false,
+        successMessage: null,
+        warningMessage: null,
         errorMessage: action.payload,
       };
     case authActionType.PASSWORD_RESET_START:

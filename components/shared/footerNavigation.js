@@ -6,12 +6,14 @@ import { architectedConfig } from '../../architectedConfig';
 function FooterNavigation() {
   const { state } = useContext(Store);
   const { authState } = state['auth'];
-
+  const siteName =
+    architectedConfig.siteName != ''
+      ? architectedConfig.siteName
+      : 'NEXT_PUBLIC_SITE_NAME from env.local';
   return (
     <div className="dashboard-footer">
       <div className="float-left">
-        <span className="text-second ml-4">2021</span> ©{' '}
-        {architectedConfig.siteName}
+        <span className="text-second ml-4">2021</span> © {siteName}
       </div>
       {!authState && (
         <div className="float-right">

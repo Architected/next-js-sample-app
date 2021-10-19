@@ -53,7 +53,6 @@ export const initWalletChain = async (dispatch) => {
   try {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
-      //await window.ethereum.enable();
     } else {
       chain.type = authActionType.METAMASK_ERROR_ACCOUNT;
       chain.reason =
@@ -113,7 +112,6 @@ export const initWalletAccount = async (dispatch) => {
   try {
     if (window.ethereum) {
       window.web3 = new Web3(window.ethereum);
-      //await window.ethereum.enable();
     } else {
       walletAccount.type = authActionType.METAMASK_ERROR_ACCOUNT;
       walletAccount.reason =
@@ -246,7 +244,6 @@ export const walletSignInAction = async (clientDetails, dispatch) => {
     }
 
     const message = getSignatureMessage(architectedConfig.siteName, nonce);
-
     const sigVal = await window.web3.eth.personal.sign(
       message,
       wallet.accountAddress

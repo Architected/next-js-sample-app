@@ -5,6 +5,7 @@ const SubmitButton = ({
   isLoading,
   warningMessage,
   errorMessage,
+  successMessage,
 }) => {
   return (
     <>
@@ -40,6 +41,9 @@ const SubmitButton = ({
         )}
         {errorMessage && (
           <div className="alert alert-danger mt-3 mb-0">{errorMessage}</div>
+        )}
+        {successMessage && (
+          <div className="alert alert-success mt-3 mb-0">{successMessage}</div>
         )}
       </div>
     </>

@@ -16,12 +16,11 @@ export default function Home() {
   const { authState, bearerToken } = state['auth'];
 
   useEffect(() => {
+    dispatch({ type: authActionType.INIT_DEFAULT_LAYOUT });
     const validToken = hasValidToken(authState, bearerToken, dispatch);
     if (validToken) {
       router.push(PAGE_FILE_LIST);
     }
-
-    dispatch({ type: authActionType.INIT_DEFAULT_LAYOUT });
   }, []);
 
   const title = `Welcome to ${architectedConfig.siteName}`;

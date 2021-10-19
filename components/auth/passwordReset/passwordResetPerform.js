@@ -40,6 +40,7 @@ function PasswordResetValidate({
                     placeholder=""
                     className="form-control"
                     type="password"
+                    autoComplete="off"
                     {...register('newPassword', {
                       required: 'Please enter your new password',
                       minLength: {
@@ -65,6 +66,7 @@ function PasswordResetValidate({
                     placeholder=""
                     className="form-control"
                     type="password"
+                    autoComplete="off"
                     {...register('confirmPassword', {
                       validate: (value) =>
                         value === newPassword.current ||

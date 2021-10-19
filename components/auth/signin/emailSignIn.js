@@ -37,6 +37,7 @@ function EmailSignIn({
                   <input
                     placeholder=""
                     className="form-control"
+                    autoComplete="off"
                     type="text"
                     {...register('email', {
                       required: 'Please enter your email',
@@ -60,6 +61,7 @@ function EmailSignIn({
                   </label>
                   <input
                     placeholder=""
+                    autoComplete="off"
                     className="form-control"
                     type="password"
                     {...register('password', {
