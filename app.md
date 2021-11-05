@@ -1,7 +1,8 @@
 ## Introduction
 
-This NextJS application is a file management front end application that utilises the Architected Back-end-as-Service APIs for all back end data storage.  
-The services that are utilised in this fully functional sample application include the following:
+This NextJS sample application is a file management application that utilises the Architected Back-end-as-Service APIs for all back-end interactions.
+
+The services used in this fully functional sample application include the following:
 
 - IAM to manage sign-up, sign-in and password reset
 - File to manage file upload, download and listing
@@ -9,6 +10,8 @@ The services that are utilised in this fully functional sample application inclu
 
 The architected API is accessed via the npm package (architected-client) that ensures consistent client API access across Javascript clients.
 _Note this package is also used in the React Native and dApp sample apps_
+
+<img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/next-js-interactions.png" width="800">
 
 ## Features
 
@@ -24,7 +27,7 @@ The following guide will take you through the steps to get the application worki
 
 Before continuing please ensure you have created an account and application with the Architected Management Portal. If you have not done this instructions can be found on the wiki.
 
-Step 1
+### Step 1
 
 Open a cmd prompt shell and run the following commands to clone the project into your chosen working folder and launch vscode:
 
@@ -34,7 +37,7 @@ cd next-js-sample-app
 
 code .
 
-Step 2 Install packages
+### Step 2 Install packages
 
 Open a new terminal from the Terminal menu
 
@@ -42,7 +45,7 @@ To restore dependancies run the command
 
 npm install
 
-Step 3 Configure settings
+### Step 3 Configure settings
 
 Create a file call env.local and copy the contents of env.template.app into it. These are all the environment variables that you will need to configure to run the application which we will configure shortly
 
@@ -64,7 +67,7 @@ NEXT_PUBLIC_SITE_NAME="your site name"
 
 Note NextJs uses the convention prefix NEXT*PUBLIC*' for environment variables that are available to client code running in the browser. API_KEY and API_SECRET are only accessible from back channel api calls running within the server layer.
 
-Step 4 Assign settings
+### Step 4 Assign settings
 
 Firstly make sure you are signed in to the architected portal.
 
@@ -88,7 +91,7 @@ API_KEY="your-api-key"
 
 API_SECRET="your-api-secret"
 
-Step 5 Launching Application
+### Step 5 Launching Application
 
 Open a terminal and run the command npm run dev
 
