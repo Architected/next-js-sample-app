@@ -66,4 +66,29 @@ const hasValidToken = (authState, bearerToken, dispatch) => {
   }
 };
 
-export { getFromStore, saveToStore, deleteFromStore, hasValidToken };
+const hasCompleteToken = (authState, bearerToken) => {
+  try {
+    if (!authState || !bearerToken) {
+      return false;
+    }
+
+    const tokenExpiry = Date.parse(bearerToken.tokenExpiryUTC);
+    const currentDate = Date.now();
+
+    if (tokenExpiry < currentDate || authState.signinScope !== 'COMPLETE') {
+      return false;
+    }
+
+    return true;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export {
+  getFromStore,
+  saveToStore,
+  deleteFromStore,
+  hasValidToken,
+  hasCompleteToken,
+};

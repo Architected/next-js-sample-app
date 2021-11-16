@@ -17,5 +17,6 @@ Note: Metamask with a connection to Polygon/Mumbai Testnet is required to access
 
 The following guides will walk through the steps to get the application working within Visual Studio Code.
 
-Instructions for 'app' mode click here
-Instructions for 'dapp' mode click here
+- For instructions to install and configure the sample in 'app' mode [click here ](/app.md)
+
+- For instructions to install and configure the sample in 'dapp' mode [click here ](/dapp.md)

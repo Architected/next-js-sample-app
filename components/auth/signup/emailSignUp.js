@@ -24,8 +24,8 @@ function EmailSignUp({
           <div className="col-lg-6 col-sm-12">
             <div className="auth-box">
               <h2>Sign Up</h2>
-              <form onSubmit={handleSubmit(submitHandler)}>
-                <p>Please enter your details .</p>
+              <form onSubmit={handleSubmit(submitHandler)} autoComplete="off">
+                <p>Please enter your details</p>
                 <div className="mb-3">
                   <label
                     htmlFor="email"
@@ -36,6 +36,7 @@ function EmailSignUp({
                   <input
                     placeholder=""
                     className="form-control"
+                    autoComplete="off"
                     type="text"
                     {...register('email', {
                       required: 'Please enter your email',
@@ -61,7 +62,7 @@ function EmailSignUp({
                     placeholder=""
                     className="form-control"
                     type="password"
-                    autoComplete="off"
+                    autoComplete="new-password"
                     {...register('password', {
                       required: 'Please enter your new password',
                       minLength: {

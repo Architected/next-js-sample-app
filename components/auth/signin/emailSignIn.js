@@ -25,7 +25,7 @@ function EmailSignIn({
           <div className="col-lg-6 col-sm-12">
             <div className="auth-box">
               <h2>Sign In</h2>
-              <form onSubmit={handleSubmit(submitHandler)}>
+              <form onSubmit={handleSubmit(submitHandler)} autoComplete="off">
                 <p>Please enter your email and password to sign in.</p>
                 <div className="mb-3">
                   <label

@@ -7,5 +7,7 @@ describe('Home Page', () => {
 
   it('load the home page', () => {
     cy.get('h1').should('have.text', 'Upload your files');
+
+    cy.get('.btn').click();
   });
 });

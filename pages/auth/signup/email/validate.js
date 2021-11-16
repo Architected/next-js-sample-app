@@ -9,7 +9,7 @@ import {
   validateEmailAction,
 } from '../../../../state/actions/auth/signUpEmail';
 
-function SignUpEmailValidate(context) {
+function SignUpEmailValidate() {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const [resendInProgress, setResendInProgress] = useState(false);
@@ -46,7 +46,7 @@ function SignUpEmailValidate(context) {
       );
 
       if (responseData && !responseData.inError) {
-        router.push(PAGE_FILE_LIST);
+        router.push('/auth/signup/email/complete');
       }
     }
   };

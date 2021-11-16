@@ -31,11 +31,11 @@ Before continuing please ensure you have created an account and application with
 
 Open a cmd prompt shell and run the following commands to clone the project into your chosen working folder and launch vscode:
 
-git clone https://github.com/Architected/next-js-sample-app.git
-
-cd next-js-sample-app
-
-code .
+```
+1 git clone https://github.com/Architected/next-js-sample-app.git
+2 cd next-js-sample-app
+3 code .
+```
 
 ### Step 2 Install packages
 
@@ -43,7 +43,9 @@ Open a new terminal from the Terminal menu
 
 To restore dependancies run the command
 
+```
 npm install
+```
 
 ### Step 3 Configure settings
 
@@ -51,21 +53,17 @@ Create a file call env.local and copy the contents of env.template.app into it. 
 
 The contents of env.local should now look like this
 
+```
 NEXT_PUBLIC_APP_KEY="your-app-key"
-
 NEXT_PUBLIC_API_URL="https://your-api-url/api/v1.0/"
-
 API_KEY="your-api-key"
-
 API_SECRET="your-api-secret"
-
 NEXT_PUBLIC_APP_ENV="your-app-env"
-
 NEXT_PUBLIC_SITE_MODE="app"
-
 NEXT_PUBLIC_SITE_NAME="your site name"
+```
 
-Note NextJs uses the convention prefix NEXT*PUBLIC*' for environment variables that are available to client code running in the browser. API_KEY and API_SECRET are only accessible from back channel api calls running within the server layer.
+Note: NextJs uses the convention prefix NEXT*PUBLIC*' for environment variables that are available to client code running in the browser. API_KEY and API_SECRET are only accessible from back channel api calls running within the server layer.
 
 ### Step 4 Assign settings
 
@@ -75,21 +73,20 @@ Your application API in the alpha environment running user the trial plan provid
 
 4.1 Navigate to the Application Details tab.
 
+```
 NEXT_PUBLIC_APP_KEY="your-app-key"
-
 NEXT_PUBLIC_API_URL="https://your-api-url/api/v1.0/"
-
 NEXT_PUBLIC_SITE_NAME="your site name"
-
 NEXT_PUBLIC_APP_ENV="your-app-env"
-
 NEXT_PUBLIC_SITE_MODE="app"
+```
 
 4.2 Navigate to the Application Tokens tab.
 
+```
 API_KEY="your-api-key"
-
 API_SECRET="your-api-secret"
+```
 
 ### Step 5 Launching Application
 
@@ -97,4 +94,4 @@ Open a terminal and run the command npm run dev
 
 Click the link https://localhost:3000 to run the application in the browser
 
-For instructions to run the app in dApp mode [click here ](/dapp)
+For instructions to run the app in dApp mode [click here ](/dapp.md)

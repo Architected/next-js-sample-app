@@ -4,12 +4,14 @@ import { Store } from '../../state/storeProvider';
 import Identicon from 'react-identicons';
 import { architectedConfig } from '../../architectedConfig';
 import { PAGE_FILE_LIST } from '../../helper/routeHelper';
+import { hasCompleteToken } from '../../helper/storageHelper';
 
 function TopNavigation() {
   const { state } = useContext(Store);
-  const { authState } = state['auth'];
+  const { authState, bearerToken } = state['auth'];
   const { marketPlace } = state['global'];
   const containerclassName = 'dashboard-header';
+  const isLoggedIn = hasCompleteToken(authState, bearerToken);
   //authState || marketPlace ? 'dashboard-header' : 'header';
 
   const signInUrl =
@@ -34,44 +36,48 @@ function TopNavigation() {
           </Link>
         </div>
         {authState ? (
-          <div className="float-right">
-            <div className="dropdown float-left"></div>
-            <div className="dropdown float-left ml-4"></div>
-            <div className="dropdown float-left ml-4">
-              {authState.identifier}&nbsp;&nbsp;
-              <a
-                className="button dropdown-toggle"
-                href="#"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              ></a>
-              <div className="dropdown-menu">
-                <Link href="/profile" passHref>
-                  <a className="dropdown-item">My profile</a>
-                </Link>
-                <hr />
-                {architectedConfig.siteMode == 'app' && (
-                  <>
-                    <Link href="/changepassword" passHref>
-                      <a className="dropdown-item">Change Password</a>
-                    </Link>
-                    <hr />
-                  </>
-                )}
-                <Link href="/logout" passHref>
-                  <a className="dropdown-item">Log out</a>
-                </Link>
+          isLoggedIn ? (
+            <div className="float-right">
+              <div className="dropdown float-left"></div>
+              <div className="dropdown float-left ml-4"></div>
+              <div className="dropdown float-left ml-4">
+                {authState.identifier}&nbsp;&nbsp;
+                <a
+                  className="button dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                ></a>
+                <div className="dropdown-menu">
+                  <Link href="/profile" passHref>
+                    <a className="dropdown-item">My profile</a>
+                  </Link>
+                  <hr />
+                  {architectedConfig.siteMode == 'app' && (
+                    <>
+                      <Link href="/changepassword" passHref>
+                        <a className="dropdown-item">Change Password</a>
+                      </Link>
+                      <hr />
+                    </>
+                  )}
+                  <Link href="/logout" passHref>
+                    <a className="dropdown-item">Log out</a>
+                  </Link>
+                </div>
+              </div>
+              <div className="dropdown float-left ml-3 mt-1">
+                <Identicon string={authState.identifier} size={30} />
+              </div>
+              <div className="dashboard-menu-icon float-left ml-4">
+                <i className="fas fa-bars"></i>
               </div>
             </div>
-            <div className="dropdown float-left ml-3 mt-1">
-              <Identicon string={authState.identifier} size={30} />
-            </div>
-            <div className="dashboard-menu-icon float-left ml-4">
-              <i className="fas fa-bars"></i>
-            </div>
-          </div>
+          ) : (
+            <></>
+          )
         ) : (
           <div className="float-right">
             <div className="dropdown float-left"></div>

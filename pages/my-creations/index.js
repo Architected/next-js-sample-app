@@ -60,11 +60,9 @@ function MyCreations() {
   useEffect(() => {
     let isMounted = true;
     dispatch({ type: authActionType.INIT_MARKETPLACE_LAYOUT });
-
     const validToken = hasValidToken(authState, bearerToken, dispatch);
-    console.log('validToken' + validToken);
     if (!validToken) {
-      //router.push('/');
+      router.push('/');
     } else {
       getTokens().then((items) => {
         if (isMounted) setNfts(items);
