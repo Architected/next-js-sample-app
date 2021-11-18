@@ -15,6 +15,8 @@ _Note this package is also used in the React Native and dApp sample apps_
 
 ## Features
 
+---
+
 The application is a simple file manager that allows an email/password sign-up/sign-in experience and the ability to upload, view and download images for a user account.
 
 To test and instance of the app based on the current repo please visit the links below:
@@ -27,17 +29,17 @@ The following guide will take you through the steps to get the application worki
 
 Before continuing please ensure you have created an account and application with the Architected Management Portal. If you have not done this instructions can be found here:
 
-- [Account Creation](/wiki/2-Creating-an-account)
-- [Application Creation](/wiki/4-Creating-an-application)
+- [Create an account](https://github.com/Architected/next-js-sample-app/wiki/2-Creating-an-account)
+- [Create your first application](https://github.com/Architected/next-js-sample-app/wiki/4-Creating-an-application)
 
 ### Step 1
 
 Open a cmd prompt shell and run the following commands to clone the project into your chosen working folder and launch vscode:
 
 ```
-1 git clone https://github.com/Architected/next-js-sample-app.git
-2 cd next-js-sample-app
-3 code .
+git clone https://github.com/Architected/next-js-sample-app.git
+cd next-js-sample-app
+code .
 ```
 
 ### Step 2 Install packages
@@ -52,39 +54,64 @@ npm install
 
 ### Step 3 Configure settings
 
-Create a file call env.local and copy the contents of env.template.app into it. These are all the environment variables that you will need to configure to run the application which we will configure shortly
+In the project root create a file call env.local and copy the contents of env.template.app into it. These settings are all the environment variables that you will need to configure to run the application.
 
 The contents of env.local should now look like this
 
 ```
 NEXT_PUBLIC_APP_KEY="your-app-key"
 NEXT_PUBLIC_API_URL="https://your-api-url/api/v1.0/"
-API_KEY="your-api-key"
-API_SECRET="your-api-secret"
 NEXT_PUBLIC_APP_ENV="your-app-env"
 NEXT_PUBLIC_SITE_MODE="app"
 NEXT_PUBLIC_SITE_NAME="your site name"
+API_KEY="your-api-key"
+API_SECRET="your-api-secret"
 ```
 
-Note: NextJs uses the convention prefix NEXT*PUBLIC*' for environment variables that are available to client code running in the browser. API_KEY and API_SECRET are only accessible from back channel api calls running within the server layer.
+Note: NextJs uses the convention prefix NEXT_PUBLIC for environment variables that must be available to client code running in the browser. API_KEY and API_SECRET are only accessible from back end code running on the server.
 
 ### Step 4 Assign settings
 
-Firstly make sure you are signed in to the architected portal.
+Your application in the trial plan has two client environments to operate in, dev and uat, each with their own settings and secrets. For these steps we will assume use of the dev environment.
 
-Your application API in the alpha environment running user the trial plan provides two logical client environments for your application to run under, dev and uat, each with their own api keys and secrets. This allows you to make changes to email templates, content and maintain different user stores during your application development. Once the paid plans are ready their will also be the production client environment which you would use once going live with your application.
+4.1 Configure public settings
 
-4.1 Navigate to the Application Details tab.
+Ensure that the selected environment is 'Development' as per the screenshot below:
+
+<img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/env-select.png" width="800">
+
+Ensure that the Details tab is selected.
+
+<img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/details-tab.png" width="800">
+
+This will allow you to configure the following keys:
+
+- application key maps to NEXT_PUBLIC_APP_KEY
+- api url maps to NEXT_PUBLIC_API_URL
+- application name maps to NEXT_PUBLIC_SITE_NAME
+
+The public settings should look something like this:
 
 ```
 NEXT_PUBLIC_APP_KEY="your-app-key"
-NEXT_PUBLIC_API_URL="https://your-api-url/api/v1.0/"
-NEXT_PUBLIC_SITE_NAME="your site name"
-NEXT_PUBLIC_APP_ENV="your-app-env"
+NEXT_PUBLIC_API_URL="https://dz-api-dev-clnt-au.diztribute.com/api/v1.0/"
+NEXT_PUBLIC_SITE_NAME="Holiday Pics"
+NEXT_PUBLIC_APP_ENV="dev"
 NEXT_PUBLIC_SITE_MODE="app"
 ```
 
-4.2 Navigate to the Application Tokens tab.
+4.2 Configure private settings
+
+Navigate to the Application Tokens tab.
+
+[pic]
+
+This will allow you to configure the following keys:
+
+- api key maps to API_KEY
+- api secret maps to API_SECRET
+
+The private settings should look something like this:
 
 ```
 API_KEY="your-api-key"
@@ -93,8 +120,53 @@ API_SECRET="your-api-secret"
 
 ### Step 5 Launching Application
 
-Open a terminal and run the command npm run dev
+Once the settings have been saved the app is now ready to run.
+
+Open a terminal and run the command
+
+```
+npm run dev
+```
 
 Click the link https://localhost:3000 to run the application in the browser
 
-For instructions to run the app in dApp mode [click here ](/dapp.md)
+### Step 6 Verify Functionslity
+
+1 Home Page
+
+Whilst no APIs are invoked from the home page you can verify that the packages are installed correctly and that the settings:
+
+NEXT_PUBLIC_SITE_NAME="Holiday Pics"
+NEXT_PUBLIC_SITE_MODE="app"
+
+have been applied.
+
+You should see the following home page
+
+2 Privacy Policy / Terms and Conditions
+
+These are two public sample pages that retrieve markup that is generated when your application is created. The HTML is retrieved using the content API and can be edited in the architected portal.
+
+3 Sign up
+
+You can attempt to create a new user with an email and password using the IAM API. For non production environments all messages will be forwarded to the admin users inbox to prevent unsolicited messages being sent. However the email address entered will be subject to validation based on whether 'Mailbox Protection' is enabled.
+
+Properties of the message sent to verify the sign-up can be configured on the Settings tab under Email Settings. Whilst the message markup can also be edited under Email Templates
+
+You will be able to see a record of the user registration by selecting App Users under the Application in the admin website.
+
+4 Sign in
+
+Once you have successfully created and verified a user you can now attempt sign-in using the IAM API.
+
+Upon successfull sign-in you should land on the default landing page
+
+5 Uploading a file
+
+This will verify that you are able to upload a file for the user using the file API
+
+If you have arrived here you have verified that the sample app is working as expected.
+
+### Next Steps
+
+For instructions to run the app in dApp mode [click here](/dapp.md). This extends the app with web3 capabilities and allows for creation of NFTs from the uploaded images.
