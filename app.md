@@ -25,7 +25,10 @@ To test and instance of the app based on the current repo please visit the links
 
 The following guide will take you through the steps to get the application working with Visual Studio Code. If you are new to NextJS it may be worth to spend a few minutes familiarising with the basics [https://nextjs.org/docs] but that is not essential for this demo.
 
-Before continuing please ensure you have created an account and application with the Architected Management Portal. If you have not done this instructions can be found on the wiki.
+Before continuing please ensure you have created an account and application with the Architected Management Portal. If you have not done this instructions can be found here:
+
+- [Account Creation](/wiki/2-Creating-an-account)
+- [Application Creation](/wiki/4-Creating-an-application)
 
 ### Step 1
 
