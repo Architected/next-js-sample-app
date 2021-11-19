@@ -26,12 +26,12 @@ To test an instance of this application based on the current repo please visit t
 
 The following guide will take you through the steps to get the application working with Visual Studio Code on your local machine. If you are new to NextJS it may be worth to spend a few minutes familiarising with the basics [https://nextjs.org/docs] but that is not essential for this demo.
 
-Before continuing please ensure you have created an account and application with the Architected Management Portal. If you have not done this instructions can be found here:
+Before continuing please ensure you have created both an account and an application within the Architected management portal. If you have not done this instructions can be found here:
 
 - [Create an account](https://github.com/Architected/next-js-sample-app/wiki/2-Creating-an-account)
 - [Create your first application](https://github.com/Architected/next-js-sample-app/wiki/4-Creating-an-application)
 
-## Step 1
+## Step 1 Clone Repo
 
 Open a cmd prompt shell and run the following commands to clone the project into your chosen working folder and launch vscode:
 
@@ -43,9 +43,7 @@ code .
 
 ## Step 2 Install packages
 
-Open a new terminal from the Terminal menu
-
-To restore dependancies run the command
+Within Visual Studio Code open a new terminal from the Terminal menu and run the following command to install project dependancies.
 
 ```
 npm install
@@ -53,21 +51,23 @@ npm install
 
 ## Step 3 Configure settings
 
-In the project root create a file call env.local and copy the contents of env.template.app into it. These settings are all the environment variables that you will need to configure to run the application.
+In the project root create a file call **env.local** and copy the contents of **env.template.app** into it.
 
-The contents of env.local should now look like this
+These settings are all the environment variables that you will need to run the application.
+
+The contents of env.local should look like this
 
 ```
 NEXT_PUBLIC_APP_KEY="your-app-key"
 NEXT_PUBLIC_API_URL="https://your-api-url/api/v1.0/"
 NEXT_PUBLIC_APP_ENV="your-app-env"
 NEXT_PUBLIC_SITE_MODE="app"
-NEXT_PUBLIC_SITE_NAME="your site name"
+NEXT_PUBLIC_SITE_NAME="your-app-name"
 API_KEY="your-api-key"
 API_SECRET="your-api-secret"
 ```
 
-Note: NextJs uses the convention prefix NEXT_PUBLIC for environment variables that must be available to client code running in the browser. API_KEY and API_SECRET are only accessible from back end code running on the server.
+Note: NextJs uses the convention prefix NEXT*PUBLIC* for environment variables that must be available to client code running in the browser. Therefore API_KEY and API_SECRET are only accessible from back end code running on the server.
 
 ## Step 4 Assign settings
 
@@ -83,11 +83,11 @@ Ensure that the Details tab is selected.
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/details-tab.png" width="800">
 
-From this tab we make a note of the following values and update the respective settings:
+From this tab make a note of the following values and update the respective settings in env.local:
 
-- application key maps to NEXT_PUBLIC_APP_KEY
-- api url maps to NEXT_PUBLIC_API_URL
-- application name maps to NEXT_PUBLIC_SITE_NAME
+- **Application Key** maps to **NEXT_PUBLIC_APP_KEY**
+- **Api Url** maps to **NEXT_PUBLIC_API_URL**
+- **Application Name** maps to **NEXT_PUBLIC_SITE_NAME**
 
 The public settings in env.local should look something like this:
 
@@ -99,7 +99,7 @@ NEXT_PUBLIC_APP_ENV="dev"
 NEXT_PUBLIC_SITE_MODE="app"
 ```
 
-4.2 Configure private settings
+### 4.2 Configure private settings
 
 Navigate to the Application Tokens tab.
 
@@ -131,20 +131,18 @@ Click the link https://localhost:3000 to run the application in the browser
 
 ### Step 6 Verify Functionslity
 
-1 Home Page
+### 6.1 Home Page
 
-Whilst no APIs are invoked from the home page you can verify that the packages are installed correctly and that the settings:
+Whilst no APIs are invoked from the home page you can verify that the packages are installed correctly and that the settings have been applied:
 
 NEXT_PUBLIC_SITE_NAME="Holiday Pics"
 NEXT_PUBLIC_SITE_MODE="app"
 
-have been applied.
-
-You should see the following home page
+You should see the following home page:
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-1-public-home-page.png" width="800">
 
-2 Privacy Policy / Terms and Conditions
+### 6.2 Privacy Policy / Terms and Conditions
 
 These are two public sample pages 'terms and conditions' and 'privacy policy' that are generated when your application is created which are retrieved in the sample application. Below is an example of the terms and conditions page you should see when you click the hyperlink.
 
@@ -156,19 +154,19 @@ The HTML is retrieved using the content API and can be edited in the architected
 
 If you want to experiment and create a new page in the management portal it can be accessed within the sample app using the page key:
 
-3 Sign up
+### 6.3 Sign up
 
 You can now test creating a new user with an email and password using the IAM API.
 
-Sign up Step
+**Sign up Step**
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-3-signup-1.png" width="800">
 
-Verification Step
+**Verification Step**
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-3-signup-2.png" width="800">
 
-Complete Step
+**Complete Step**
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-3-signup-3.png" width="800">
 
@@ -182,7 +180,7 @@ Attributes within the sign-up email verification message can be configured on th
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-3-signup-6.png" width="800">
 
-You can also change the markup of the email template by updating the respective template from the 'Email Templates' option
+You can also change the markup of the email template by updating the respective template from the 'Email Templates' option.
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-3-signup-7.png" width="800">
 
@@ -190,17 +188,17 @@ You will be able to see a record of the user registration by selecting App Users
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-3-signup-8.png" width="800">
 
-4 Sign in
+### 6.4 Sign in
 
 Once you have successfully created and verified a user you can now attempt sign-in using the IAM API.
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-4-signin-1.png" width="800">
 
-Upon successfull sign-in you should land on the default landing page
+Upon successfull sign-in you should land on the default landing page.
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-4-signin-2.png" width="800">
 
-5 Uploading a file
+### 6.5 Uploading a file
 
 This will verify that you are able to upload a file for the user using the file API.
 
@@ -214,12 +212,12 @@ After selecting an image a preview will be displayed. Provide a name and descrip
 
 Upon successful upload you should return to the dashboard with a thumbnail of the uploaded file.
 
-[pic goes here] list pic
+<img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-5-upload-3.png" width="800">
 
 If you have arrived here you have verified that the sample app is working as expected.
 
-<img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-5-upload-3.png" width="800">
+## 7 Next Steps
 
-### Next Steps
+For instructions to run the app in distributed mode [click here](/dapp.md).
 
-For instructions to run the distributed mode [click here](/dapp.md). This extends the app with web3 capabilities and allows for creation of NFTs from the uploaded images.
+This extends the file manager app with web3 capabilities and allows for creation of NFTs from the uploaded images.
