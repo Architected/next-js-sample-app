@@ -6,26 +6,25 @@ The services used in this fully functional sample application include the follow
 
 - IAM to manage sign-up, sign-in and password reset
 - File to manage file upload, download and listing
-- Content to manage CMS capabilities
+- Content to manage basic CMS capabilities
 
-The architected API is accessed via the npm package (architected-client) that ensures consistent client API access across Javascript clients.
-_Note this package is also used in the React Native and dApp sample apps_
+The architected service is accessed via the npm package [architected-client](https://www.npmjs.com/package/architected-client) that ensures consistent API access across Javascript clients.
+
+_Note this package is also used in the React Native and dApp(web3) sample apps_
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/next-js-interactions.png" width="800">
 
 # Features
 
----
-
 The application is a simple file manager that allows an email/password sign-up/sign-in experience and the ability to upload, view and download images for a user account.
 
-To test and instance of the app based on the current repo please visit the links below:
+To test an instance of this application based on the current repo please visit the link below:
 
 [https://next-js-sample-app.vercel.app/](https://next-js-sample-app.vercel.app/)
 
 # Setup
 
-The following guide will take you through the steps to get the application working with Visual Studio Code. If you are new to NextJS it may be worth to spend a few minutes familiarising with the basics [https://nextjs.org/docs] but that is not essential for this demo.
+The following guide will take you through the steps to get the application working with Visual Studio Code on your local machine. If you are new to NextJS it may be worth to spend a few minutes familiarising with the basics [https://nextjs.org/docs] but that is not essential for this demo.
 
 Before continuing please ensure you have created an account and application with the Architected Management Portal. If you have not done this instructions can be found here:
 
@@ -177,27 +176,29 @@ For non-production environments all emails will be sent to the admin users inbox
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-3-signup-4.png" width="800">
 
-Properties of the sign-up email verification message can be configured on the Settings tab under Email Settings.
+Attributes within the sign-up email verification message can be configured on the Settings tab under Email Settings.
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-3-signup-5.png" width="800">
 
-The markup for the email message can be edited under Email Templates
-
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-3-signup-6.png" width="800">
+
+You can also change the markup of the email template by updating the respective template from the 'Email Templates' option
+
+<img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-3-signup-7.png" width="800">
 
 You will be able to see a record of the user registration by selecting App Users under the Application in the admin website.
 
-<img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-3-signup-7.png" width="800">
+<img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-3-signup-8.png" width="800">
 
 4 Sign in
 
 Once you have successfully created and verified a user you can now attempt sign-in using the IAM API.
 
-[pic goes here] sign in pic
+<img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-4-signin-1.png" width="800">
 
 Upon successfull sign-in you should land on the default landing page
 
-[pic goes here] landing page pic
+<img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-4-signin-2.png" width="800">
 
 5 Uploading a file
 
@@ -205,14 +206,20 @@ This will verify that you are able to upload a file for the user using the file 
 
 From the dashboard click the upload file button
 
-[pic goes here] upload pic
+<img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-5-upload-1.png" width="800">
 
-upon successful upload you should return to the dashboard with a thumbnail of the uploaded file.
+After selecting an image a preview will be displayed. Provide a name and description and click submit.
+
+<img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-5-upload-2.png" width="800">
+
+Upon successful upload you should return to the dashboard with a thumbnail of the uploaded file.
 
 [pic goes here] list pic
 
 If you have arrived here you have verified that the sample app is working as expected.
 
+<img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-5-upload-3.png" width="800">
+
 ### Next Steps
 
-For instructions to run the app in dApp mode [click here](/dapp.md). This extends the app with web3 capabilities and allows for creation of NFTs from the uploaded images.
+For instructions to run the distributed mode [click here](/dapp.md). This extends the app with web3 capabilities and allows for creation of NFTs from the uploaded images.
