@@ -6,7 +6,7 @@ import { signInAction } from '../../../../state/actions/auth/signInEmail';
 import * as authActionType from '../../../../state/constants/auth';
 import { getClientDetails } from '../../../../helper/clientHelper';
 import { nextStep } from '../../../../helper/scopeHelper';
-import { PAGE_FILE_LIST } from '../../../../helper/routeHelper';
+import { urlConstants } from '../../../../helper/urlConstants';
 import { saveToStore } from '../../../../helper/storageHelper';
 
 function SignInEmail() {
@@ -19,7 +19,7 @@ function SignInEmail() {
     dispatch({ type: authActionType.INIT_DEFAULT_LAYOUT });
 
     if (authState && authState.signinScope === 'COMPLETE') {
-      router.push(PAGE_FILE_LIST);
+      router.push(urlConstants.get('PAGE_FILE_LIST'));
     }
   }, []);
 

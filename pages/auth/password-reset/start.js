@@ -4,7 +4,7 @@ import { Store } from '../../../state/storeProvider';
 import PasswordResetStart from '../../../components/auth/passwordReset/passwordResetStart';
 import { startAction } from '../../../state/actions/auth/passwordReset';
 import * as authActionType from '../../../state/constants/auth';
-import { PAGE_FILE_LIST } from '../../../helper/routeHelper';
+import { urlConstants } from '../../../helper/urlConstants';
 import { getClientDetails } from '../../../helper/clientHelper';
 
 function StartPasswordReset() {
@@ -19,7 +19,7 @@ function StartPasswordReset() {
     dispatch({ type: authActionType.INIT_DEFAULT_LAYOUT });
 
     if (authState && authState.signinScope === 'COMPLETE') {
-      router.push(PAGE_FILE_LIST);
+      router.push(urlConstants.get('PAGE_FILE_LIST'));
     }
   }, []);
 

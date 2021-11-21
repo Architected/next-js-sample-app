@@ -4,7 +4,7 @@ import { Store } from '../../../state/storeProvider';
 import PasswordResetPerform from '../../../components/auth/passwordReset/passwordResetPerform';
 import { performAction } from '../../../state/actions/auth/passwordReset';
 import * as authActionType from '../../../state/constants/auth';
-import { PAGE_FILE_LIST } from '../../../helper/routeHelper';
+import { urlConstants } from '../../../helper/urlConstants';
 
 function PerformPasswordReset() {
   const router = useRouter();
@@ -23,7 +23,7 @@ function PerformPasswordReset() {
     dispatch({ type: authActionType.INIT_DEFAULT_LAYOUT });
 
     if (authState && authState.signinScope === 'COMPLETE') {
-      router.push(PAGE_FILE_LIST);
+      router.push(urlConstants.get('PAGE_FILE_LIST'));
     }
 
     return () => {

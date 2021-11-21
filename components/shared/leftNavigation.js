@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Store } from '../../state/storeProvider';
 import { architectedConfig } from '../../architectedConfig';
-import { PAGE_FILE_LIST } from '../../helper/routeHelper';
+import { urlConstants } from '../../helper/urlConstants';
 
 function LeftNavigation() {
   const { state } = useContext(Store);
@@ -67,7 +67,7 @@ function LeftNavigation() {
                       />
 
                       <NavLink
-                        href={PAGE_FILE_LIST}
+                        href={urlConstants.get('PAGE_FILE_LIST')}
                         iconClassName="far fa-folder"
                         title="/ My Files"
                       />
@@ -79,7 +79,7 @@ function LeftNavigation() {
               {architectedConfig.siteMode == 'app' && (
                 <>
                   <NavLink
-                    href={PAGE_FILE_LIST}
+                    href={urlConstants.get('PAGE_FILE_LIST')}
                     iconClassName="far fa-folder"
                     title="/ My Files"
                   />

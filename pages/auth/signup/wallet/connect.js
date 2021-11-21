@@ -4,7 +4,7 @@ import { Store } from '../../../../state/storeProvider';
 import WalletConnect from '../../../../components/auth/signup/walletConnect';
 import { connectWalletAction } from '../../../../state/actions/auth/signUpWallet';
 import * as authActionType from '../../../../state/constants/auth';
-import { PAGE_FILE_LIST } from '../../../../helper/routeHelper';
+import { urlConstants } from '../../../../helper/urlConstants';
 
 function SignupWalletConnect() {
   const router = useRouter();
@@ -25,7 +25,7 @@ function SignupWalletConnect() {
     if (authState == null || bearerToken == null) {
       router.push('/');
     } else if (authState && authState.signupScope === 'FULL') {
-      router.push(PAGE_FILE_LIST);
+      router.push(urlConstants.get('PAGE_FILE_LIST'));
     }
   }, []);
 

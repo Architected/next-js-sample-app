@@ -14,7 +14,7 @@ import {
 } from '../../state/actions/file/nft';
 import { architectedConfig } from '../../architectedConfig';
 import FileView from '../../components/file/fileView';
-import { PAGE_FILE_LIST } from '../../helper/routeHelper';
+import { urlConstants } from '../../helper/urlConstants';
 
 function FileDetail({ params }) {
   const fileId = params.id;
@@ -51,7 +51,7 @@ function FileDetail({ params }) {
 
   const deleteFileHandler = async () => {
     await deleteFileAction(file.globalId, dispatch, bearerToken.tokenValue);
-    return router.push(PAGE_FILE_LIST);
+    return router.push(urlConstants.get('PAGE_FILE_LIST'));
   };
 
   const updateFileHandler = async (data) => {
@@ -63,7 +63,7 @@ function FileDetail({ params }) {
 
     await updateFileAction(fileUpdateRequest, dispatch, bearerToken.tokenValue);
 
-    router.push(PAGE_FILE_LIST);
+    router.push(urlConstants.get('PAGE_FILE_LIST'));
   };
 
   const uploadToIPFS = async () => {

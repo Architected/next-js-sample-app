@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Store } from '../../../state/storeProvider';
 import PasswordResetComplete from '../../../components/auth/passwordReset/passwordResetComplete';
 import * as authActionType from '../../../state/constants/auth';
-import { PAGE_FILE_LIST } from '../../../helper/routeHelper';
+import { urlConstants } from '../../../helper/urlConstants';
 
 function CompletePasswordReset() {
   const router = useRouter();
@@ -15,7 +15,7 @@ function CompletePasswordReset() {
     dispatch({ type: authActionType.INIT_DEFAULT_LAYOUT });
 
     if (authState && authState.signinScope === 'COMPLETE') {
-      router.push(PAGE_FILE_LIST);
+      router.push(urlConstants.get('PAGE_FILE_LIST'));
     }
   }, []);
 

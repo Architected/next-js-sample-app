@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Store } from '../../../../state/storeProvider';
 import EmailValidate from '../../../../components/auth/signup/emailValidate';
 import * as authActionType from '../../../../state/constants/auth';
-import { PAGE_FILE_LIST } from '../../../../helper/routeHelper';
+import { urlConstants } from '../../../../helper/urlConstants';
 import {
   verifyEmailAction,
   validateEmailAction,
@@ -29,7 +29,7 @@ function SignUpEmailValidate() {
     if (authState == null || bearerToken == null) {
       router.push('/');
     } else if (authState && authState.signupScope === 'FULL') {
-      router.push(PAGE_FILE_LIST);
+      router.push(urlConstants.get('PAGE_FILE_LIST'));
     }
 
     return () => {

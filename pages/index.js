@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { Store } from '../state/storeProvider';
 import { architectedConfig } from '../architectedConfig';
 import * as authActionType from '../state/constants/auth';
-import { PAGE_FILE_LIST } from '../helper/routeHelper';
+import { urlConstants } from '../helper/urlConstants';
 import { hasValidToken } from '../helper/storageHelper';
 
 export default function Home() {
@@ -19,7 +19,7 @@ export default function Home() {
     dispatch({ type: authActionType.INIT_DEFAULT_LAYOUT });
     const validToken = hasValidToken(authState, bearerToken, dispatch);
     if (validToken) {
-      router.push(PAGE_FILE_LIST);
+      router.push(urlConstants.get('PAGE_FILE_LIST'));
     }
   }, []);
 

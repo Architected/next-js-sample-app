@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Store } from '../../state/storeProvider';
 import Identicon from 'react-identicons';
 import { architectedConfig } from '../../architectedConfig';
-import { PAGE_FILE_LIST } from '../../helper/routeHelper';
+import { urlConstants } from '../../helper/urlConstants';
 import { hasCompleteToken } from '../../helper/storageHelper';
 
 function TopNavigation() {
@@ -25,7 +25,7 @@ function TopNavigation() {
     <header className={containerclassName}>
       <div className="container-fluid">
         <div className="float-left">
-          <Link href={authState ? PAGE_FILE_LIST : '/'}>
+          <Link href={authState ? urlConstants.get('PAGE_FILE_LIST') : '/'}>
             {architectedConfig.siteName != '' ? (
               <a className="logo">{architectedConfig.siteName}</a>
             ) : (

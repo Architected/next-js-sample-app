@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../../../state/storeProvider';
-import { PAGE_MARKETPLACE } from '../../../../helper/routeHelper';
+import { PAGE_MARKETPLACE } from '../../../../helper/urlConstants';
 import * as authActionType from '../../../../state/constants/auth';
 import MetaMaskSignIn from '../../../../components/auth/signin/metaMaskSignIn';
 import { nextStep } from '../../../../helper/scopeHelper';

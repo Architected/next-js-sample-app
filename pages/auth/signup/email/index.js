@@ -5,7 +5,7 @@ import EmailSignUp from '../../../../components/auth/signup/emailSignUp';
 import { signUpAction } from '../../../../state/actions/auth/signUpEmail';
 import * as authActionType from '../../../../state/constants/auth';
 import { getClientDetails } from '../../../../helper/clientHelper';
-import { PAGE_FILE_LIST } from '../../../../helper/routeHelper';
+import { urlConstants } from '../../../../helper/urlConstants';
 
 function SignUpEmail() {
   const router = useRouter();
@@ -17,7 +17,7 @@ function SignUpEmail() {
     dispatch({ type: authActionType.INIT_DEFAULT_LAYOUT });
 
     if (authState && authState.signupScope === 'FULL') {
-      router.push(PAGE_FILE_LIST);
+      router.push(urlConstants.get('PAGE_FILE_LIST'));
     }
   }, []);
 
@@ -32,7 +32,7 @@ function SignUpEmail() {
 
     if (responseData && !responseData.inError) {
       if (responseData.tokenWrapper.authState.signupScope === 'FULL') {
-        router.push(PAGE_FILE_LIST);
+        router.push(urlConstants.get('PAGE_FILE_LIST'));
       }
 
       router.push('/auth/signup/email/validate');

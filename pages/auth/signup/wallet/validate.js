@@ -4,7 +4,7 @@ import { Store } from '../../../../state/storeProvider';
 import EmailValidate from '../../../../components/auth/signup/emailValidate';
 import { validateWalletAction } from '../../../../state/actions/auth/signUpWallet';
 import * as authActionType from '../../../../state/constants/auth';
-import { PAGE_FILE_LIST } from '../../../../helper/routeHelper';
+import { urlConstants } from '../../../../helper/urlConstants';
 
 function Validate() {
   const router = useRouter();
@@ -24,7 +24,7 @@ function Validate() {
     if (authState == null || bearerToken == null) {
       router.push('/');
     } else if (authState && authState.signupScope === 'FULL') {
-      router.push(PAGE_FILE_LIST);
+      router.push(urlConstants.get('PAGE_FILE_LIST'));
     }
   }, []);
 
@@ -38,7 +38,7 @@ function Validate() {
     var data = await validateWalletAction(requestData, dispatch);
 
     if (!data.inError) {
-      router.push(PAGE_FILE_LIST);
+      router.push(urlConstants.get('PAGE_FILE_LIST'));
     }
   };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { PAGE_FILE_LIST } from '../../helper/routeHelper';
+import { urlConstants } from '../../helper/urlConstants';
 import FileViewDetail from './fileViewDetail';
 import FileViewAttribute from './fileViewAttribute';
 import FileViewIPFS from './fileViewIPFS';
