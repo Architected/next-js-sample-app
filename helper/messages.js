@@ -7,7 +7,7 @@ messages.set('CHANGES_SAVED', 'Changes saved!');
 messages.set('PASSWORD_CHANGED', 'Password changed!');
 messages.set(
   'UNEXPECTED_ERROR',
-  'An unexpected error has occurred please try the action again.'
+  'An unexpected error has occured processing the request.'
 );
 messages.set(
   'DUPLICATEUSERNAME',

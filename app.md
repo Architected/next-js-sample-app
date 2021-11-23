@@ -14,14 +14,6 @@ _Note this package is also used in the React Native and dApp(web3) sample apps_
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/next-js-interactions.png" width="800">
 
-# Features
-
-The application is a simple file manager that allows an email/password sign-up/sign-in experience and the ability to upload, view and download images for a user account.
-
-To test an instance of this application based on the current repo please visit the link below:
-
-[https://next-js-sample-app.vercel.app/](https://next-js-sample-app.vercel.app/)
-
 # Setup
 
 The following guide will take you through the steps to get the application working with Visual Studio Code on your local machine. If you are new to NextJS it may be worth to spend a few minutes familiarising with the basics [https://nextjs.org/docs] but that is not essential for this demo.
@@ -33,7 +25,7 @@ Before continuing please ensure you have created both an account and an applicat
 
 ## Step 1 Clone Repo
 
-Open a cmd prompt shell and run the following commands to clone the project into your chosen working folder and launch vscode:
+Open a cmd prompt and run the following commands to clone the project and launch the project in vscode:
 
 ```
 git clone https://github.com/Architected/next-js-sample-app.git
@@ -218,6 +210,6 @@ If you have arrived here you have verified that the sample app is working as exp
 
 ## 7 Next Steps
 
-For instructions to run the app in distributed mode [click here](/dapp.md).
+For instructions to run the app in distributed mode [click here](/dapp.md). This configuration enables web3 capabilities and allows for creation of NFTs from the uploaded images.
 
-This extends the file manager app with web3 capabilities and allows for creation of NFTs from the uploaded images.
+If you would like to download and setup the react native / expo companion app for the file manager [click here](https://github.com/Architected/react-native-sample-app).
