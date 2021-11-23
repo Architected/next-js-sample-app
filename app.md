@@ -1,6 +1,6 @@
 # Introduction
 
-This NextJS sample application is a file management application that utilises the Architected Back-end-as-Service APIs for all back-end interactions.
+This Next.js sample application is a file management application that utilises the Architected Back-end-as-Service APIs for all back-end interactions.
 
 The services used in this fully functional sample application include the following:
 
@@ -59,7 +59,7 @@ API_KEY="your-api-key"
 API_SECRET="your-api-secret"
 ```
 
-Note: NextJs uses the convention prefix NEXT*PUBLIC* for environment variables that must be available to client code running in the browser. Therefore API_KEY and API_SECRET are only accessible from back end code running on the server.
+Note: Next.js uses the convention prefix NEXT_PUBLIC_ for environment variables that must be available to client code running in the browser. Therefore API_KEY and API_SECRET are only accessible from back end code running on the server.
 
 ## Step 4 Assign settings
 
