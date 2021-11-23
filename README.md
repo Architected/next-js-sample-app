@@ -1,6 +1,6 @@
 ## Introduction
 
-This repo contains code for a sample application that uses the capabilities of the Architected Back-end-as-Service API. The application which can run in one of two ways, is built using NextJS and serves as a sample for both learning and building applications with the API.
+This repo contains code for a sample application that uses the capabilities of the Architected Back-end-as-Service API. The application which can run in one of two ways, is built using Next.js and serves as a sample for both learning and building applications with the API.
 
 ## Features
 
