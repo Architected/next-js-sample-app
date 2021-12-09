@@ -11,6 +11,7 @@
     "cypress:open": "cypress open"
   },
   "dependencies": {
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
     "@openzeppelin/contracts": "^4.3.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.2",
@@ -20,7 +21,6 @@
     "crypto-js": "^4.1.1",
     "crypto-random-string": "^3.3.1",
     "dotenv": "^10.0.0",
-    "ethers": "^5.4.7",
     "ipfs-http-client": "^52.0.0",
     "jest": "^27.3.1",
     "js-file-download": "^0.4.12",
@@ -38,10 +38,14 @@
     "web3modal": "^1.9.4"
   },
   "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.3",
     "cypress": "^8.6.0",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
     "eslint-plugin-testing-library": "4.11.0",
+    "ethereum-waffle": "^3.4.0",
+    "ethers": "^5.5.2",
+    "hardhat": "^2.7.0",
     "start-server-and-test": "^1.14.0"
   }
 }

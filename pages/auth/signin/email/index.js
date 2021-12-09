@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../../../state/storeProvider';
-import EmailSignIn from '../../../../components/auth/signin/emailSignIn';
 import { signInAction } from '../../../../state/actions/auth/signInEmail';
 import * as authActionType from '../../../../state/constants/auth';
 import { getClientDetails } from '../../../../helper/clientHelper';
@@ -9,8 +8,11 @@ import { nextStep } from '../../../../helper/scopeHelper';
 import { urlConstants } from '../../../../helper/urlConstants';
 import { saveToStore } from '../../../../helper/storageHelper';
 
+import EmailSignIn from '../../../../components/auth/signin/emailSignIn';
+
 function SignInEmail() {
   const router = useRouter();
+
   const { state, dispatch } = useContext(Store);
   const { authState, callInProgress, errorMessage, warningMessage } =
     state['auth'];

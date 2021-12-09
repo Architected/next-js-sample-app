@@ -32,7 +32,7 @@ export default function FileView(props) {
             </div>
             <div></div>
             <div>
-              <Link href={PAGE_FILE_LIST} passHref>
+              <Link href={urlConstants.get('PAGE_FILE_LIST')} passHref>
                 <a className="button button-brand float-left">
                   Back to file list
                 </a>

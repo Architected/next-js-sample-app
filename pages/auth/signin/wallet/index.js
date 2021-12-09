@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../../../state/storeProvider';
-import { PAGE_MARKETPLACE } from '../../../../helper/urlConstants';
-import * as authActionType from '../../../../state/constants/auth';
-import MetaMaskSignIn from '../../../../components/auth/signin/metaMaskSignIn';
-import { nextStep } from '../../../../helper/scopeHelper';
 import { walletSignInAction } from '../../../../state/actions/auth/signInWallet';
+import * as authActionType from '../../../../state/constants/auth';
 import { getClientDetails } from '../../../../helper/clientHelper';
+import { nextStep } from '../../../../helper/scopeHelper';
+import { urlConstants } from '../../../../helper/urlConstants';
 import { saveToStore } from '../../../../helper/storageHelper';
+
+import MetaMaskSignIn from '../../../../components/auth/signin/metaMaskSignIn';
 
 function SignInWallet() {
   const router = useRouter();
@@ -20,7 +21,7 @@ function SignInWallet() {
     dispatch({ type: authActionType.INIT_DEFAULT_LAYOUT });
 
     if (authState && authState.signinScope === 'COMPLETE') {
-      router.push(PAGE_MARKETPLACE);
+      router.push(urlConstants.get('PAGE_MARKETPLACE'));
     }
   }, []);
 

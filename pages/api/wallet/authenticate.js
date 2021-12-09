@@ -12,6 +12,9 @@ handler.post(async (req, res) => {
       .wallet()
       .authenticateWallet(req.body);
 
+    console.log('response backChannelService.wallet.authenticateWallet');
+
+    console.log(JSON.stringify(response.data));
     res.send(response.data);
   } catch (err) {
     console.log('error calling backChannelService.wallet.authenticateWallet');

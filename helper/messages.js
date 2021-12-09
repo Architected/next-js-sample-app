@@ -63,14 +63,18 @@ messages.set(
   'AUTHORIZATION_MATCH_FAILED',
   'Request authorization matching failed please try again.'
 );
-messages.set('VALIDATE_FAILED', 'Invalid code please check and try again.');
+messages.set(
+  'EMAIL_VALIDATION_FAILED',
+  'Invalid email address please try again.'
+);
+
 messages.set(
   'UPLOAD_FILE_LENGTH_IS_TOO_BIG',
   'File is too big please try again.'
 );
 messages.set(
-  'EMAIL_VALIDATION_FAILED',
-  'Invalid email address please try again.'
+  'UPLOAD_FILE_CONTENT_TYPE_NOT_ALLOWED',
+  'File content type not allowed.'
 );
 
 export { messages };

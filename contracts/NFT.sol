@@ -7,10 +7,10 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract NFT is ERC721URIStorage {
     using Counters for Counters.Counter;
-    Counters.Counter private _tokenIds;     // id for when the token is minted
+    Counters.Counter private _tokenIds;     // token id after being minted
     address contractAddress;                // address of the marketplace that we want the NFT to interact with e.g. change ownership after creation
 
-    constructor(address marketPlaceAddress) ERC721("Metaverse Tokens", "METT") {
+    constructor(address marketPlaceAddress) ERC721("MyKleinerToken", "MKT") {
         contractAddress = marketPlaceAddress;
     }
 
