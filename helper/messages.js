@@ -76,5 +76,9 @@ messages.set(
   'UPLOAD_FILE_CONTENT_TYPE_NOT_ALLOWED',
   'File content type not allowed.'
 );
+messages.set(
+  'VERIFY_FAILED',
+  'Unable to perform the verification process at this time.'
+);
 
 export { messages };

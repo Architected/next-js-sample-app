@@ -22,12 +22,18 @@ export const authReducer = (state, action) => {
         ...state,
         marketPlace: true,
         callInProgress: false,
+        successMessage: null,
+        warningMessage: null,
+        errorMessage: null,
       };
     case authActionType.INIT_DEFAULT_LAYOUT:
       return {
         ...state,
         marketPlace: false,
         callInProgress: false,
+        successMessage: null,
+        warningMessage: null,
+        errorMessage: null,
       };
     case authActionType.USER_SIGNIN_START:
       return {
