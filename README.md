@@ -13,11 +13,11 @@ If you would like to see the apps running based on the current repo please visit
 - Standard Mode: [https://next-js-sample-app.vercel.app/](https://next-js-sample-app.vercel.app/)
 - Distributed Mode: [coming soon]
 
-_Note: A Metamask with a connection to Polygon/Mumbai Testnet is required to access this site._
+_Note: Metamask with a connection to Polygon Mumbai Testnet is required to access this site._
 
 ## Setup
 
 The following guides will walk through the steps required to get the application working.
 
 - For instructions to install and configure the sample in 'standard' mode [click here](/app.md)
-- For instructions to install and configure the sample in 'distributed' mode [coming soon]
+- For instructions to install and configure the sample in 'distributed' mode [click here](/dapp-localhost.md)
