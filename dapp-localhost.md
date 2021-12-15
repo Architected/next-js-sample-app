@@ -55,7 +55,6 @@ API_KEY="your-api-key"
 API_SECRET="your-api-secret"
 NEXT_PUBLIC_CHAIN_ID="0x539"
 NEXT_PUBLIC_CHAIN_NAME=""
-NEXT_PUBLIC_CHAIN_URL=""
 NEXT_PUBLIC_NFT_ADDRESS="your-nft-contract-address"
 NEXT_PUBLIC_MARKET_ADDRESS="your-market-contract-address"
 ```
@@ -64,13 +63,13 @@ Note: NextJs uses the convention prefix NEXT_PUBLIC for environment variables th
 
 ### 1.4 Configure public settings
 
-Your application has two client environments to operate in, dev and uat, each with their own settings and secrets. (Note the alpha environment only has trial plans for the time being).
+Your application has two client environments to operate in, dev and uat, each with their own settings and secrets. This enables you to follow a software lifecycle and and utilise the higher environments as you promote your own code closer to production. Note the alpha environment only has a trial plans so there is no production available. As such dev and uat should only be used in a testing and prototyping capacity.
 
 Ensure that the selected environment is 'Development' as per the screenshot below:
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/env-select.png" width="800">
 
-Next ensure that the Details tab is selected.
+Next ensure that the 'Details' tab is selected.
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/details-tab.png" width="800">
 
@@ -97,7 +96,6 @@ NEXT_PUBLIC_APP_ENV="dev"
 NEXT_PUBLIC_SITE_MODE="dapp"
 NEXT_PUBLIC_CHAIN_ID="0x539"
 NEXT_PUBLIC_CHAIN_NAME="Hardhat"
-NEXT_PUBLIC_CHAIN_URL=""
 NEXT_PUBLIC_NFT_ADDRESS="your-nft-contract-address"
 NEXT_PUBLIC_MARKET_ADDRESS="your-market-contract-address"
 ```
@@ -367,4 +365,4 @@ In the next section we will take this sample app one step further and
 - View the transactions on Polygon Scan (Mumbai)
 - Optional Deploy the next js app to Vercel
 
-Part Two coming soon!
+For instructions to run the sample against Polygon Mumbai testnet [click here](/dapp-mumbai.md)

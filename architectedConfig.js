@@ -12,9 +12,9 @@ const architectedConfig = {
   challengeMethod: 'SHA256',
   chainId: process.env.NEXT_PUBLIC_CHAIN_ID,
   chainName: process.env.NEXT_PUBLIC_CHAIN_NAME,
-  chainUrl: process.env.NEXT_PUBLIC_CHAIN_URL,
   nftAddress: process.env.NEXT_PUBLIC_NFT_ADDRESS,
   marketAddress: process.env.NEXT_PUBLIC_MARKET_ADDRESS,
+  maxFileSizeMB: 50,
 };
 
 module.exports = { architectedConfig };
