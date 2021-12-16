@@ -8,8 +8,18 @@ function LogOut() {
   const { dispatch } = useContext(Store);
 
   useEffect(() => {
-    signOutAction(dispatch);
-    router.push('/');
+    let isMounted = true;
+    console.log('calling signOutAction');
+    signOutAction(dispatch).then(() => {
+      if (isMounted) {
+        console.log('redirect to home');
+        router.push('/');
+      }
+    });
+
+    return () => {
+      isMounted = false;
+    };
   });
 
   return <></>;
