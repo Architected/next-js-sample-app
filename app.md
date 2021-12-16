@@ -59,7 +59,7 @@ API_KEY="your-api-key"
 API_SECRET="your-api-secret"
 ```
 
-Note: Next.js uses the convention prefix NEXT_PUBLIC_ for environment variables that must be available to client code running in the browser. Therefore API_KEY and API_SECRET are only accessible from back end code running on the server.
+Note: Next.js uses the convention prefix NEXT*PUBLIC* for environment variables that must be available to client code running in the browser. Therefore API_KEY and API_SECRET are only accessible from back end code running on the server.
 
 ## Step 4 Assign settings
 
@@ -131,6 +131,7 @@ Whilst no APIs are invoked from the home page you can verify that the packages a
 NEXT_PUBLIC_SITE_NAME="Holiday Pics"
 NEXT_PUBLIC_SITE_MODE="app"
 ```
+
 You should see the following home page:
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/6-1-public-home-page.png" width="800">
@@ -211,6 +212,6 @@ If you have arrived here you have verified that the sample app is working as exp
 
 ## 7 Next Steps
 
-For instructions to run the app in distributed mode [click here](/dapp.md). This configuration enables web3 capabilities and allows for creation of NFTs from the uploaded images.
+For instructions to run the app in **distributed mode** [click here](/dapp-localhost.md). This configuration uses web3 capabilities and allows uploaded images to be used for creation of NFTs for sale.
 
-If you would like to download and setup the react native / expo companion app for the file manager [click here](https://github.com/Architected/react-native-sample-app).
+If you would like to download and setup the **react native / expo** companion app for the file manager [click here](https://github.com/Architected/react-native-sample-app).

@@ -11,7 +11,7 @@ In the second 'distributed' mode of operation the application adds features to b
 If you would like to see the apps running based on the current repo please visit the links below:
 
 - Standard Mode: [https://next-js-sample-app.vercel.app/](https://next-js-sample-app.vercel.app/)
-- Distributed Mode: [coming soon]
+- Distributed Mode: [https://next-js-sample-dapp.vercel.app/](https://next-js-sample-dapp.vercel.app/)
 
 _Note: Metamask with a connection to Polygon Mumbai Testnet is required to access this site._
 
