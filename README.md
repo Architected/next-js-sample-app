@@ -6,18 +6,18 @@ This repo contains code for a sample application that uses the capabilities of t
 
 In the first 'standard' mode of operation the application is a simple file manager that provides an email/password sign-up/sign-in experience and the ability to upload images to a user account.
 
-In the second 'distributed' mode of operation there is a metamask wallet sign up/sign in experience with the additional features: storing images on IPFS, creating NFTs alongside a basic marketplace.
+In the second 'distributed' mode of operation the application adds features to become an NFT marketplace. The IAM experience is replaced with a Metamask wallet sign up/sign in experience alongside additional features such as storing images on IPFS and NFT creation and purchase.
 
 If you would like to see the apps running based on the current repo please visit the links below:
 
 - Standard Mode: [https://next-js-sample-app.vercel.app/](https://next-js-sample-app.vercel.app/)
 - Distributed Mode: [coming soon]
 
-_Note: A Metamask with a connection to Polygon/Mumbai Testnet is required to access this site._
+_Note: Metamask with a connection to Polygon Mumbai Testnet is required to access this site._
 
 ## Setup
 
-The following guides will walk through the steps required to get the application working.
+The following guides will walk through the steps required to get the application working in the different modes.
 
 - For instructions to install and configure the sample in 'standard' mode [click here](/app.md)
-- For instructions to install and configure the sample in 'distributed' mode [coming soon]
+- For instructions to install and configure the sample in 'distributed' mode [click here](/dapp-localhost.md)
