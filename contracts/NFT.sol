@@ -10,7 +10,7 @@ contract NFT is ERC721URIStorage {
     Counters.Counter private _tokenIds;     // token id after being minted
     address contractAddress;                // address of the marketplace that we want the NFT to interact with e.g. change ownership after creation
 
-    constructor(address marketPlaceAddress) ERC721("MyKleinerToken", "MKT") {
+    constructor(address marketPlaceAddress) ERC721("MyKToken1", "MKT1") {
         contractAddress = marketPlaceAddress;
     }
 

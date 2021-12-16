@@ -409,7 +409,7 @@ Searching again on Mumbai PolygonScan for the Mumbai Buyer
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/next-js-dapp/mumbai/5-4-11-test.png" width="800">
 
-That completes the NFT purchases steps for the local blockchain running on hardhat.
+That completes the NFT purchases steps for the blockchain running on Polygon Mumbai.
 
 To summarise the activities completed, the steps followed enabled:
 
@@ -419,10 +419,3 @@ To summarise the activities completed, the steps followed enabled:
 - Viewed the transactions on Polygon Scan (Mumbai)
 
 To view this site running on Vercel navigate to the link below:
-
-### 5.5 View contracts
-
-To view the contract activity go to the url:
-https://mumbai.polygonscan.com
-
-Try searching for the NFT contract addresses and the Metamask accounts that you funded earlier.

@@ -1,21 +1,37 @@
 # Introduction
 
-This demo project which will use the Polygon network comes with two ready made contracts to make getting started a bit easier. If you have never created a smart contract before don't worry this guide will walk you through compiling and deploying the smart contracts on your localhost and on the Mumbai testnet using Hardhat and Infura.
+This demo project which will use the Polygon network comes with two ready made solidity contracts to make getting started a bit easier. If you have never created a smart contract before don't worry as this guide will walk you the compilation and deployment process.
 
-Hardhat is an Ethereum development environment that makes it easy to compile and run your contracts on a development network. Infura will also be utilised deploy contracts to the Polygon testnet and to save NFT metadata and assets using IPFS. No actual currency (MATIC) will be needed for this demo. The Hardhat development environment provides funded wallet addresses on localhost and we will use a testnet faucet to obtain MATIC for use on the Mumbai test network.
+To manage development across localhost and a testnet, Hardhat and Infura will be used. Hardhat is an Ethereum development environment that makes it easy to compile and run your contracts on a development network. Infura is a service that provides APIs for deploy contracts to the Polygon, as well as an IPFS service to host metadata and images required for the NFTs that will be created.
 
-To use a distributed application using web3 technologies you will need to install a crypto wallet in your browser. This will be used not only for performing crypto transactions but for sign-in authentication. If you have not installed Metamask, please proceed to install for Chrome if you would like to continue with this demo:
+Polygon uses the MATIC token as its currency. As this guide uses localhost and a testnet only, no actual currency will be needed. The Hardhat development environment provides funded wallet addresses on localhost and we will use a testnet faucet to obtain MATIC for use on the Mumbai network.
+
+Finally to use this web3 based application you will need to install a crypto wallet in your browser. This will be used not only for performing transactions but for sign-in authentication. If you have not installed Metamask, please proceed to install for Chrome if you would like to continue with this demo:
 
 https://metamask.io/download
 
-Firstly we will setup the sample project source code, then proceed to deploy to the local blockchain provided by Hardhat and finally test the application. Once this is complete we will deploy the contracts to the Polygon Testnet and update the application to run against this blockchain. Within the Architected back end service we will make use of two logical environments provided with your Architected application so that we can run a 'development' version of the app running against your local blockchain and a 'uat' version instance of the app running against Mumbai Testnet. This will demonstrate how you can manage configuration and settings across environments and isolate the data silos from each other.
+This tutorial is in two parts.
+
+Part one will use localhost and will cover the following steps:
+
+- Setup the sample project source code with Architected dev environment
+- Deploy contracts to the local blockchain
+- Application Testing, NFT token creation and testing
+
+Part two will use Mumbai Testnet and will cover the following steps:
+
+- Setup the sample project source code with Architected uat environment
+- Deploy the contracts to the Polygon Testnet
+- Update the application for new environment
+
+The Architected back end service provides several logical environments for application API usage. 'dev' mode will be used to run the sample app against your local blockchain and 'uat' mode will be used to run an instance against Mumbai Testnet. This will demonstrate how you can manage configuration and settings across environments and isolate the data silos.
 
 Before continuing please ensure you have created both an account and an application within the Architected management portal. If you have not done this instructions can be found here:
 
 - [Create an account](https://github.com/Architected/next-js-sample-app/wiki/2-Creating-an-account)
 - [Create your first application](https://github.com/Architected/next-js-sample-app/wiki/4-Creating-an-application)
 
-# Local Blockchain Setup
+# Part 1 - Local Blockchain Setup
 
 ## 1 Setup source code
 
@@ -63,7 +79,7 @@ Note: NextJs uses the convention prefix NEXT_PUBLIC for environment variables th
 
 ### 1.4 Configure public settings
 
-Your application has two client environments to operate in, dev and uat, each with their own settings and secrets. This enables you to follow a software lifecycle and and utilise the higher environments as you promote your own code closer to production. Note the alpha environment only has a trial plans so there is no production available. As such dev and uat should only be used in a testing and prototyping capacity.
+Your application has two client environments to operate in, dev and uat, each with their own settings and secrets. This enables you to follow a software lifecycle and and utilise the higher environments as you promote your own code closer to production. Note the Architected alpha environment only has a trial plans so there is no production available. As such dev and uat should only be used in a testing and prototyping capacity.
 
 Ensure that the selected environment is 'Development' as per the screenshot below:
 
