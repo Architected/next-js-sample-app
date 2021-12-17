@@ -244,10 +244,20 @@ export const walletSignInAction = async (clientDetails, dispatch) => {
     }
 
     const message = getSignatureMessage(architectedConfig.siteName, nonce);
+
     const sigVal = await window.web3.eth.personal.sign(
       message,
       wallet.accountAddress
     );
+
+    if (!sigVal) {
+      console.log('sigVal is empty');
+      dispatch({
+        type: authActionType.USER_SIGNIN_FAIL,
+        payload: 'Unable to perform sign in with wallet',
+      });
+      return;
+    }
 
     wallet.signature = sigVal;
 
@@ -272,7 +282,14 @@ export const walletSignInAction = async (clientDetails, dispatch) => {
 
     return signatureResponseData;
   } catch (err) {
-    console.log(err.toString());
+    if (err.code == 4001) {
+      console.log(err.message);
+      dispatch({
+        type: authActionType.USER_SIGNIN_FAIL,
+        payload: 'Unable to perform sign in with wallet',
+      });
+      return;
+    }
     dispatch({
       type: authActionType.USER_SIGNIN_FAIL,
       payload: err.toString(),

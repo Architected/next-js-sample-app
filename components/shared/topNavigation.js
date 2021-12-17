@@ -5,14 +5,15 @@ import Identicon from 'react-identicons';
 import { architectedConfig } from '../../architectedConfig';
 import { urlConstants } from '../../helper/urlConstants';
 import { hasCompleteToken } from '../../helper/storageHelper';
+import { useRouter } from 'next/router';
 
 function TopNavigation() {
   const { state } = useContext(Store);
   const { authState, bearerToken } = state['auth'];
+  const { asPath } = useRouter();
   const { marketPlace } = state['global'];
   const containerclassName = 'dashboard-header';
   const isLoggedIn = hasCompleteToken(authState, bearerToken);
-  //authState || marketPlace ? 'dashboard-header' : 'header';
 
   const signInUrl =
     architectedConfig.siteMode == 'dapp'
@@ -21,6 +22,8 @@ function TopNavigation() {
   const signInTitle =
     architectedConfig.siteMode == 'dapp' ? 'Connect' : 'Sign in';
 
+  const displayConnect =
+    architectedConfig.siteMode == 'dapp' && asPath != '/auth/signin/wallet';
   return (
     <header className={containerclassName}>
       <div className="container-fluid">
@@ -88,9 +91,12 @@ function TopNavigation() {
                   <a className="button font-semibold">Sign up</a>
                 </Link>
               )}
-              <Link href={signInUrl} passHref>
-                <a className="button button-brand ml-2">{signInTitle}</a>
-              </Link>
+
+              {displayConnect && (
+                <Link href={signInUrl} passHref>
+                  <a className="button button-brand ml-2">{signInTitle}</a>
+                </Link>
+              )}
             </div>
             <div className="dropdown float-left ml-3 mt-1"></div>
             <div className="dashboard-menu-icon float-left ml-4"></div>

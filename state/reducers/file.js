@@ -96,7 +96,12 @@ export const fileReducer = (state = initialFileState, action) => {
     case fileActionType.FILE_DELETE_FAIL:
       return { ...state, isDeletingFile: false, deletingError: action.payload };
     case fileActionType.SHOW_MODAL:
-      return { ...state, displayModal: true, modalTitle: action.payload };
+      return {
+        ...state,
+        displayModal: true,
+        modalTitle: action.payload,
+        saveFileError: null,
+      };
     case fileActionType.HIDE_MODAL:
       return { ...state, displayModal: false, modalTitle: null };
 

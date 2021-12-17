@@ -2,10 +2,43 @@ import { getError } from '../../../helper/getError.js';
 import frontChannelService from '../../../service/frontChannelService';
 import * as fileActionType from '../../constants/file';
 import fileDownload from 'js-file-download';
+import { architectedConfig } from '../../../architectedConfig';
+import { contentTypeIcons } from '../../../helper/contentTypeIcons.js';
 
+export const validateFileBasic = (fileSize, fileType, dispatch) => {
+  const fileCategory = contentTypeIcons[fileType];
+
+  if (fileSize > architectedConfig.maxFileSizeMB * 1000000) {
+    dispatch({
+      type: fileActionType.FILE_CREATE_FAIL,
+      payload:
+        'File is too big! Max Size:' + architectedConfig.maxFileSizeMB + ' MB',
+    });
+    return false;
+  }
+
+  if (fileCategory != 'file-image') {
+    dispatch({
+      type: fileActionType.FILE_CREATE_FAIL,
+      payload: 'Only image file types are currently supported',
+    });
+    return false;
+  }
+
+  return true;
+};
 export const uploadFileAction = async (requestData, dispatch, tokenValue) => {
   try {
     dispatch({ type: fileActionType.FILE_CREATE_REQUEST });
+
+    if (requestData && requestData.file[0]) {
+      const fileSize = requestData.file[0].size;
+      const fileType = requestData.file[0].type;
+
+      const validFile = validateFileBasic(fileSize, fileType, dispatch);
+
+      if (!validFile) return;
+    }
 
     var uploadRequest = {
       name: requestData.name ?? requestData.file[0].name,
@@ -16,10 +49,10 @@ export const uploadFileAction = async (requestData, dispatch, tokenValue) => {
     formData.append('item', JSON.stringify(uploadRequest));
     formData.append('file', requestData.file[0]);
 
+    console.log(JSON.stringify());
+
     var frontChannel = frontChannelService();
     const { data } = await frontChannel.file().upload(formData, tokenValue);
-
-    console.log('responseData: ' + JSON.stringify(data));
 
     if (!data.inError) {
       dispatch({ type: fileActionType.FILE_CREATE_SUCCESS });

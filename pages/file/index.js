@@ -11,6 +11,7 @@ import {
   downloadFileAction,
   uploadFileAction,
   getAllFilesAction,
+  validateFileBasic,
 } from '../../state/actions/file';
 import { hasValidToken } from '../../helper/storageHelper';
 
@@ -37,22 +38,31 @@ function File() {
     files,
   } = state['file'];
 
+  const initModal = () => {
+    dispatch({ type: fileActionType.SHOW_MODAL, payload: 'Create File' });
+    setPreviewUrl(null);
+  };
+
   const hideModal = () => {
-    console.log('hideModal: clicked');
     dispatch({ type: fileActionType.HIDE_MODAL });
   };
 
   const createFile = (e) => {
     e.preventDefault();
-    console.log('createFile: clicked');
-    dispatch({ type: fileActionType.SHOW_MODAL, payload: 'Create File' });
+    initModal();
+    reset();
   };
 
   const previewFile = async (e) => {
-    setPreviewUrl(null);
+    initModal();
     const file = e.target.files[0];
-    console.log('in preview file');
     if (!file) return;
+
+    const fileSize = file.size;
+    const fileType = file.type;
+    const validFile = validateFileBasic(fileSize, fileType, dispatch);
+
+    if (!validFile) return;
 
     const url = URL.createObjectURL(file);
     setPreviewUrl(url);
@@ -222,14 +232,16 @@ function File() {
               </div>
             </div>
           </ModalTemplate>
-          <FileGrid
-            createFile={createFile}
-            reloadList={reloadHandler}
-            isLoadingList={isLoadingList}
-            loadingError={loadingError}
-            files={files}
-            downloadFile={downloadFileHandler}
-          />
+          {files && (
+            <FileGrid
+              createFile={createFile}
+              reloadList={reloadHandler}
+              isLoadingList={isLoadingList}
+              loadingError={loadingError}
+              files={files}
+              downloadFile={downloadFileHandler}
+            />
+          )}
         </div>
       </div>
     </>
