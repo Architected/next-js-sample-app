@@ -123,14 +123,15 @@ export default function TokenGrid({
       {displayMessage && <MessageBar message={message} />}
       {displayList && (
         <div className="row">
-          {nfts.map((nft) => (
-            <NFTItem
-              key={nft.tokenId}
-              nft={nft}
-              isMarketPlace={isMarketPlace}
-              buyNFT={buyNFT}
-            />
-          ))}
+          {nfts &&
+            nfts.map((nft) => (
+              <NFTItem
+                key={nft.tokenId}
+                nft={nft}
+                isMarketPlace={isMarketPlace}
+                buyNFT={buyNFT}
+              />
+            ))}
         </div>
       )}
     </>

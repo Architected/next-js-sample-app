@@ -101,17 +101,15 @@ function MarketPlace() {
     <>
       <div className="dashboard-content">
         <div className="container-fluid">
-          {nfts && (
-            <TokenGrid
-              title="NFT Marketplace"
-              action="purchased"
-              isLoadingList={isLoadingList}
-              loadingError={loadingError}
-              nfts={nfts}
-              isMarketPlace={true}
-              buyNFT={buyNFT}
-            />
-          )}
+          <TokenGrid
+            title="NFT Marketplace"
+            action="purchased"
+            isLoadingList={isLoadingList}
+            loadingError={loadingError}
+            nfts={nfts}
+            isMarketPlace={true}
+            buyNFT={buyNFT}
+          />
         </div>
       </div>
     </>
