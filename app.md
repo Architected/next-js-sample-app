@@ -1,4 +1,4 @@
-# Introduction (Standard Modee)
+# Introduction (Standard Mode)
 
 This Next.js sample application is a file management application that utilises the Architected Back-end-as-Service APIs for all back-end interactions.
 
