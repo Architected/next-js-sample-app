@@ -167,7 +167,7 @@ To rename the account click the 'Account Options' icon and select 'Account Detai
 
 Proceed to rename the account to Hardhat #0 and save.
 
-<img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/next-js-dapp/2-2-4-import-account.png" width="300">
+<img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/next-js-dapp/2-2-4-import-account.png" width="250">
 
 Repeat the process for Account #1 from the list in section 2.1.
 
@@ -382,3 +382,5 @@ In the next section we will take this sample app one step further and
 - Optional Deploy the next js app to Vercel
 
 For instructions to run the sample against Polygon Mumbai testnet [click here](/dapp-mumbai.md).
+
+**If you encounter any problems please raise an issue.**
