@@ -25,8 +25,8 @@ function PasswordResetValidate({
               <h2>Validate Password Reset</h2>
               <form onSubmit={handleSubmit(submitHandler)}>
                 <p>
-                  A verification message has been to your inbox. Please enter
-                  the verification code below to proceed.
+                  A verification message has been sent to your inbox. Please
+                  enter the verification code below to proceed.
                 </p>
                 <div className="mb-3">
                   <label

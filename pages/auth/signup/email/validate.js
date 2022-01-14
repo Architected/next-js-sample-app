@@ -46,7 +46,7 @@ function SignUpEmailValidate() {
       );
 
       if (responseData && !responseData.inError) {
-        router.push('/auth/signup/email/complete');
+        router.push(urlConstants.get('SIGNUP_COMPLETE'));
       }
     }
   };

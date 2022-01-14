@@ -1,7 +1,7 @@
 import frontChannelService from '../../../service/frontChannelService';
 import { getError } from '../../../helper/getError';
 import * as authActionType from '../../constants/auth';
-import CryptoHelper from '../../../service/cryptoHelper';
+import { CryptoHelper } from 'architected-client';
 import startAuthorize from '../../../helper/authorizeHelper';
 
 export const startAction = async (email, clientDetails, dispatch) => {

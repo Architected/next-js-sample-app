@@ -14,7 +14,6 @@ function StartPasswordReset() {
   const { authState, callInProgress, errorMessage, warningMessage } =
     state['auth'];
 
-  // redirect if logged in
   useEffect(() => {
     dispatch({ type: authActionType.INIT_DEFAULT_LAYOUT });
 
@@ -28,7 +27,7 @@ function StartPasswordReset() {
     const responseData = await startAction(email, clientDetails, dispatch);
 
     if (responseData && !responseData.inError && responseData.tokenWrapper) {
-      router.push('/auth/password-reset/validate');
+      router.push(urlConstants.get('PASSWORD_RESET_VALIDATE'));
     }
   };
 

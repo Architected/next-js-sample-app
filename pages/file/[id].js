@@ -15,6 +15,7 @@ import {
 import { architectedConfig } from '../../architectedConfig';
 import FileView from '../../components/file/fileView';
 import { urlConstants } from '../../helper/urlConstants';
+import { hasCompleteToken } from '../../helper/storageHelper';
 
 function FileDetail({ params }) {
   const fileId = params.id;
@@ -44,7 +45,11 @@ function FileDetail({ params }) {
     if (authState == null || bearerToken == null) {
       return router.push('/');
     } else {
-      console.log('caling retrieveData');
+      if (!hasCompleteToken(authState, bearerToken, dispatch)) {
+        console.log('hasCompleteToken failed');
+        router.push(urlConstants.get('SIGNOUT'));
+      }
+
       retrieveData();
     }
   }, []);

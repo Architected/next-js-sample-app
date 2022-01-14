@@ -21,10 +21,11 @@ urlConstants.set(
 urlConstants.set('SIGNIN_VERIFY_MOBILE', '/auth/signin/verify-mobile');
 urlConstants.set('SIGNIN_VERIFY_SELECT', '/auth/signin/verify-select');
 urlConstants.set('SIGNIN_VERIFY_HELP', '/auth/signin/verify-help');
-urlConstants.set('PASSWORD_RESET_START', '/password-reset/start');
-urlConstants.set('PASSWORD_RESET_COMPLETE', '/password-reset/complete');
-urlConstants.set('PASSWORD_RESET_VALIDATE', '/password-reset/validate');
-urlConstants.set('PASSWORD_RESET_CHANGE', '/password-reset/change');
+urlConstants.set('SIGNOUT', '/auth/signout');
+urlConstants.set('PASSWORD_RESET_START', '/auth/password-reset/start');
+urlConstants.set('PASSWORD_RESET_VALIDATE', '/auth/password-reset/validate');
+urlConstants.set('PASSWORD_RESET_PERFORM', '/auth/password-reset/perform');
+urlConstants.set('PASSWORD_RESET_COMPLETE', '/auth/password-reset/complete');
 urlConstants.set('PAGE_FILE_LIST', '/file');
 urlConstants.set('PAGE_MARKETPLACE', '/marketplace');
 

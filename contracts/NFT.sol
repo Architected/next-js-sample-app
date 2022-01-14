@@ -7,20 +7,26 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract NFT is ERC721URIStorage {
     using Counters for Counters.Counter;
-    Counters.Counter private _tokenIds;     // token id after being minted
-    address contractAddress;                // address of the marketplace that we want the NFT to interact with e.g. change ownership after creation
+    Counters.Counter private _tokenIds;         
+    address _marketPlaceAddress;                    
 
     constructor(address marketPlaceAddress) ERC721("MyKToken1", "MKT1") {
-        contractAddress = marketPlaceAddress;
+        _marketPlaceAddress = marketPlaceAddress;
     }
 
     function createToken(string memory tokenURI) public returns (uint) {
-        _tokenIds.increment();                      // increment the token id
-        uint256 newItemId = _tokenIds.current();    // current value of the token id
+        _tokenIds.increment();                          
+        uint256 tokenId = _tokenIds.current();        
 
-        _mint(msg.sender, newItemId);               // mint the token msg.sender as the creator
-        _setTokenURI(newItemId, tokenURI);          // set the token uri
-        setApprovalForAll(contractAddress, true);   // allows the market place permission to transact the token
-        return newItemId;                           // allows us to interact with tehe token in a front end application
+        _mint(msg.sender, tokenId);                   
+        _setTokenURI(tokenId, tokenURI);            
+
+        /* 
+            Sets the approval of _marketPlaceAddress 
+            _marketPlaceAddress is allowed to transfer all tokens of the sender on their behalf  
+        */
+        setApprovalForAll(_marketPlaceAddress, true); 
+        
+        return tokenId;
     }
 }

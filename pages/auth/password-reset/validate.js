@@ -37,7 +37,7 @@ function ValidatePasswordReset() {
     );
 
     if (responseData && !responseData.inError) {
-      router.push('/auth/password-reset/perform');
+      router.push(urlConstants.get('PASSWORD_RESET_PERFORM'));
     }
   };
 

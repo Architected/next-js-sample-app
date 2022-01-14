@@ -2,7 +2,7 @@ import { getError } from '../../../helper/getError';
 import * as authActionType from '../../constants/auth';
 import { deleteFromStore } from '../../../helper/storageHelper';
 import frontChannelService from '../../../service/frontChannelService';
-import CryptoHelper from '../../../service/cryptoHelper';
+import { CryptoHelper } from 'architected-client';
 import startAuthorize from '../../../helper/authorizeHelper';
 
 export const signInAction = async (

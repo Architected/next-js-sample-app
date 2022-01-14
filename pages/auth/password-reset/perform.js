@@ -32,12 +32,6 @@ function PerformPasswordReset() {
   }, []);
 
   const submitHandler = async ({ newPassword, confirmPassword }) => {
-    const inputData = {
-      newPassword,
-      confirmPassword,
-      additionalData,
-      tokenValue: bearerToken.tokenValue,
-    };
     const responseData = await performAction(
       newPassword,
       confirmPassword,
@@ -47,7 +41,7 @@ function PerformPasswordReset() {
     );
 
     if (responseData && !responseData.inError) {
-      router.push('/auth/password-reset/complete');
+      router.push(urlConstants.get('PASSWORD_RESET_COMPLETE'));
     }
   };
 

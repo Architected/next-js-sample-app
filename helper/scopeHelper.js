@@ -1,6 +1,6 @@
 import { urlConstants } from './urlConstants';
 
-//const SignUpFlag_EMAIL = 1;
+const SignUpFlag_EMAIL = 1;
 const SignUpFlag_MOBILE = 2;
 const SignUpFlag_ALTERNATEEMAIL = 4;
 
@@ -38,10 +38,8 @@ const getNextUrlForSignUp = async (authState) => {
 const nextStep = async (tokenWrapper) => {
   const { authState, bearerToken } = tokenWrapper;
   let nextUrl = '';
-  //console.log('authState:' + JSON.stringify(authState));
   console.log('authState.signinScope' + authState.signinScope);
 
-  //TODO: Add additional logic from signinbase later
   if (authState.signinScope === 'COMPLETE') {
     nextUrl = urlConstants.get('PAGE_FILE_LIST');
   } else if (authState.signinScope == 'SIGNUPINCOMPLETE') {

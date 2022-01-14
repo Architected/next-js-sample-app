@@ -8,7 +8,7 @@ import {
   authenticateWallet,
 } from '../../../helper/walletHelper';
 import { architectedConfig } from '../../../architectedConfig';
-import CryptoHelper from '../../../service/cryptoHelper';
+import { CryptoHelper } from 'architected-client';
 
 const getWalletAction = async (wallet, clientDetails) => {
   const cryptoHelper = new CryptoHelper();

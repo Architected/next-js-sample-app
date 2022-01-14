@@ -35,7 +35,7 @@ function SignUpEmail() {
         router.push(urlConstants.get('PAGE_FILE_LIST'));
       }
 
-      router.push('/auth/signup/email/validate');
+      router.push(urlConstants.get('SIGNUP_EMAIL_VALIDATE'));
     }
   };
 

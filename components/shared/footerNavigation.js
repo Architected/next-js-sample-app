@@ -9,11 +9,13 @@ function FooterNavigation() {
   const siteName =
     architectedConfig.siteName != ''
       ? architectedConfig.siteName
-      : 'NEXT_PUBLIC_SITE_NAME from env.local';
+      : 'NEXT_PUBLIC_SITE_NAME from .env.local';
+
+  const year = new Date().getFullYear();
   return (
     <div className="dashboard-footer">
       <div className="float-left">
-        <span className="text-second ml-4">2021</span> © {siteName}
+        <span className="text-second ml-4">{year}</span> © {siteName}
       </div>
       {!authState && (
         <div className="float-right">
