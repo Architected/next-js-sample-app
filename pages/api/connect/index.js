@@ -1,17 +1,14 @@
 import nc from 'next-connect';
-import { unexpectedError } from '../../../helper/unexpectedError';
-import connectInit from '../../../service/connectInit';
+import { unexpectedError } from 'architected-client/helper/unexpectedError.js';
+import { connectService } from '../../../service/defaultServices.js';
 
 const handler = nc();
 
 handler.post(async (req, res) => {
   try {
     console.log('starting calling connectService.authorize');
-    const connectService = connectInit();
     const authorizeResponse = await connectService.authorize(req.body);
-    console.log(
-      'authorizeResponse.data' + JSON.stringify(authorizeResponse.data)
-    );
+    console.log('connectService.authorize:finish');
     res.send(authorizeResponse.data);
   } catch (err) {
     console.log('error calling connectService.authorize');

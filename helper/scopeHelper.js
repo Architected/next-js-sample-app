@@ -38,7 +38,7 @@ const getNextUrlForSignUp = async (authState) => {
 const nextStep = async (tokenWrapper) => {
   const { authState, bearerToken } = tokenWrapper;
   let nextUrl = '';
-  console.log('authState.signinScope' + authState.signinScope);
+  console.log('authState.signinScope:' + authState.signinScope);
 
   if (authState.signinScope === 'COMPLETE') {
     nextUrl = urlConstants.get('PAGE_FILE_LIST');

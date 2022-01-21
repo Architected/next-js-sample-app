@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import HomeScreen from '../components/home';
 
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../state/storeProvider';
 import { architectedConfig } from '../architectedConfig';
-import * as authActionType from '../state/constants/auth';
+import * as authActionType from 'architected-client/constants/iam.js';
 import { urlConstants } from '../helper/urlConstants';
 import { hasValidToken } from '../helper/storageHelper';
 

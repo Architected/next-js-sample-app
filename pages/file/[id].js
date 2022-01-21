@@ -1,22 +1,18 @@
 import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../state/storeProvider';
-import {
-  getFileAction,
-  deleteFileAction,
-  updateFileAction,
-} from '../../state/actions/file';
-
-import {
-  uploadFileToIPFS,
-  updateNFT,
-  mintToken,
-} from '../../state/actions/file/nft';
 import { architectedConfig } from '../../architectedConfig';
+import { fileService } from '../../service/defaultServices.js';
 import FileView from '../../components/file/fileView';
 import { urlConstants } from '../../helper/urlConstants';
 import { hasCompleteToken } from '../../helper/storageHelper';
-
+import { getSigner } from '../../helper/walletHelper';
+import { createMetaData } from '../../helper/ipfsHelper';
+import {
+  createNFT,
+  convertToEther,
+  addNFTToMarket,
+} from '../../helper/contractHelper';
 function FileDetail({ params }) {
   const fileId = params.id;
 
@@ -38,7 +34,7 @@ function FileDetail({ params }) {
   } = state['file'];
 
   const retrieveData = async () => {
-    await getFileAction(fileId, dispatch, bearerToken.tokenValue);
+    await fileService.getFile(fileId, dispatch, bearerToken.tokenValue);
   };
 
   useEffect(() => {
@@ -55,7 +51,11 @@ function FileDetail({ params }) {
   }, []);
 
   const deleteFileHandler = async () => {
-    await deleteFileAction(file.globalId, dispatch, bearerToken.tokenValue);
+    await fileService.deleteFile(
+      file.globalId,
+      dispatch,
+      bearerToken.tokenValue
+    );
     return router.push(urlConstants.get('PAGE_FILE_LIST'));
   };
 
@@ -66,13 +66,21 @@ function FileDetail({ params }) {
       description: data.description,
     };
 
-    await updateFileAction(fileUpdateRequest, dispatch, bearerToken.tokenValue);
+    await fileService.updateFile(
+      fileUpdateRequest,
+      dispatch,
+      bearerToken.tokenValue
+    );
 
     router.push(urlConstants.get('PAGE_FILE_LIST'));
   };
 
   const uploadToIPFS = async () => {
-    await uploadFileToIPFS(fileId, dispatch, bearerToken.tokenValue);
+    await fileService.uploadFileToIPFS(
+      fileId,
+      dispatch,
+      bearerToken.tokenValue
+    );
     await retrieveData();
   };
 
@@ -82,11 +90,41 @@ function FileDetail({ params }) {
       tokenPrice: price,
     };
 
-    await updateNFT(fileUpdateRequest, dispatch, bearerToken.tokenValue);
+    await fileService.updateNFT(
+      fileUpdateRequest,
+      dispatch,
+      bearerToken.tokenValue
+    );
     await retrieveData();
   };
 
+  const mintToken = async (file) => {
+    try {
+      var signer = await getSigner();
+
+      if (signer != null) {
+        console.log('signer loaded');
+        const url = await createMetaData(file);
+        console.log('createMetaData returns: ' + url);
+
+        const tokenId = await createNFT(url, signer);
+        console.log('nft token created with tokenid:' + tokenId);
+
+        const etherPrice = convertToEther(file.tokenPrice.toString());
+        console.log('etherPrice for nft token created :' + etherPrice);
+
+        await addNFTToMarket(signer, tokenId, etherPrice);
+        console.log('nft token added to market:' + tokenId);
+      } else {
+        console.log('please install metamask');
+      }
+    } catch (error) {
+      console.log('Error in mintToken: ', error);
+    }
+  };
+
   async function mintTokenHandler() {
+    console.log('file:' + JSON.stringify(file));
     await mintToken(file);
     return router.push('/my-creations');
   }

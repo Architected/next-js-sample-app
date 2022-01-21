@@ -1,16 +1,16 @@
-import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
   getFileSize,
   getDisplayName,
-  getIcon,
   isProcessing,
   isProcessed,
   isScanFailed,
+  isFileError,
   getGridDisplayName,
-} from '../../helper/fileHelper';
+} from 'architected-client/helper/fileHelper.js';
 import moment from 'moment';
+import { getBootstrapIcon } from '../../helper/contentTypeIcons';
 
 export default function FileList({
   createFile,
@@ -93,7 +93,9 @@ export default function FileList({
                                     />
                                   ) : (
                                     <i
-                                      className={getIcon(file.contentType)}
+                                      className={getBootstrapIcon(
+                                        file.contentType
+                                      )}
                                     ></i>
                                   )}
                                 </a>
@@ -140,6 +142,9 @@ export default function FileList({
                               <span className="badge badge-danger">
                                 Scan Failed
                               </span>
+                            )}
+                            {isFileError(file.fileStatus) && (
+                              <span className="badge badge-danger">Error</span>
                             )}
                           </td>
                           <td className="py-1 float-right">

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
@@ -6,13 +6,8 @@ import { Store } from '../../state/storeProvider';
 import ModalTemplate from '../../components/shared/modalTemplate';
 import FileGrid from '../../components/file/fileGrid';
 import SubmitButton from '../../components/shared/submitButton';
-import * as fileActionType from '../../state/constants/file';
-import {
-  downloadFileAction,
-  uploadFileAction,
-  getAllFilesAction,
-  validateFileBasic,
-} from '../../state/actions/file';
+import * as fileActionType from 'architected-client/constants/file.js';
+import { fileService } from '../../service/defaultServices.js';
 import { hasValidToken } from '../../helper/storageHelper';
 
 function File() {
@@ -27,6 +22,8 @@ function File() {
 
   const { state, dispatch } = useContext(Store);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [currentFile, setCurrentFile] = useState(null);
+
   const { authState, bearerToken } = state['auth'];
   const {
     displayModal,
@@ -41,6 +38,7 @@ function File() {
   const initModal = () => {
     dispatch({ type: fileActionType.SHOW_MODAL, payload: 'Create File' });
     setPreviewUrl(null);
+    setCurrentFile(null);
   };
 
   const hideModal = () => {
@@ -60,24 +58,37 @@ function File() {
 
     const fileSize = file.size;
     const fileType = file.type;
-    const validFile = validateFileBasic(fileSize, fileType, dispatch);
+    const validFile = fileService.validateFileBasic(
+      fileSize,
+      fileType,
+      dispatch
+    );
 
     if (!validFile) return;
-
+    setCurrentFile(e.target.files[0]);
     const url = URL.createObjectURL(file);
     setPreviewUrl(url);
   };
 
   const downloadFileHandler = async (fileGlobalId, fileName) => {
-    return downloadFileAction(fileGlobalId, fileName, bearerToken.tokenValue);
+    return fileService.downloadFile(
+      fileGlobalId,
+      fileName,
+      bearerToken.tokenValue
+    );
   };
 
   const reloadHandler = async () => {
-    await getAllFilesAction(dispatch, bearerToken.tokenValue);
+    await fileService.getAllFiles(dispatch, bearerToken.tokenValue);
   };
 
   const submitHandler = (data) => {
-    uploadFileAction(data, dispatch, bearerToken.tokenValue);
+    const request = {
+      file: currentFile,
+      name: data.name,
+      description: data.description,
+    };
+    fileService.uploadFile(request, dispatch, bearerToken.tokenValue);
     setPreviewUrl(null);
   };
 
@@ -100,17 +111,6 @@ function File() {
       isMounted = false;
     };
   }, [displayModal]);
-
-  // useEffect(() => {
-  //   if (authState == null || bearerToken == null) {
-  //     router.push('/');
-  //   } else {
-  //     if (!displayModal) {
-  //       reloadHandler();
-  //       reset();
-  //     }
-  //   }
-  // }, [displayModal]);
 
   return (
     <>

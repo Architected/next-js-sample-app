@@ -2,8 +2,8 @@ import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../../../state/storeProvider';
 import WalletConnect from '../../../../components/auth/signup/walletConnect';
-import { connectWalletAction } from '../../../../state/actions/auth/signUpWallet';
-import * as authActionType from '../../../../state/constants/auth';
+import { walletService } from '../../../../service/walletServices.js';
+import * as authActionType from 'architected-client/constants/iam.js';
 import { urlConstants } from '../../../../helper/urlConstants';
 
 function SignupWalletConnect() {
@@ -35,7 +35,7 @@ function SignupWalletConnect() {
       tokenValue: bearerToken.tokenValue,
     };
 
-    var data = await connectWalletAction(requestData, dispatch);
+    var data = await walletService.signUpConnectWallet(requestData, dispatch);
 
     if (data && !data.inError) {
       router.push('/auth/signup/wallet/validate');

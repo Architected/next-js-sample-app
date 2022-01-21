@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 import { urlConstants } from '../../helper/urlConstants';
 import FileViewDetail from './fileViewDetail';
@@ -107,10 +106,10 @@ export default function FileView(props) {
                     ) : loadingError ? (
                       <div>{loadingError}</div>
                     ) : (
-                      <FileViewAttribute file={file} />
+                      <>{file && <FileViewAttribute file={file} />}</>
                     )}
                   </div>
-                  {siteMode == 'dapp' && (
+                  {siteMode == 'dapp' && file && (
                     <>
                       <div className="tab-pane fade" id="tab3" role="tabpanel">
                         {isLoadingItem ? (

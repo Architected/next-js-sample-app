@@ -1,14 +1,9 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-<<<<<<< HEAD
-    "D:\\Demo\\test\\next-js-sample-app\\contracts\\NFT.sol": {
-      "lastModificationDate": 1639105430738,
-=======
     "D:\\projects\\AppLayer\\SampleApps\\react\\next-js-sample-app\\contracts\\NFT.sol": {
-      "lastModificationDate": 1638909469949,
->>>>>>> 5f316efdf09861a468c81165aab98acbec0fdb4b
-      "contentHash": "b4e1b3da0b50d5299a2363b5cc64604e",
+      "lastModificationDate": 1641024311270,
+      "contentHash": "51d3d0f9bc3a16463d690680f2cec109",
       "sourceName": "contracts/NFT.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -45,13 +40,8 @@
         "NFT"
       ]
     },
-<<<<<<< HEAD
-    "D:\\Demo\\test\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol": {
-      "lastModificationDate": 1639105462687,
-=======
     "D:\\projects\\AppLayer\\SampleApps\\react\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol": {
       "lastModificationDate": 1633687447735,
->>>>>>> 5f316efdf09861a468c81165aab98acbec0fdb4b
       "contentHash": "a4f6dccf3f15b6844e357f737a572388",
       "sourceName": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
       "solcConfig": {
@@ -93,13 +83,8 @@
         "ERC721"
       ]
     },
-<<<<<<< HEAD
-    "D:\\Demo\\test\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\ERC721URIStorage.sol": {
-      "lastModificationDate": 1639105462849,
-=======
     "D:\\projects\\AppLayer\\SampleApps\\react\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\ERC721URIStorage.sol": {
       "lastModificationDate": 1633687447741,
->>>>>>> 5f316efdf09861a468c81165aab98acbec0fdb4b
       "contentHash": "94da923c22e9773af388607307182c80",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
       "solcConfig": {
@@ -135,13 +120,8 @@
         "ERC721URIStorage"
       ]
     },
-<<<<<<< HEAD
-    "D:\\Demo\\test\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
-      "lastModificationDate": 1639105462176,
-=======
     "D:\\projects\\AppLayer\\SampleApps\\react\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
       "lastModificationDate": 1633687447699,
->>>>>>> 5f316efdf09861a468c81165aab98acbec0fdb4b
       "contentHash": "b7811964d33f23b2d45ed3ebb76a4548",
       "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
       "solcConfig": {
@@ -175,13 +155,8 @@
         "Counters"
       ]
     },
-<<<<<<< HEAD
-    "D:\\Demo\\test\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721.sol": {
-      "lastModificationDate": 1639105463163,
-=======
     "D:\\projects\\AppLayer\\SampleApps\\react\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721.sol": {
       "lastModificationDate": 1633687447774,
->>>>>>> 5f316efdf09861a468c81165aab98acbec0fdb4b
       "contentHash": "53919d6975f2c0f3dffee5e3a1064116",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
       "solcConfig": {
@@ -217,13 +192,8 @@
         "IERC721"
       ]
     },
-<<<<<<< HEAD
-    "D:\\Demo\\test\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721Receiver.sol": {
-      "lastModificationDate": 1639105463199,
-=======
     "D:\\projects\\AppLayer\\SampleApps\\react\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721Receiver.sol": {
       "lastModificationDate": 1633687447777,
->>>>>>> 5f316efdf09861a468c81165aab98acbec0fdb4b
       "contentHash": "9a367cecca6fed80a3e975b7e6b3bd5c",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
       "solcConfig": {
@@ -257,13 +227,8 @@
         "IERC721Receiver"
       ]
     },
-<<<<<<< HEAD
-    "D:\\Demo\\test\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\IERC721Metadata.sol": {
-      "lastModificationDate": 1639105463192,
-=======
     "D:\\projects\\AppLayer\\SampleApps\\react\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\IERC721Metadata.sol": {
       "lastModificationDate": 1633687447776,
->>>>>>> 5f316efdf09861a468c81165aab98acbec0fdb4b
       "contentHash": "8aa69ca8424167555baaaa9f607801db",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
       "solcConfig": {
@@ -299,13 +264,8 @@
         "IERC721Metadata"
       ]
     },
-<<<<<<< HEAD
-    "D:\\Demo\\test\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\utils\\Address.sol": {
-      "lastModificationDate": 1639105462065,
-=======
     "D:\\projects\\AppLayer\\SampleApps\\react\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\utils\\Address.sol": {
       "lastModificationDate": 1633687447692,
->>>>>>> 5f316efdf09861a468c81165aab98acbec0fdb4b
       "contentHash": "c5f6c4e4df069c789e7d84b4c3011913",
       "sourceName": "@openzeppelin/contracts/utils/Address.sol",
       "solcConfig": {
@@ -339,13 +299,8 @@
         "Address"
       ]
     },
-<<<<<<< HEAD
-    "D:\\Demo\\test\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
-      "lastModificationDate": 1639105462170,
-=======
     "D:\\projects\\AppLayer\\SampleApps\\react\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
       "lastModificationDate": 1633687447698,
->>>>>>> 5f316efdf09861a468c81165aab98acbec0fdb4b
       "contentHash": "851485d5b925529b1a2f34a0be077891",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {
@@ -379,13 +334,8 @@
         "Context"
       ]
     },
-<<<<<<< HEAD
-    "D:\\Demo\\test\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\utils\\Strings.sol": {
-      "lastModificationDate": 1639105463503,
-=======
     "D:\\projects\\AppLayer\\SampleApps\\react\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\utils\\Strings.sol": {
       "lastModificationDate": 1633687447805,
->>>>>>> 5f316efdf09861a468c81165aab98acbec0fdb4b
       "contentHash": "62142442bed149f965c5ed971fae4182",
       "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
       "solcConfig": {
@@ -419,13 +369,8 @@
         "Strings"
       ]
     },
-<<<<<<< HEAD
-    "D:\\Demo\\test\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165.sol": {
-      "lastModificationDate": 1639105462478,
-=======
     "D:\\projects\\AppLayer\\SampleApps\\react\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165.sol": {
       "lastModificationDate": 1633687447719,
->>>>>>> 5f316efdf09861a468c81165aab98acbec0fdb4b
       "contentHash": "a9a5319dff9088c6ffe757ea1c2a6729",
       "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
       "solcConfig": {
@@ -461,13 +406,8 @@
         "ERC165"
       ]
     },
-<<<<<<< HEAD
-    "D:\\Demo\\test\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\IERC165.sol": {
-      "lastModificationDate": 1639105463096,
-=======
     "D:\\projects\\AppLayer\\SampleApps\\react\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\IERC165.sol": {
       "lastModificationDate": 1633687447762,
->>>>>>> 5f316efdf09861a468c81165aab98acbec0fdb4b
       "contentHash": "9a04322bb8f6b8f2767d8358d1d2537b",
       "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
       "solcConfig": {
@@ -501,14 +441,9 @@
         "IERC165"
       ]
     },
-<<<<<<< HEAD
-    "D:\\Demo\\test\\next-js-sample-app\\contracts\\NFTMarket.sol": {
-      "lastModificationDate": 1639105430738,
-=======
     "D:\\projects\\AppLayer\\SampleApps\\react\\next-js-sample-app\\contracts\\NFTMarket.sol": {
-      "lastModificationDate": 1628134364847,
->>>>>>> 5f316efdf09861a468c81165aab98acbec0fdb4b
-      "contentHash": "2dde78d3684cdef1f4f83025fa887df1",
+      "lastModificationDate": 1639616943844,
+      "contentHash": "06f60b0146447f3734b8cc333a737c33",
       "sourceName": "contracts/NFTMarket.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -545,13 +480,8 @@
         "NFTMarket"
       ]
     },
-<<<<<<< HEAD
-    "D:\\Demo\\test\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\security\\ReentrancyGuard.sol": {
-      "lastModificationDate": 1639105463440,
-=======
     "D:\\projects\\AppLayer\\SampleApps\\react\\next-js-sample-app\\node_modules\\@openzeppelin\\contracts\\security\\ReentrancyGuard.sol": {
       "lastModificationDate": 1633687447798,
->>>>>>> 5f316efdf09861a468c81165aab98acbec0fdb4b
       "contentHash": "53fbff678f378956efcb207fa748eaa6",
       "sourceName": "@openzeppelin/contracts/security/ReentrancyGuard.sol",
       "solcConfig": {

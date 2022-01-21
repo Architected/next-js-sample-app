@@ -1,5 +1,4 @@
-import React from 'react';
-import { getFileSize, getDisplayName, getIcon } from '../../helper/fileHelper';
+import { getFileSize } from 'architected-client/helper/fileHelper.js';
 
 const LabelTitleComponent = ({ label, value }) => {
   return (

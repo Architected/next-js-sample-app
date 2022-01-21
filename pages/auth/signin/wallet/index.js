@@ -1,14 +1,15 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../../../state/storeProvider';
-import { walletSignInAction } from '../../../../state/actions/auth/signInWallet';
-import * as authActionType from '../../../../state/constants/auth';
+
 import { getClientDetails } from '../../../../helper/clientHelper';
 import { nextStep } from '../../../../helper/scopeHelper';
 import { urlConstants } from '../../../../helper/urlConstants';
 import { saveToStore } from '../../../../helper/storageHelper';
 
 import MetaMaskSignIn from '../../../../components/auth/signin/metaMaskSignIn';
+import { walletService } from '../../../../service/walletServices.js';
+import * as authActionType from 'architected-client/constants/iam.js';
 
 function SignInWallet() {
   const router = useRouter();
@@ -27,7 +28,10 @@ function SignInWallet() {
 
   const walletSubmitHandler = async () => {
     const clientDetails = await getClientDetails();
-    var responseData = await walletSignInAction(clientDetails, dispatch);
+    var responseData = await walletService.walletSignIn(
+      clientDetails,
+      dispatch
+    );
     if (responseData && !responseData.inError) {
       saveToStore('_tokenWrapper', responseData.tokenWrapper);
       var nextUrl = await nextStep(responseData.tokenWrapper);

@@ -2,12 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../../../state/storeProvider';
 import EmailValidate from '../../../../components/auth/signup/emailValidate';
-import * as authActionType from '../../../../state/constants/auth';
 import { urlConstants } from '../../../../helper/urlConstants';
-import {
-  verifyEmailAction,
-  validateEmailAction,
-} from '../../../../state/actions/auth/signUpEmail';
+import { iamService } from '../../../../service/defaultServices.js';
+import * as authActionType from 'architected-client/constants/iam.js';
 
 function SignUpEmailValidate() {
   const router = useRouter();
@@ -39,7 +36,7 @@ function SignUpEmailValidate() {
 
   const submitHandler = async ({ code }) => {
     if (!resendInProgress) {
-      const responseData = await validateEmailAction(
+      const responseData = await iamService.signUpValidateEmail(
         code,
         bearerToken.tokenValue,
         dispatch
@@ -53,7 +50,7 @@ function SignUpEmailValidate() {
 
   const resendHandler = async () => {
     setResendInProgress(true);
-    const responseData = await verifyEmailAction(
+    const responseData = await iamService.signUpVerifyEmail(
       bearerToken.tokenValue,
       dispatch
     );

@@ -14,7 +14,9 @@ const architectedConfig = {
   chainName: process.env.NEXT_PUBLIC_CHAIN_NAME,
   nftAddress: process.env.NEXT_PUBLIC_NFT_ADDRESS,
   marketAddress: process.env.NEXT_PUBLIC_MARKET_ADDRESS,
-  maxFileSizeMB: 50,
+  maxFileSizeMB: 100,
+  ipfsFilePath: 'https://ipfs.infura.io/ipfs',
+  ipfsAPIEndpoint: 'https://ipfs.infura.io:5001/api/v0',
 };
 
 module.exports = { architectedConfig };

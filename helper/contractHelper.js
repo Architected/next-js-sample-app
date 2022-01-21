@@ -3,7 +3,7 @@ import NFT from '../artifacts/contracts/NFT.sol/NFT.json';
 import Market from '../artifacts/contracts/NFTMarket.sol/NFTMarket.json';
 import axios from 'axios';
 import { architectedConfig } from '../architectedConfig';
-import { getProvider, getSigner } from './walletHelper';
+import { getProvider, getSigner } from './walletHelper.js';
 
 function getTokenContract(signerOrProvider) {
   const tokenContract = new ethers.Contract(

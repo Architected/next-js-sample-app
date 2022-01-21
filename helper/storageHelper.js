@@ -1,4 +1,4 @@
-import * as authActionType from '../state/constants/auth';
+import * as authActionType from 'architected-client/constants/iam.js';
 
 const saveToStore = (key, value) => {
   try {
@@ -40,9 +40,6 @@ const hasValidToken = (authState, bearerToken, dispatch) => {
 
     const tokenExpiry = Date.parse(bearerToken.tokenExpiryUTC);
     const currentDate = Date.now();
-
-    console.log('authstate:tokenExpiry:' + tokenExpiry);
-    console.log('authstate:currentDate:' + currentDate);
 
     if (tokenExpiry < currentDate || authState.signinScope !== 'COMPLETE') {
       deleteFromStore('_tokenWrapper');

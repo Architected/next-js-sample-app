@@ -1,9 +1,9 @@
 import { create as ipfsHttpClient } from 'ipfs-http-client';
+import { architectedConfig } from '../architectedConfig';
 
-const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0');
-
-async function uploadInterPlanetaryFile(file) {
+export const uploadInterPlanetaryFile = async (file) => {
   try {
+    const client = ipfsHttpClient(architectedConfig.ipfsAPIEndpoint);
     const fileResponse = await client.add(file, {
       progress: (prog) => console.log(`received: ${prog}`),
     });
@@ -14,13 +14,13 @@ async function uploadInterPlanetaryFile(file) {
   } catch (error) {
     console.log('Error uploading file: ', error);
   }
-}
+};
 
-function getInterPlanetaryFileUrl(path) {
-  return `https://ipfs.infura.io/ipfs/${path}`;
-}
+export const getInterPlanetaryFileUrl = (path) => {
+  return `${architectedConfig.ipfsFilePath}` + '/' + `${path}`;
+};
 
-async function createMetaData(file) {
+export const createMetaData = async (file) => {
   const data = JSON.stringify({
     fileId: file.globalId,
     name: file.name,
@@ -33,10 +33,4 @@ async function createMetaData(file) {
   var metaDataUrl = getInterPlanetaryFileUrl(metaDataResponse.path);
 
   return metaDataUrl;
-}
-
-module.exports = {
-  uploadInterPlanetaryFile,
-  getInterPlanetaryFileUrl,
-  createMetaData,
 };

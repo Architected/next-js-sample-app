@@ -1,11 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../state/storeProvider';
-import {
-  getProfileAction,
-  saveProfileAction,
-} from '../../state/actions/profile';
+
 import UserDetailView from '../../components/profile/userDetailView';
+import { profileService } from '../../service/defaultServices';
 
 function ProfileDetail() {
   const router = useRouter();
@@ -31,7 +29,7 @@ function ProfileDetail() {
   }, []);
 
   const getProfile = async () => {
-    getProfileAction(dispatch, bearerToken.tokenValue).then((data) => {
+    profileService.getProfile(dispatch, bearerToken.tokenValue).then((data) => {
       if (data && !data.InError) {
         setProfile(data);
       }
@@ -46,7 +44,7 @@ function ProfileDetail() {
       lastName: data.lastName,
     };
 
-    await saveProfileAction(
+    await profileService.saveProfile(
       profileUpdateRequest,
       dispatch,
       bearerToken.tokenValue

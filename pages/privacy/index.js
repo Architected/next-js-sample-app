@@ -1,5 +1,4 @@
-import React from 'react';
-import backChannelService from '../../service/backChannelService';
+import { contentService } from '../../service/defaultServices';
 
 const pageKey = 'PRIVACY';
 
@@ -39,9 +38,7 @@ function Privacy(props) {
 export default Privacy;
 
 export async function getServerSideProps() {
-  const responseData = await backChannelService()
-    .content()
-    .getPageByKey(pageKey);
+  const responseData = await contentService.getPageByKey(pageKey);
   const { data } = responseData;
   return {
     props: {

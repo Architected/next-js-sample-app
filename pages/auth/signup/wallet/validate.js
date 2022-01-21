@@ -2,8 +2,8 @@ import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../../../state/storeProvider';
 import EmailValidate from '../../../../components/auth/signup/emailValidate';
-import { validateWalletAction } from '../../../../state/actions/auth/signUpWallet';
-import * as authActionType from '../../../../state/constants/auth';
+import { walletService } from '../../../../service/walletServices.js';
+import * as authActionType from 'architected-client/constants/iam.js';
 import { urlConstants } from '../../../../helper/urlConstants';
 
 function Validate() {
@@ -30,12 +30,12 @@ function Validate() {
 
   const submitHandler = async ({ code }) => {
     var requestData = {
-      code,
-      verificationGlobalId,
+      code: code,
+      verificationGlobalId: verificationGlobalId,
       tokenValue: bearerToken.tokenValue,
     };
-
-    var data = await validateWalletAction(requestData, dispatch);
+    console.log('requestData:' + JSON.stringify(requestData));
+    var data = await walletService.signUpValidateWallet(requestData, dispatch);
 
     if (!data.inError) {
       router.push(urlConstants.get('PAGE_FILE_LIST'));

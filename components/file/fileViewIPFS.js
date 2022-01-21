@@ -1,4 +1,3 @@
-import React from 'react';
 import SpinnerCode from '../shared/spinnerComponent';
 
 function FileViewIPFS(props) {

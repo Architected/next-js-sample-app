@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../state/storeProvider';
 import TokenGrid from '../../components/file/tokenGrid';
-import * as fileActionType from '../../state/constants/file';
-import * as authActionType from '../../state/constants/auth';
 import { getSoldItems } from '../../helper/contractHelper';
 import { hasValidToken } from '../../helper/storageHelper';
-import { initWalletChain } from '../../state/actions/auth/signInWallet';
+import { walletService } from '../../service/walletServices.js';
+import * as authActionType from 'architected-client/constants/iam.js';
+import * as fileActionType from 'architected-client/constants/file.js';
 
 function MySales() {
   const router = useRouter();
@@ -33,7 +33,7 @@ function MySales() {
         }
       }
 
-      const currentChain = await initWalletChain(dispatch);
+      const currentChain = await walletService.validateChain(dispatch);
 
       if (!currentChain.success) {
         dispatch({
@@ -80,7 +80,7 @@ function MySales() {
   }
 
   function handleAccountChanged() {
-    router.push('/logout');
+    router.push('/signout');
   }
 
   return (

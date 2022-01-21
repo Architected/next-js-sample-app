@@ -358,7 +358,7 @@ In the ERC721 Token txns tab you will see the token creation followed by its ass
 
 ### 5.4 NFT Purchase
 
-To simulate purchasing an NFT logout and change the selected user in Metamask to Mumbai Buyer. You will again need to connect this account to the development site localhost://3000.
+To simulate purchasing an NFT sign out and change the selected user in Metamask to Mumbai Buyer. You will again need to connect this account to the development site localhost://3000.
 
 <img src="https://dzappstordevmgmtauest.blob.core.windows.net/assets/documentation/next-js-dapp/mumbai/5-4-1-test.png" width="800">
 

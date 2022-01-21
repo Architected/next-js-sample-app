@@ -1,5 +1,4 @@
-import React from 'react';
-import backChannelService from '../../service/backChannelService';
+import { contentService } from '../../service/defaultServices';
 
 const pageKey = 'TERMS';
 
@@ -38,9 +37,7 @@ function Terms(props) {
 export default Terms;
 
 export async function getServerSideProps() {
-  const responseData = await backChannelService()
-    .content()
-    .getPageByKey(pageKey);
+  const responseData = await contentService.getPageByKey(pageKey);
   const { data } = responseData;
   return {
     props: {

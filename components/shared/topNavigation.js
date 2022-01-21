@@ -66,8 +66,8 @@ function TopNavigation() {
                       <hr />
                     </>
                   )}
-                  <Link href="/logout" passHref>
-                    <a className="dropdown-item">Log out</a>
+                  <Link href="/signout" passHref>
+                    <a className="dropdown-item">Sign out</a>
                   </Link>
                 </div>
               </div>
