@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import HomeScreen from '../components/home';
-
 import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../state/storeProvider';
@@ -30,7 +29,6 @@ export default function Home() {
       <Head>
         <title>{architectedConfig.siteName}</title>
         <meta name="description" content={title} />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <HomeScreen />
     </>
