@@ -1,47 +1,29 @@
 import {
-  IamService,
-  FileService,
-  ProfileService,
-  ContentService,
-  ConnectService,
+  iamServiceClient,
+  fileServiceClient,
+  profileServiceClient,
+  contentServiceClient,
+  connectServiceClient,
 } from 'architected-client';
 import { architectedConfig } from '../architectedConfig';
 import startAuthorize from '../helper/authorizeHelper';
+import { CryptoHelper } from 'architected-crypto-helper';
 
-const iamService = (() => {
-  const instance = new IamService();
-  instance.init(architectedConfig, startAuthorize);
-  return instance;
-})();
+const cryptoHelper = new CryptoHelper();
 
-const fileService = (() => {
-  const instance = new FileService();
-  instance.init(architectedConfig);
-  return instance;
-})();
+const iamClient = iamServiceClient;
+iamClient.init(architectedConfig, cryptoHelper, startAuthorize);
 
-const profileService = (() => {
-  const instance = new ProfileService();
-  instance.init(architectedConfig);
-  return instance;
-})();
+const fileClient = fileServiceClient;
+fileClient.init(architectedConfig);
 
-const contentService = (() => {
-  const instance = new ContentService();
-  instance.init(architectedConfig);
-  return instance;
-})();
+const profileClient = profileServiceClient;
+profileClient.init(architectedConfig);
 
-const connectService = (() => {
-  const instance = new ConnectService();
-  instance.init(architectedConfig);
-  return instance;
-})();
+const contentClient = contentServiceClient;
+contentClient.init(architectedConfig);
 
-export {
-  iamService,
-  fileService,
-  profileService,
-  contentService,
-  connectService,
-};
+const connectClient = connectServiceClient;
+connectClient.init(architectedConfig, cryptoHelper);
+
+export { iamClient, fileClient, profileClient, contentClient, connectClient };

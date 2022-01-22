@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../state/storeProvider';
-import { iamService } from '../service/defaultServices';
+import { iamClient } from '../service/defaultServices';
 import { deleteFromStore } from '../helper/storageHelper';
 
 function SignOut() {
@@ -12,7 +12,7 @@ function SignOut() {
     let isMounted = true;
     console.log('calling signOutAction');
 
-    iamService.signOut(dispatch).then(() => {
+    iamClient.signOut(dispatch).then(() => {
       if (isMounted) {
         deleteFromStore('_tokenWrapper');
         console.log('redirect to home');

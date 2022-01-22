@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import { Store } from '../../../../state/storeProvider';
 import EmailValidate from '../../../../components/auth/signup/emailValidate';
 import { urlConstants } from '../../../../helper/urlConstants';
-import { iamService } from '../../../../service/defaultServices.js';
-import * as authActionType from 'architected-client/constants/iam.js';
+import { iamClient } from '../../../../service/defaultServices.js';
+import * as authActionType from 'architected-client/app-state/constants/iam.js';
 
 function SignUpEmailValidate() {
   const router = useRouter();
@@ -36,7 +36,7 @@ function SignUpEmailValidate() {
 
   const submitHandler = async ({ code }) => {
     if (!resendInProgress) {
-      const responseData = await iamService.signUpValidateEmail(
+      const responseData = await iamClient.signUpValidateEmail(
         code,
         bearerToken.tokenValue,
         dispatch
@@ -50,7 +50,7 @@ function SignUpEmailValidate() {
 
   const resendHandler = async () => {
     setResendInProgress(true);
-    const responseData = await iamService.signUpVerifyEmail(
+    const responseData = await iamClient.signUpVerifyEmail(
       bearerToken.tokenValue,
       dispatch
     );

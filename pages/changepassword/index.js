@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../state/storeProvider';
 import PasswordChangePerform from '../../components/passwordchange/passwordChangePerform';
-import { profileService } from '../../service/defaultServices';
+import { profile } from '../../service/defaultServices';
 
 function ChangePassword() {
   const router = useRouter();
@@ -24,7 +24,7 @@ function ChangePassword() {
   }, []);
 
   const submitHandler = async ({ currentPassword, newPassword }) => {
-    const responseData = await profileService.changePassword(
+    const responseData = await profile.changePassword(
       currentPassword,
       newPassword,
       dispatch,

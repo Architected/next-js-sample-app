@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../state/storeProvider';
 import { architectedConfig } from '../../architectedConfig';
-import { fileService } from '../../service/defaultServices.js';
+import { fileClient } from '../../service/defaultServices.js';
 import FileView from '../../components/file/fileView';
 import { urlConstants } from '../../helper/urlConstants';
 import { hasCompleteToken } from '../../helper/storageHelper';
@@ -34,7 +34,7 @@ function FileDetail({ params }) {
   } = state['file'];
 
   const retrieveData = async () => {
-    await fileService.getFile(fileId, dispatch, bearerToken.tokenValue);
+    await fileClient.getFile(fileId, dispatch, bearerToken.tokenValue);
   };
 
   useEffect(() => {
@@ -51,7 +51,7 @@ function FileDetail({ params }) {
   }, []);
 
   const deleteFileHandler = async () => {
-    await fileService.deleteFile(
+    await fileClient.deleteFile(
       file.globalId,
       dispatch,
       bearerToken.tokenValue
@@ -66,7 +66,7 @@ function FileDetail({ params }) {
       description: data.description,
     };
 
-    await fileService.updateFile(
+    await fileClient.updateFile(
       fileUpdateRequest,
       dispatch,
       bearerToken.tokenValue
@@ -76,11 +76,7 @@ function FileDetail({ params }) {
   };
 
   const uploadToIPFS = async () => {
-    await fileService.uploadFileToIPFS(
-      fileId,
-      dispatch,
-      bearerToken.tokenValue
-    );
+    await fileClient.uploadFileToIPFS(fileId, dispatch, bearerToken.tokenValue);
     await retrieveData();
   };
 
@@ -90,7 +86,7 @@ function FileDetail({ params }) {
       tokenPrice: price,
     };
 
-    await fileService.updateNFT(
+    await fileClient.updateNFT(
       fileUpdateRequest,
       dispatch,
       bearerToken.tokenValue

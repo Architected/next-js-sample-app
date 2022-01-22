@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Store } from '../../state/storeProvider';
 
 import UserDetailView from '../../components/profile/userDetailView';
-import { profileService } from '../../service/defaultServices';
+import { profileClient } from '../../service/defaultServices';
 
 function ProfileDetail() {
   const router = useRouter();
@@ -29,7 +29,7 @@ function ProfileDetail() {
   }, []);
 
   const getProfile = async () => {
-    profileService.getProfile(dispatch, bearerToken.tokenValue).then((data) => {
+    profileClient.getProfile(dispatch, bearerToken.tokenValue).then((data) => {
       if (data && !data.InError) {
         setProfile(data);
       }
@@ -44,7 +44,7 @@ function ProfileDetail() {
       lastName: data.lastName,
     };
 
-    await profileService.saveProfile(
+    await profileClient.saveProfile(
       profileUpdateRequest,
       dispatch,
       bearerToken.tokenValue

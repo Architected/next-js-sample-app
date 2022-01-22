@@ -1,4 +1,4 @@
-import { contentService } from '../../service/defaultServices';
+import { contentClient } from '../../service/defaultServices';
 
 const pageKey = 'PRIVACY';
 
@@ -38,7 +38,7 @@ function Privacy(props) {
 export default Privacy;
 
 export async function getServerSideProps() {
-  const responseData = await contentService.getPageByKey(pageKey);
+  const responseData = await contentClient.getPageByKey(pageKey);
   const { data } = responseData;
   return {
     props: {

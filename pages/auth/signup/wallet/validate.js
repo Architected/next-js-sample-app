@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Store } from '../../../../state/storeProvider';
 import EmailValidate from '../../../../components/auth/signup/emailValidate';
 import { walletService } from '../../../../service/walletServices.js';
-import * as authActionType from 'architected-client/constants/iam.js';
+import * as authActionType from 'architected-client/app-state/constants/iam.js';
 import { urlConstants } from '../../../../helper/urlConstants';
 
 function Validate() {

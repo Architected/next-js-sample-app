@@ -9,7 +9,7 @@ import { saveToStore } from '../../../../helper/storageHelper';
 
 import MetaMaskSignIn from '../../../../components/auth/signin/metaMaskSignIn';
 import { walletService } from '../../../../service/walletServices.js';
-import * as authActionType from 'architected-client/constants/iam.js';
+import * as authActionType from 'architected-client/app-state/constants/iam.js';
 
 function SignInWallet() {
   const router = useRouter();

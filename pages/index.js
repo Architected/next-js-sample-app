@@ -5,7 +5,7 @@ import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../state/storeProvider';
 import { architectedConfig } from '../architectedConfig';
-import * as authActionType from 'architected-client/constants/iam.js';
+import * as authActionType from 'architected-client/app-state/constants/iam.js';
 import { urlConstants } from '../helper/urlConstants';
 import { hasValidToken } from '../helper/storageHelper';
 

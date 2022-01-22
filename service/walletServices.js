@@ -1,17 +1,17 @@
-// import { WalletService } from 'architected-client/client/walletService.js';
 import { architectedConfig } from '../architectedConfig';
 import startAuthorize from '../helper/authorizeHelper';
 
-import * as authActionType from 'architected-client/constants/iam.js';
+import * as authActionType from 'architected-client/app-state/constants/iam.js';
 import { ArchitectedFrontChannel } from 'architected-client/channel/architectedFrontChannel.js';
-import { CryptoHelper } from 'architected-client/cryptoHelper.js';
+
 import Web3 from 'web3';
 import { getError } from 'architected-client/helper/getError';
 
 class WalletService {
-  init(config, authorizeHandler) {
+  init(config, cryptoHelper, authorizeHandler) {
     this.frontChannelService = new ArchitectedFrontChannel();
     this.frontChannelService.init(config);
+    this.cryptoHelper = cryptoHelper;
     this.startAuthorize = authorizeHandler;
   }
 
@@ -21,8 +21,7 @@ class WalletService {
   };
 
   getWallet = async (wallet, clientDetails) => {
-    const cryptoHelper = new CryptoHelper();
-    const codeVerifier = cryptoHelper.generateCodeVerifier();
+    const codeVerifier = this.cryptoHelper.generateCodeVerifier();
     const authorizeResponse = await this.startAuthorize(
       codeVerifier,
       clientDetails
@@ -45,8 +44,7 @@ class WalletService {
   };
 
   createWallet = async (wallet, clientDetails) => {
-    const cryptoHelper = new CryptoHelper();
-    const codeVerifier = cryptoHelper.generateCodeVerifier();
+    const codeVerifier = this.cryptoHelper.generateCodeVerifier();
     const authorizeResponse = await this.startAuthorize(
       codeVerifier,
       clientDetails
@@ -173,8 +171,7 @@ class WalletService {
   };
 
   authenticateSignature = async (wallet, clientDetails) => {
-    const cryptoHelper = new CryptoHelper();
-    const codeVerifier = await cryptoHelper.generateCodeVerifier();
+    const codeVerifier = this.cryptoHelper.generateCodeVerifier();
     const authorizeResponse = await startAuthorize(codeVerifier, clientDetails);
 
     if (authorizeResponse.inError) {

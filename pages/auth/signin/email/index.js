@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../../../state/storeProvider';
-import { iamService } from '../../../../service/defaultServices.js';
-import * as authActionType from 'architected-client/constants/iam.js';
+import { iamClient } from '../../../../service/defaultServices.js';
+import * as authActionType from 'architected-client/app-state/constants/iam.js';
 import { getClientDetails } from '../../../../helper/clientHelper';
 import { nextStep } from '../../../../helper/scopeHelper';
 import { urlConstants } from '../../../../helper/urlConstants';
@@ -27,7 +27,7 @@ function SignInEmail() {
   const submitHandler = async ({ email, password }) => {
     const clientDetails = await getClientDetails();
     const requestData = { email, password };
-    const responseData = await iamService.signIn(
+    const responseData = await iamClient.signIn(
       requestData,
       clientDetails,
       dispatch

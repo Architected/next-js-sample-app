@@ -6,8 +6,8 @@ import { Store } from '../../state/storeProvider';
 import ModalTemplate from '../../components/shared/modalTemplate';
 import FileGrid from '../../components/file/fileGrid';
 import SubmitButton from '../../components/shared/submitButton';
-import * as fileActionType from 'architected-client/constants/file.js';
-import { fileService } from '../../service/defaultServices.js';
+import * as fileActionType from 'architected-client/app-state/constants/file.js';
+import { fileClient } from '../../service/defaultServices.js';
 import { hasValidToken } from '../../helper/storageHelper';
 
 function File() {
@@ -58,7 +58,7 @@ function File() {
 
     const fileSize = file.size;
     const fileType = file.type;
-    const validFile = fileService.validateFileBasic(
+    const validFile = fileClient.validateFileBasic(
       fileSize,
       fileType,
       dispatch
@@ -71,7 +71,7 @@ function File() {
   };
 
   const downloadFileHandler = async (fileGlobalId, fileName) => {
-    return fileService.downloadFile(
+    return fileClient.downloadFile(
       fileGlobalId,
       fileName,
       bearerToken.tokenValue
@@ -79,7 +79,7 @@ function File() {
   };
 
   const reloadHandler = async () => {
-    await fileService.getAllFiles(dispatch, bearerToken.tokenValue);
+    await fileClient.getAllFiles(dispatch, bearerToken.tokenValue);
   };
 
   const submitHandler = (data) => {
@@ -88,7 +88,7 @@ function File() {
       name: data.name,
       description: data.description,
     };
-    fileService.uploadFile(request, dispatch, bearerToken.tokenValue);
+    fileClient.uploadFile(request, dispatch, bearerToken.tokenValue);
     setPreviewUrl(null);
   };
 

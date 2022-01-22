@@ -2,10 +2,10 @@ import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../../state/storeProvider';
 import PasswordResetStart from '../../../components/auth/passwordReset/passwordResetStart';
-import * as authActionType from 'architected-client/constants/iam.js';
+import * as authActionType from 'architected-client/app-state/constants/iam.js';
 import { urlConstants } from '../../../helper/urlConstants';
 import { getClientDetails } from '../../../helper/clientHelper';
-import { iamService } from '../../../service/defaultServices';
+import { iamClient } from '../../../service/defaultServices';
 
 function StartPasswordReset() {
   const router = useRouter();
@@ -24,7 +24,7 @@ function StartPasswordReset() {
 
   const submitHandler = async ({ email }) => {
     const clientDetails = await getClientDetails();
-    const responseData = await iamService.passwordResetStart(
+    const responseData = await iamClient.passwordResetStart(
       email,
       clientDetails,
       dispatch

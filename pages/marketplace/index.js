@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import { Store } from '../../state/storeProvider';
 import TokenGrid from '../../components/file/tokenGrid';
 import { walletService } from '../../service/walletServices.js';
-import * as authActionType from 'architected-client/constants/iam.js';
-import * as fileActionType from 'architected-client/constants/file.js';
+import * as authActionType from 'architected-client/app-state/constants/iam.js';
+import * as fileActionType from 'architected-client/app-state/constants/file.js';
 
 import {
   getMarketplaceItems,

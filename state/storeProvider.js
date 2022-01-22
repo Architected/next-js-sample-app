@@ -3,15 +3,15 @@ import combineReducers from 'react-combine-reducers';
 import {
   authReducer,
   initialAuthState,
-} from 'architected-client/reducers/iam.js';
+} from 'architected-client/app-state/reducers/iam.js';
 import {
   fileReducer,
   initialFileState,
-} from 'architected-client/reducers/file.js';
+} from 'architected-client/app-state/reducers/file.js';
 import {
   profileReducer,
   initialProfileState,
-} from 'architected-client/reducers/profile.js';
+} from 'architected-client/app-state/reducers/profile.js';
 
 export const Store = createContext();
 

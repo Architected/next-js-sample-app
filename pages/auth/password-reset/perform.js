@@ -2,8 +2,8 @@ import React, { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Store } from '../../../state/storeProvider';
 import PasswordResetPerform from '../../../components/auth/passwordReset/passwordResetPerform';
-import { iamService } from '../../../service/defaultServices';
-import * as authActionType from 'architected-client/constants/iam.js';
+import { iamClient } from '../../../service/defaultServices';
+import * as authActionType from 'architected-client/app-state/constants/iam.js';
 import { urlConstants } from '../../../helper/urlConstants';
 
 function PerformPasswordReset() {
@@ -32,7 +32,7 @@ function PerformPasswordReset() {
   }, []);
 
   const submitHandler = async ({ newPassword, confirmPassword }) => {
-    const responseData = await iamService.passwordResetPerform(
+    const responseData = await iamClient.passwordResetPerform(
       newPassword,
       confirmPassword,
       dispatch,

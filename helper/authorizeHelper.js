@@ -11,6 +11,7 @@ const startAuthorize = async (codeVerifier, clientDetails) => {
     userAgent: userAgent,
   };
 
+  console.log('calling startAuthorize');
   const response = await axios.post('/api/connect', request, {
     timeout: 30000,
   });
