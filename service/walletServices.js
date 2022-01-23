@@ -2,7 +2,7 @@ import { architectedConfig } from '../architectedConfig';
 import startAuthorize from '../helper/authorizeHelper';
 
 import * as authActionType from 'architected-client/app-state/constants/iam.js';
-import { ArchitectedFrontChannel } from 'architected-client/channel/architectedFrontChannel.js';
+import { ArchitectedFrontChannel } from 'architected-client/api-wrapper/architectedFrontChannel.js';
 
 import Web3 from 'web3';
 import { getError } from 'architected-client/helper/getError';
