@@ -43,13 +43,13 @@ function Layout(props) {
         src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         crossOrigin="anonymous"
         async
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
       ></Script>
       <Script
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         crossOrigin="anonymous"
         async
-        strategy="beforeInteractive"
+        strategy="afterInteractive"
       ></Script>
       {(authState && authState.signinScope === 'COMPLETE') || marketPlace ? (
         <div className="dashboard-wrap">
