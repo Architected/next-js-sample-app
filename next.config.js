@@ -8,4 +8,5 @@ module.exports = {
       'ipfs.infura.io',
     ],
   },
+  outputFileTracing: true,
 };
