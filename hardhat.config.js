@@ -12,9 +12,7 @@ module.exports = {
     },
     mumbai: {
       url: 'https://polygon-mumbai.infura.io/v3/' + projectId,
-      accounts: [
-        '133ac2d2786c07be2a85ccfc575cc7d051e7c87faf6033aa400c35d5d5896264',
-      ],
+      accounts: [accountPrivateKey],
     },
   },
   solidity: '0.8.4',

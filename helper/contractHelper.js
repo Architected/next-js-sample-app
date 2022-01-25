@@ -131,12 +131,16 @@ async function mapToken(tokenContract, token) {
 }
 
 const getMarketplaceItems = async () => {
+  console.log('starting marketContract.fetchMarketItems');
   const signer = await getSigner();
-  const provider = await getProvider();
   const marketContract = getMarketContract(signer);
-  const tokenContract = getTokenContract(provider);
   const data = await marketContract.fetchMarketItems();
 
+  console.log('starting getTokenContract');
+  const provider = await getProvider();
+  const tokenContract = getTokenContract(provider);
+
+  console.log('mapping tokens');
   const items = await Promise.all(
     data.map(async (i) => {
       return mapToken(tokenContract, i);
