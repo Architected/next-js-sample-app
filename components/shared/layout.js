@@ -36,19 +36,16 @@ function Layout(props) {
       <Script
         src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         crossOrigin="anonymous"
-        async
         strategy="beforeInteractive"
       ></Script>
       <Script
         src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         crossOrigin="anonymous"
-        async
-        strategy="afterInteractive"
+        strategy="beforeInteractive"
       ></Script>
       <Script
         src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         crossOrigin="anonymous"
-        async
         strategy="afterInteractive"
       ></Script>
       {(authState && authState.signinScope === 'COMPLETE') || marketPlace ? (
