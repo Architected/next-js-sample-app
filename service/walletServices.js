@@ -6,6 +6,7 @@ import { ArchitectedFrontChannel } from 'architected-client/api-wrapper/architec
 
 import Web3 from 'web3';
 import { getError } from 'architected-client/helper/getError';
+import { CryptoHelper } from 'architected-crypto-helper';
 
 class WalletService {
   init(config, cryptoHelper, authorizeHandler) {
@@ -240,7 +241,10 @@ class WalletService {
         : '';
 
       if (!nonce) {
-        const createWalletResponse = await createWallet(wallet, clientDetails);
+        const createWalletResponse = await this.createWallet(
+          wallet,
+          clientDetails
+        );
 
         if (!createWalletResponse || createWalletResponse.data.inError) {
           dispatch({
@@ -390,8 +394,9 @@ class WalletService {
 }
 
 const walletService = (() => {
+  const cryptoHelper = new CryptoHelper();
   const instance = new WalletService();
-  instance.init(architectedConfig, startAuthorize);
+  instance.init(architectedConfig, cryptoHelper, startAuthorize);
   return instance;
 })();
 
