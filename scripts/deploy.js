@@ -20,26 +20,26 @@ async function main() {
   const NFTMarket = await ethers.getContractFactory('NFTMarket');
   const nftMarket = await NFTMarket.deploy();
   await nftMarket.deployed();
-  console.log('Initial NFTMarket deployed to:', nftMarket.address);
+  //console.log('Initial NFTMarket deployed to:', nftMarket.address);
 
   // This solves the bug in Mumbai network where the contract address is not the real one
   let txHash = nftMarket.deployTransaction.hash;
   console.log(`Tx hash: ${txHash}\nWaiting for transaction to be mined...`);
   let txReceipt = await ethers.provider.waitForTransaction(txHash);
 
-  console.log('Correct NFTMarket deployed to::', txReceipt.contractAddress);
+  console.log('NFTMarket deployed to address:', txReceipt.contractAddress);
 
   const NFT = await ethers.getContractFactory('NFT');
   const nft = await NFT.deploy(txReceipt.contractAddress);
   await nft.deployed();
-  console.log('Initial NFT deployed to:', nft.address);
+  //console.log('Initial NFT deployed to:', nft.address);
 
   // This solves the bug in Mumbai network where the contract address is not the real one
   txHash = nft.deployTransaction.hash;
   console.log(`Tx hash: ${txHash}\nWaiting for transaction to be mined...`);
   txReceipt = await ethers.provider.waitForTransaction(txHash);
 
-  console.log('Correct NFT deployed to::', txReceipt.contractAddress);
+  console.log('NFT deployed to address:', txReceipt.contractAddress);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
