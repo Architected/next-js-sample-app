@@ -12,8 +12,8 @@ reflect the sign up/sign in experience of a Metamask wallet. Additionally, the p
 
 If you would like to see the two different apps running based on the current repository please visit the links below:
 
-- Standard Mode: [https://next-js-sample-app.vercel.app/](https://next-js-sample-app.vercel.app/)
-- Distributed Mode: [https://next-js-sample-dapp.vercel.app/](https://next-js-sample-dapp.vercel.app/)
+- Standard Mode: 
+- Distributed Mode: 
 
 _Note: A Metamask wallet with a connection to Polygon Mumbai Testnet is required to access the distributed mode site._
 
